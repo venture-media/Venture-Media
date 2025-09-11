@@ -1,16 +1,118 @@
-<script type="text/javascript">
-document.addEventListener("DOMContentLoaded", function () {
-  const header = document.getElementById("masthead");
-  const logo = document.querySelector(".is-logo-image");
+<html>
+  <link rel="preload" href="https://dev.venture.com.na/wp-content/uploads/2025/09/venture-logo-black.svg" as="image">
+  <link rel="preload" href="https://dev.venture.com.na/wp-content/uploads/2025/09/venture-logo-white.svg" as="image">
+</html>
 
-  window.addEventListener("scroll", function () {
-    if (window.scrollY > 0) {
-      header.classList.add("scrolled");
-      logo.src = "https://dev.venture.com.na/wp-content/uploads/2025/09/venture-logo-black.svg";
-    } else {
-      header.classList.remove("scrolled");
-      logo.src = "https://dev.venture.com.na/wp-content/uploads/2025/09/venture-logo-white.svg";
-    }
+
+
+<style>
+
+  .site-header {
+  	position: sticky;
+      top: 0;
+      z-index: 9998;
+  }
+  
+  .main-navigation #primary-menu {
+      position: absolute;
+      top: 100%;
+      right: 0;
+  }
+  
+  #primary-menu {
+  	display: none;
+  }
+  
+  .menu-toggle, .mobile-bar-items, .sidebar-nav-mobile {
+      display: block;
+  	font-size: 30px;
+  }
+  
+  .main-navigation.toggled #primary-menu {
+      display: block;
+  	margin-top: 35px;
+  	width: 75vw;
+  	background: #f2f2f2;
+  	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  	border-top: solid;
+  	border-top-width: 3px;
+  	border-top-color: #f4a23a;
+  	padding-top: 10px;
+  	padding-left: 40px;
+  	padding-right: 60px;
+  	padding-bottom: 20px;
+  }
+  
+  @media only screen and (max-width: 370px) {
+  	.site-header .header-image {
+  		width: 140px;
+  	}
+  }
+  
+  	
+  .has-inline-mobile-toggle #site-navigation.toggled {
+  	margin-top: 0px;
+  }
+  
+  .main-navigation .menu-toggle {
+      margin-left: auto;
+  	line-height: 100px;
+  }
+  
+  .inside-header {
+  	padding-top: 20px;
+  	align-items: start;
+  }
+  
+  .main-navigation .main-nav ul li a {
+  	padding-left: 0px;
+  	padding-right 0px;
+  	line-height: 40px;
+  	width: max-content;
+  }
+  
+  span.mobile-menu {
+  	display: none;
+  }
+  
+  /* Top state */
+  #masthead {
+  	background: transparent);
+  	transition: background 0.5s ease;
+  }
+  
+  /* Scrolled state */
+  #masthead.scrolled {
+  	background: #f2f2f2;
+  	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  
+  #masthead .icon-menu-bars svg {
+  	fill: #fff;
+  	transition: fill 0.5s ease;
+  }
+  
+  #masthead.scrolled .icon-menu-bars svg {
+  	fill: #000;
+  }
+
+</style>
+
+
+
+<script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function () {
+    const header = document.getElementById("masthead");
+    const logo = document.querySelector(".is-logo-image");
+  
+    window.addEventListener("scroll", function () {
+      if (window.scrollY > 0) {
+        header.classList.add("scrolled");
+        logo.src = "https://dev.venture.com.na/wp-content/uploads/2025/09/venture-logo-black.svg";
+      } else {
+        header.classList.remove("scrolled");
+        logo.src = "https://dev.venture.com.na/wp-content/uploads/2025/09/venture-logo-white.svg";
+      }
+    });
   });
-});
 </script>

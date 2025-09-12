@@ -1,0 +1,44 @@
+@font-face {
+  font-family: 'Effra Std Light Italic';
+  src: url('https://venture.com.na/wp-content/uploads/2025/09/effra_std_ltit-webfont.woff2') format('woff2'),
+       url('https://venture.com.na/wp-content/uploads/2025/09/effra_std_ltit-webfont.woff') format('woff');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Effra Std Light';
+  src: url('https://venture.com.na/wp-content/uploads/2025/09/effra_std_lt-webfont.woff2') format('woff2'),
+       url('https://venture.com.na/wp-content/uploads/2025/09/effra_std_lt-webfont.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Effra Std Bold';
+  src: url('https://venture.com.na/wp-content/uploads/2025/09/effra_std_bd-webfont.woff2') format('woff2'),
+       url('https://venture.com.na/wp-content/uploads/2025/09/effra_std_bd-webfont.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Effra Std Medium';
+  src: url('https://venture.com.na/wp-content/uploads/2025/09/effra_medium-webfont.woff2') format('woff2'),
+       url('https://venture.com.na/wp-content/uploads/2025/09/effra_medium-webfont.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Bodoni 72';
+  src: url('https://venture.com.na/wp-content/uploads/2025/09/bodoni_72-webfont.woff2') format('woff2'),
+       url('https://venture.com.na/wp-content/uploads/2025/09/bodoni_72-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}

@@ -1,0 +1,25 @@
+#path10, #path13, #path16, #path17, #path18, #path19, #path20, #path21, #path22, #path24, #path25, #path26, #path28, #path29, #path30, #path32, #path33, #path34, #path36, #path37, #path38, #path40, #path41, #path42, #path44, #path45, #path46, #path48 {
+	fill: #ffffff00 !important;
+	transition: fill 0.5s !important;
+}
+
+:has(#text2:hover) :is(#path10, #path13, #path16, #text48),
+:has(#text3:hover) :is(#path17, #path18, #path20, #text48),
+:has(#text4:hover) :is(#path21, #path22, #path24, #text48),
+:has(#text5:hover) :is(#path25, #path26, #path28, #text48),
+:has(#text6:hover) :is(#path29, #path30, #path32, #text48),
+:has(#text7:hover) :is(#path33, #path34, #path36, #text48),
+:has(#text8:hover) :is(#path37, #path38, #path40, #text48),
+:has(#text9:hover) :is(#path41, #path42, #path44, #text48),
+:has(#text10:hover) :is(#path45, #path46, #path48, #text48)
+{
+	fill: #C8D07A !important;
+	transition: fill 0.5s !important;
+}
+
+
+#tspan1:hover, #text3:hover, #text4:hover, #text5:hover, #text6:hover, #text7:hover, #text8:hover ,#text9:hover, #text10:hover {
+	fill: #C8D07A !important;
+	transition: fill 0.5s !important;
+	cursor: pointer;
+}

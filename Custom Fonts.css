@@ -1,44 +1,73 @@
-@font-face {
-  font-family: 'Effra Std Light Italic';
-  src: url('https://venture.com.na/wp-content/uploads/2025/09/effra_std_ltit-webfont.woff2') format('woff2'),
-       url('https://venture.com.na/wp-content/uploads/2025/09/effra_std_ltit-webfont.woff') format('woff');
-  font-weight: 300;
-  font-style: italic;
-  font-display: swap;
-}
+	@font-face {
+	  font-family: 'Effra Std Light Italic';
+	  src: url('https://dev.venture.com.na/wp-content/uploads/2025/09/effra_std_ltit-webfont.woff2') format('woff2'),
+		   url('https://dev.venture.com.na/wp-content/uploads/2025/09/effra_std_ltit-webfont.woff') format('woff');
+	  font-weight: 300;
+	  font-style: italic;
+	  font-display: swap;
+	}
 
-@font-face {
-  font-family: 'Effra Std Light';
-  src: url('https://venture.com.na/wp-content/uploads/2025/09/effra_std_lt-webfont.woff2') format('woff2'),
-       url('https://venture.com.na/wp-content/uploads/2025/09/effra_std_lt-webfont.woff') format('woff');
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
-}
+	@font-face {
+	  font-family: 'Effra Std Light';
+	  src: url('https://dev.venture.com.na/wp-content/uploads/2025/09/effra_std_lt-webfont.woff2') format('woff2'),
+		   url('https://dev.venture.com.na/wp-content/uploads/2025/09/effra_std_lt-webfont.woff') format('woff');
+	  font-weight: 300;
+	  font-style: normal;
+	  font-display: swap;
+	}
 
-@font-face {
-  font-family: 'Effra Std Bold';
-  src: url('https://venture.com.na/wp-content/uploads/2025/09/effra_std_bd-webfont.woff2') format('woff2'),
-       url('https://venture.com.na/wp-content/uploads/2025/09/effra_std_bd-webfont.woff') format('woff');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
+	@font-face {
+	  font-family: 'Effra Std Bold';
+	  src: url('https://dev.venture.com.na/wp-content/uploads/2025/09/effra_std_bd-webfont.woff2') format('woff2'),
+		   url('https://dev.venture.com.na/wp-content/uploads/2025/09/effra_std_bd-webfont.woff') format('woff');
+	  font-weight: 700;
+	  font-style: normal;
+	  font-display: swap;
+	}
 
-@font-face {
-  font-family: 'Effra Std Medium';
-  src: url('https://venture.com.na/wp-content/uploads/2025/09/effra_medium-webfont.woff2') format('woff2'),
-       url('https://venture.com.na/wp-content/uploads/2025/09/effra_medium-webfont.woff') format('woff');
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
+	@font-face {
+	  font-family: 'Effra Std Medium';
+	  src: url('https://dev.venture.com.na/wp-content/uploads/2025/09/effra_medium-webfont.woff2') format('woff2'),
+		   url('https://dev.venture.com.na/wp-content/uploads/2025/09/effra_medium-webfont.woff') format('woff');
+	  font-weight: 500;
+	  font-style: normal;
+	  font-display: swap;
+	}
 
-@font-face {
-  font-family: 'Bodoni 72';
-  src: url('https://venture.com.na/wp-content/uploads/2025/09/bodoni_72-webfont.woff2') format('woff2'),
-       url('https://venture.com.na/wp-content/uploads/2025/09/bodoni_72-webfont.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
+	@font-face {
+	  font-family: 'Bodoni 72';
+	  src: url('https://dev.venture.com.na/wp-content/uploads/2025/09/bodoni_72-webfont.woff2') format('woff2'),
+		   url('https://dev.venture.com.na/wp-content/uploads/2025/09/bodoni_72-webfont.woff') format('woff');
+	  font-weight: normal;
+	  font-style: normal;
+	  font-display: swap;
+	}
+
+	@font-face {
+	  font-family: 'Fresh Palm';
+	  src: url('https://dev.venture.com.na/wp-content/uploads/2025/09/Fresh-Palm.woff2') format('woff2'),
+		   url('https://dev.venture.com.na/wp-content/uploads/2025/09/Fresh-Palm.woff') format('woff');
+	  font-weight: normal;
+	  font-style: normal;
+	  font-display: swap;
+	}
+
+	@font-face {
+	  font-family: 'Melting Stories';
+	  src: url('https://dev.venture.com.na/wp-content/uploads/2025/09/Melting-Stories.woff2') format('woff2'),
+		   url('https://dev.venture.com.na/wp-content/uploads/2025/09/Melting-Stories.woff') format('woff');
+	  font-weight: normal;
+	  font-style: normal;
+	  font-display: swap;
+	}
+
+
+/* Custom Global Font - Overrides */
+
+	:root, .elementor-kit-6 {
+	  --e-global-typography-37a99ca-font-family: 'Effra Std Light Italic', sans-serif;
+	  --e-global-typography-5496b94-font-family: 'Effra Std Light', sans-serif;
+	  --e-global-typography-f0bce12-font-family: 'Effra Std Bold', sans-serif;
+	  --e-global-typography-6c4d399-font-family: 'Effra Std Medium', sans-serif;
+	  --e-global-typography-a18a027-font-family: 'Bodoni 72', serif;
+	}

@@ -22,3 +22,23 @@
 .footer-widget-2 {
 	font-size: 15px;
 }
+
+.wp-block-social-links {
+	align-items: start;
+	fill: #585861;
+}
+
+.wp-block-social-links :hover{
+	fill: #f88c00;
+}
+
+.wp-social-link-instagram {
+	margin-top: 1px !important;
+	margin-left: 3x !important;
+	margin-right: 3px !important;
+}
+
+.wp-social-link-facebook {
+	margin-left: 3px !important;
+	margin-right: 3px !important;
+}

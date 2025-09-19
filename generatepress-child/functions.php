@@ -1,8 +1,17 @@
 <?php
-// Enqueue parent style
 add_action( 'wp_enqueue_scripts', function() {
     wp_enqueue_style( 'generatepress-parent-style', get_template_directory_uri() . '/style.css' );
+
+    // Enqueue custom JS
+    wp_enqueue_script(
+        'child-header-scroll',
+        get_stylesheet_directory_uri() . '/js/header-scroll.js',
+        array(),
+        null,
+        true 
+    );
 });
+
 
 // Add custom social icons inside navigation
 add_action( 'generate_inside_navigation', function() {

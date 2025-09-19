@@ -1,0 +1,42 @@
+/*
+ Theme Name: GeneratePress Child
+ Theme URI: https://generatepress.com
+ Description: Child theme for GeneratePress
+ Author: Leon de Klerk
+ Author URI: https://github.com/Leon2332/Venture-Media
+ Template: generatepress
+ Version: 1.0.0
+
+=====================
+	TABLE OF CONTENTS
+
+	1. Social Icons (header)
+===================== */
+
+
+
+
+/* =====================
+	1. Social Icons
+===================== */
+
+.custom-social-icons svg {
+  width: 25px;
+  height: 25px;
+  fill: currentColor;
+  display: inline-block;
+}
+
+.custom-social-icons a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 5px;
+}
+
+.custom-social-icons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-right: 10px;
+}

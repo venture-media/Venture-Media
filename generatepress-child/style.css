@@ -17,7 +17,7 @@
 
 
 /* =====================
-	1. Social Icons (header)
+	1. Social Icons
 ===================== */
 
 .custom-social-icons svg {
@@ -38,4 +38,5 @@
   display: flex;
   align-items: center;
   gap: 10px;
+  margin-right: 10px;
 }

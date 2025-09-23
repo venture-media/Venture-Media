@@ -1,0 +1,65 @@
+h1.product_title.entry-title {
+	color: #221F21;
+}
+
+.woocommerce-product-details__short-description {
+	color: #7A7A7A;
+}
+
+button.single_add_to_cart_button.button.alt {
+	background-color: #D1D741;
+}
+
+button.single_add_to_cart_button.button.alt:hover{
+	background-color: #C8D07A;
+}
+
+span.woocommerce-Price-amount.amount {
+	color: #F4A23A;
+}
+
+span.posted_in {
+	display: none;
+}
+
+.woocommerce-Tabs-panel {
+	color: #7A7A7A;
+}
+
+.woocommerce-product-gallery {
+	max-width: 325px;
+}
+
+nav.woocommerce-breadcrumb {
+	display: none;
+}
+
+.quantity input{
+	color: #221F21;
+	padding: 5px 5px;
+	border: solid;
+	border-width: 1px;
+	border-radius: 5px;
+	border-color: #C8D07A;
+}
+
+.quantity input:focus{
+	color: #221F21;
+	padding: 5px 5px;
+	border: solid;
+	border-width: 1px;
+	border-radius: 5px;
+	border-color: #C8D07A;
+}
+
+
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: inner-spin-button;
+  opacity: 1;
+}
+
+input[type=number] {
+  -moz-appearance: number-input;
+}

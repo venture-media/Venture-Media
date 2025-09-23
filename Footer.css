@@ -9,6 +9,7 @@
 
 .footer-widget-2 img{
 	padding: 20px 20px 0px 20px;
+	width: 100%;
 	max-width: 30vw;
 }
 
@@ -25,26 +26,30 @@
 
 .wp-block-social-links {
 	align-items: start;
-	fill: #585861;
 }
 
-.wp-block-social-links :hover{
-	fill: #f88c00;
-}
+
+/* WooCommerce loads WP stylesheet before custom stylesheet */
 
 .wp-social-link-instagram {
 	margin-top: 1px !important;
-	margin-left: 3x !important;
 	margin-right: 3px !important;
 }
 
 .wp-social-link-linkedin {
 	margin-top: 1px !important;
-	margin-left: 3x !important;
 	margin-right: 3px !important;
 }
 
 .wp-social-link-facebook {
 	margin-left: 3px !important;
 	margin-right: 3px !important;
+}
+
+a.wp-block-social-link-anchor svg{
+	fill: #585861 !important;
+}
+
+a.wp-block-social-link-anchor svg:hover{
+	fill: #f88c00 !important;
 }

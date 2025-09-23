@@ -4,10 +4,15 @@
  *
  * Override this template by copying it to yourtheme/woocommerce/single-product.php
  *
- * @author     
+ * @author: Leon de Klerk
  */
 
+
 get_header('shop'); ?>
+
+<div class="custom-top-banner">
+    <img src="https://dev.venture.com.na/wp-content/uploads/2025/09/Sand-dunes-Sahara-desert.jpg.webp" alt="Decorative banner">
+</div>
 
 	<div class="row">
 

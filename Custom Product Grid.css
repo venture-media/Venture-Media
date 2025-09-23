@@ -1,0 +1,12 @@
+[id^=custom_book_img] {
+	z-index: 2;
+	transform: translateY(0) scale(1);
+	transition: transform ease-in-out 0.35s;
+}
+
+
+@media only screen and (min-width: 769px) {
+	[id^=custom_book_container]:hover > [id^=custom_book_img] {
+		transform: translateY(-30px) scale(0.85);
+	}
+}

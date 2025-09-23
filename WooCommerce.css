@@ -63,3 +63,49 @@ input[type=number]::-webkit-outer-spin-button {
 input[type=number] {
   -moz-appearance: number-input;
 }
+
+h1.entry-title {
+	color: black;
+	padding-left: 5vw;
+	padding-right: 5vw;
+}
+
+.wc-block-cart-items__header-image {
+	color: black;
+}
+
+.price.wc-block-components-product-price {
+	color: black;
+}
+
+.wc-block-cart-item__wrap p{
+	color: black;
+}
+
+.wc-block-cart-item__quantity {
+	color: black;
+}
+
+.wc-block-cart-items__header-total {
+	color: black;
+}
+
+.wp-block-woocommerce-cart-order-summary-heading-block.wc-block-cart__totals-title {
+	color: black;
+}
+
+.wc-block-components-totals-wrapper {
+	color: black;
+}
+
+.wc-block-components-button.wp-element-button.wc-block-cart__submit-button.contained {
+	border: solid;
+	border-width: 1px;
+	border-color: black;
+	border-radius: 5px;
+	color: black;
+}
+
+.wc-block-components-button.wp-element-button.wc-block-cart__submit-button.contained:hover{
+	color: black;
+}

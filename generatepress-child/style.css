@@ -5,7 +5,7 @@
  Author: Leon de Klerk
  Author URI: https://github.com/Leon2332/Venture-Media
  Template: generatepress
- Version: 1.0.0
+ Version:
 
 =====================
   TABLE OF CONTENTS
@@ -54,7 +54,7 @@
   .site-header {
     position: sticky;
     top: 0;
-    z-index: 9998;
+    z-index: 1499; /* WooCommerce Lightbox z-index: 1500 | Elementor Lightbox z-index: 1000 */
   }
 
   .main-navigation #primary-menu {
@@ -227,4 +227,3 @@ div.inside-article {
     height: 40vh;
     object-fit: cover;
 }
-

@@ -8,6 +8,7 @@
     - Elementor
     - ShortPixel Image Optimizer
     - Simple Custom CSS and JS
+    - WooCommerce
 
 - The files in this reposotory are the custom HTML, CSS and JS for this website.
 - Author: Leon de Klerk (https://github.com/Leon2332)

@@ -8,181 +8,223 @@
  Version: 1.0.0
 
 =====================
-	TABLE OF CONTENTS
+  TABLE OF CONTENTS
 
-	1. Social Icons (header)
-	2. Site Header
-	3. Hide Page Header Featured Image
+  1. Social Icons (header)
+  2. Site Header
+  3. Hide Page Header Featured Image
+  4. Woocommerce Single Product
 ===================== */
 
 
 
 
 /* =====================
-	1. Social Icons (header)
+  1. Social Icons (header)
 ===================== */
 
-	.custom-social-icons svg {
-	  width: 25px;
-	  height: 25px;
-	  fill: currentColor;
-	  display: inline-block;
-	}
+  .custom-social-icons svg {
+    width: 25px;
+    height: 25px;
+    fill: currentColor;
+    display: inline-block;
+  }
 
-	.custom-social-icons a {
-	  display: flex;
-	  align-items: center;
-	  justify-content: center;
-	  padding: 0 5px;
-	}
+  .custom-social-icons a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 5px;
+  }
 
-	.custom-social-icons {
-	  display: flex;
-	  align-items: center;
-	  gap: 10px;
-	  margin-right: 10px;
-	}
+  .custom-social-icons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-right: 10px;
+  }
 
 
 
 
 /* =====================
-	2. Site Header
+  2. Site Header
 ===================== */
 
-	.site-header {
-		position: sticky;
-		top: 0;
-		z-index: 9998;
-	}
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 9998;
+  }
 
-	.main-navigation #primary-menu {
-		position: absolute;
-		top: 100%;
-		right: 0;
-	}
+  .main-navigation #primary-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+  }
 
-	.main-navigation #primary-menu li{
-		border-bottom: solid;
-		border-bottom-width: 1px;
-		border-bottom-color: #dadcde;
-		padding-top: 8px;
-	}
+  .main-navigation #primary-menu li{
+    border-bottom: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: #dadcde;
+    padding-top: 8px;
+  }
 
-	#primary-menu {
-		display: none;
-	}
+  #primary-menu {
+    display: none;
+  }
 
-	.menu-toggle, .mobile-bar-items, .sidebar-nav-mobile {
-		display: block;
-		font-size: 30px;
-	}
+  .menu-toggle, .mobile-bar-items, .sidebar-nav-mobile {
+    display: block;
+    font-size: 30px;
+  }
 
-	.main-navigation.toggled #primary-menu {
-		display: block;
-		margin-top: 35px;
-		background: #f2f2f2;
-		box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-		border-top: solid;
-		border-top-width: 3px;
-		border-top-color: #f4a23a;
-		padding-top: 10px;
-		padding-left: 40px;
-		padding-right: 40px;
-		padding-bottom: 15px;
-	}
+  .main-navigation.toggled #primary-menu {
+    display: block;
+    margin-top: 35px;
+    background: #f2f2f2;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-top: solid;
+    border-top-width: 3px;
+    border-top-color: #f4a23a;
+    padding-top: 10px;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-bottom: 15px;
+  }
 
-	@media only screen and (min-width: 1080px) {
-		.main-navigation.toggled #primary-menu {
-			width: 1080px;
-		}
-	}
-
-
-	@media only screen and (max-width: 1079px) {
-		.main-navigation.toggled #primary-menu {
-			width: 90vw;
-			margin-left: 5vw;
-			margin-right: 5vw;
-		}
-	}
-
-		@media only screen and (max-width: 370px) {
-		.site-header .header-image {
-			width: 140px;
-		}
-	}
+  @media only screen and (min-width: 1080px) {
+    .main-navigation.toggled #primary-menu {
+      width: 1080px;
+    }
+  }
 
 
-	.has-inline-mobile-toggle #site-navigation.toggled {
-		margin-top: 0px;
-	}
+  @media only screen and (max-width: 1079px) {
+    .main-navigation.toggled #primary-menu {
+      width: 90vw;
+      margin-left: 5vw;
+      margin-right: 5vw;
+    }
+  }
 
-	.main-navigation .menu-toggle {
-		margin-left: auto;
-		line-height: 100px;
-	}
-
-	.inside-header {
-		padding-top: 20px;
-		align-items: start;
-	}
-
-	.main-navigation .main-nav ul li a {
-		padding-left: 0px;
-		padding-right 0px;
-		line-height: 40px;
-		width: 100%;
-	}
-
-	.current_page_item a {
-		font-weight: 500;
-	}
-
-	span.mobile-menu {
-		display: none;
-	}
+    @media only screen and (max-width: 370px) {
+    .site-header .header-image {
+      width: 140px;
+    }
+  }
 
 
+  .has-inline-mobile-toggle #site-navigation.toggled {
+    margin-top: 0px;
+  }
 
-	/* Top state */
-	#masthead {
-		background: transparent);
-		transition: background 0.5s ease;
-	}
+  .main-navigation .menu-toggle {
+    margin-left: auto;
+    line-height: 100px;
+  }
 
-	#masthead .icon-menu-bars svg {
-		fill: #fff;
-		transition: fill 0.5s ease;
-	}
+  .inside-header {
+    padding-top: 20px;
+    align-items: start;
+  }
 
-		#masthead .custom-social-icons svg {
-		fill: #f2f2f2;
-		transition: fill 0.5s ease;
-	}
+  .main-navigation .main-nav ul li a {
+    padding-left: 0px;
+    padding-right 0px;
+    line-height: 40px;
+    width: 100%;
+  }
+
+  .current_page_item a {
+    font-weight: 500;
+  }
+
+  span.mobile-menu {
+    display: none;
+  }
 
 
-	/* Scrolled state */
-	#masthead.scrolled {
-		background: #f2f2f2;
-		box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-	}
 
-	#masthead.scrolled .icon-menu-bars svg {
-		fill: #000;
-	}
+  /* Top state */
+  #masthead {
+    background: transparent);
+    transition: background 0.5s ease;
+  }
 
-	#masthead.scrolled .custom-social-icons svg {
-		fill: #000;
-	}
+  #masthead .icon-menu-bars svg {
+    fill: #fff;
+    transition: fill 0.5s ease;
+  }
+
+    #masthead .custom-social-icons svg {
+    fill: #f2f2f2;
+    transition: fill 0.5s ease;
+  }
+
+
+  /* Scrolled state */
+  #masthead.scrolled {
+    background: #f2f2f2;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+
+  #masthead.scrolled .icon-menu-bars svg {
+    fill: #000;
+  }
+
+  #masthead.scrolled .custom-social-icons svg {
+    fill: #000;
+  }
 
 
 
 
 /* =====================
-	3. Hide Page Header Featured Image
+  3. Hide Page Header Featured Image
 ===================== */
 
-	.page-header-image {
-		display: none;
-	}
+  .page-header-image {
+    display: none;
+  }
+
+
+
+/* =====================
+  4. Woocommerce Single Product
+===================== */
+
+.site-content {
+	display: block;
+}
+
+.row {
+	justify-items: center;
+}
+
+div.inside-article {
+	max-width: 1200px;
+}
+.site.grid-container.container.hfeed {
+	max-width: none;
+}
+
+
+.product-template-default {
+	width: 100%;
+}
+
+.custom-top-banner {
+    width: 100vw;
+    margin-top: -140px;
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+.custom-top-banner img {
+    display: block;
+    width: 100vw;
+    height: 40vh;
+    object-fit: cover;
+}
+

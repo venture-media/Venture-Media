@@ -194,12 +194,18 @@
   4. Woocommerce Single Product
 ===================== */
 
+
 .site-content {
 	display: block;
 }
 
 .row {
 	justify-items: center;
+}
+
+.wc-block-components-main.wc-block-cart__main.wp-block-woocommerce-cart-items-block {
+	padding-left: 5vw;
+	padding-right: 5vw;
 }
 
 div.inside-article {

@@ -13,48 +13,107 @@ add_action( 'wp_enqueue_scripts', function() {
 });
 
 
-add_action( 'woocommerce_before_calculate_totals', 'apply_bulk_discount_price_attribute' );
+add_action( 'woocommerce_before_calculate_totals', 'apply_bulk_discount_price_attribute', 20, 1 );
+
+/**
+ * Apply per-product bulk price (from attribute) when the cart quantity
+ * meets the product's minimum-bulk-discount-qty. Otherwise use sale price
+ * if present, falling back to regular price.
+ */
 function apply_bulk_discount_price_attribute( $cart ) {
     if ( is_admin() && ! defined( 'DOING_AJAX' ) ) {
         return;
     }
 
-    foreach ( $cart->get_cart() as $cart_item ) {
-        $qty     = $cart_item['quantity'];
-        $product = $cart_item['data'];
+    // Helper: read an attribute value (works for global 'pa_' attrs and custom attrs)
+    $get_attr_value = function( $product, $attr_slug ) {
+        $attributes = $product->get_attributes();
+        if ( ! isset( $attributes[ $attr_slug ] ) ) {
+            return null;
+        }
 
-        // Default price is WooCommerce's own (sale or regular)
-        $final_price = $product->get_price();
+        $attr = $attributes[ $attr_slug ];
 
-        // Apply bulk price only if quantity >= 20
-        if ( $qty >= 20 ) {
-            $attributes = $product->get_attributes();
-
-            if ( isset( $attributes['pa_bulk-discount-price'] ) ) {
-                $attr_obj = $attributes['pa_bulk-discount-price'];
-
-                if ( is_object( $attr_obj ) && method_exists( $attr_obj, 'get_options' ) ) {
-                    $options = $attr_obj->get_options();
-
-                    if ( ! empty( $options ) ) {
-                        $term_id = reset( $options );
-                        $term    = get_term( $term_id, 'pa_bulk-discount-price' );
-
-                        if ( $term && ! is_wp_error( $term ) ) {
-                            $bulk_price = floatval( $term->name );
-
-                            if ( $bulk_price > 0 ) {
-                                $final_price = $bulk_price;
-                            }
-                        }
+        // WC_Product_Attribute object (global attribute)
+        if ( is_object( $attr ) && method_exists( $attr, 'get_options' ) ) {
+            $options = $attr->get_options();
+            if ( ! empty( $options ) ) {
+                $first = reset( $options );
+                if ( is_numeric( $first ) ) {
+                    // store as term ID – fetch term name
+                    $term = get_term( intval( $first ), $attr_slug );
+                    if ( $term && ! is_wp_error( $term ) ) {
+                        return $term->name;
                     }
+                } else {
+                    // non-global attribute – option may be slug or text
+                    return $first;
                 }
             }
         }
 
-        $product->set_price( $final_price );
+        // Fallback for arrays/strings
+        if ( is_array( $attr ) ) {
+            return reset( $attr );
+        }
+        return $attr;
+    };
+
+    foreach ( $cart->get_cart() as $cart_item_key => $cart_item ) {
+        $product = $cart_item['data'];
+        $qty     = isset( $cart_item['quantity'] ) ? intval( $cart_item['quantity'] ) : 0;
+
+        // --- Determine default price: sale price if present, otherwise regular ---
+        $regular = floatval( $product->get_regular_price() );
+        $sale_raw = $product->get_sale_price();
+        $has_sale = ( $sale_raw !== '' && $sale_raw !== false && $sale_raw !== null );
+        $sale     = $has_sale ? floatval( $sale_raw ) : null;
+        $default_price = ( $sale !== null ) ? $sale : $regular;
+
+        // --- Read Bulk Price attribute (try both pa_ and non-pa_ slugs) ---
+        $bulk_price_raw = $get_attr_value( $product, 'pa_bulk-discount-price' );
+        if ( $bulk_price_raw === null ) {
+            $bulk_price_raw = $get_attr_value( $product, 'bulk-discount-price' );
+        }
+
+        $bulk_price = null;
+        if ( $bulk_price_raw !== null && $bulk_price_raw !== '' ) {
+            // strip anything non-numeric except dot and minus, then cast
+            $bulk_price = floatval( preg_replace( '/[^\d\.\-]/', '', (string) $bulk_price_raw ) );
+            if ( $bulk_price <= 0 ) {
+                $bulk_price = null;
+            }
+        }
+
+        // --- Read Minimum Qty attribute (try both pa_ and non-pa_ slugs) ---
+        $min_qty_raw = $get_attr_value( $product, 'pa_minimum-bulk-discount-qty' );
+        if ( $min_qty_raw === null ) {
+            $min_qty_raw = $get_attr_value( $product, 'minimum-bulk-discount-qty' );
+        }
+
+        $min_qty = 20; // fallback default
+        if ( $min_qty_raw !== null && $min_qty_raw !== '' ) {
+            $min_val = intval( preg_replace( '/[^\d]/', '', (string) $min_qty_raw ) );
+            if ( $min_val > 0 ) {
+                $min_qty = $min_val;
+            }
+        }
+
+        // --- Decide final price ---
+        // If bulk price exists and qty meets/exceeds min – use bulk price.
+        // Otherwise use the sale price (if set) or regular price.
+        if ( $bulk_price !== null && $qty >= $min_qty ) {
+            $final_price = $bulk_price;
+        } else {
+            $final_price = $default_price;
+        }
+
+        // Set price on the cart item product object (prevents shared-product caching issues)
+        $cart_item['data']->set_price( $final_price );
     }
 }
+
+
 
 add_filter( 'woocommerce_sale_flash', 'custom_woocommerce_sale_flash', 10, 3 );
 function custom_woocommerce_sale_flash( $html, $post, $product ) {

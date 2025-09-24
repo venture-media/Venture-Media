@@ -39,6 +39,11 @@ function custom_bulk_discount( $cart ) {
     }
 }
 
+add_filter( 'woocommerce_sale_flash', 'custom_woocommerce_sale_flash', 10, 3 );
+function custom_woocommerce_sale_flash( $html, $post, $product ) {
+    return '<span class="onsale">Pre-order</span>';
+}
+
 
 // Add custom social icons inside navigation
 add_action( 'generate_inside_navigation', function() {

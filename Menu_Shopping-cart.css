@@ -1,0 +1,21 @@
+#menu-item-469 {
+	padding-top: 0px !important;
+	padding-bottom: 0px !important;
+	border-bottom-width: 0px !important;
+}
+
+#menu-item-469 a {
+	font-size: 10px;
+	text-decoration: underline;
+	letter-spacing: 0.5px;
+	color: black;
+	position: relative;
+	display: flex;
+	align-items: right;
+	justify-content: right;
+	width: auto;
+	}
+
+#menu-item-469 a:hover{
+	color: #f88c00;
+}

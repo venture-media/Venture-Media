@@ -27,7 +27,7 @@ function custom_bulk_discount( $cart ) {
         $regular_price = $product->get_regular_price();
 
         if ( $qty >= 20 ) {
-            $discounted_price = $regular_price * 0.875;
+            $discounted_price = $regular_price * 0.87431693989071;
             $product->set_price( $discounted_price );
         } else {
             // Make sure non-bulk stays at its normal sale/regular price

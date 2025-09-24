@@ -134,3 +134,11 @@ h1.entry-title {
 .wp-block-heading.has-text-align-center.with-empty-cart-icon.wc-block-cart__empty-cart__title {
 	color: black;
 }
+
+.wc-block-checkout__actions_row a:hover {
+	color: #f88c00;
+}
+
+.wc-block-components-checkbox__label a:hover{
+	color: #f88c00;
+}

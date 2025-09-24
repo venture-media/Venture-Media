@@ -1,4 +1,4 @@
-<img width="2120" height="1141" alt="Image" src="https://github.com/user-attachments/assets/5060e186-bcb2-4e23-aad2-39c69302b7f0" />
+<img width="1900" height="960" alt="Image" src="https://github.com/user-attachments/assets/6883fc08-249e-4249-adb9-ce594a066266" />
 
 
 - Website: https://www.venture.com.na/
@@ -10,5 +10,6 @@
     - Simple Custom CSS and JS
     - WooCommerce
 
-- The files in this reposotory are the custom HTML, CSS and JS for this website.
+- The files in this reposotory are the custom PHP, HTML, CSS and JS for this website.
 - Author: Leon de Klerk (https://github.com/Leon2332)
+- Contributing author: Venture Media (https://github.com/venture-media)

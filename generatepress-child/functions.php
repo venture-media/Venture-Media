@@ -12,30 +12,47 @@ add_action( 'wp_enqueue_scripts', function() {
     );
 });
 
-add_action( 'woocommerce_before_calculate_totals', 'custom_bulk_discount' );
-function custom_bulk_discount( $cart ) {
+
+add_action( 'woocommerce_before_calculate_totals', 'apply_bulk_discount_price_attribute' );
+function apply_bulk_discount_price_attribute( $cart ) {
     if ( is_admin() && ! defined( 'DOING_AJAX' ) ) {
         return;
     }
 
-    // Loop through cart items
     foreach ( $cart->get_cart() as $cart_item ) {
-        $qty   = $cart_item['quantity'];
+        $qty     = $cart_item['quantity'];
         $product = $cart_item['data'];
 
-        // Always use regular price, ignore sale price
-        $regular_price = $product->get_regular_price();
+        // Default price is WooCommerce's own (sale or regular)
+        $final_price = $product->get_price();
 
+        // Apply bulk price only if quantity >= 20
         if ( $qty >= 20 ) {
-            $discounted_price = $regular_price * 0.87431693989071;
-            $product->set_price( $discounted_price );
-        } else {
-            // Make sure non-bulk stays at its normal sale/regular price
-            // Reset to sale price if available, otherwise regular
-            $sale_price = $product->get_sale_price();
-            $reset_price = $sale_price ? $sale_price : $regular_price;
-            $product->set_price( $reset_price );
+            $attributes = $product->get_attributes();
+
+            if ( isset( $attributes['pa_bulk-discount-price'] ) ) {
+                $attr_obj = $attributes['pa_bulk-discount-price'];
+
+                if ( is_object( $attr_obj ) && method_exists( $attr_obj, 'get_options' ) ) {
+                    $options = $attr_obj->get_options();
+
+                    if ( ! empty( $options ) ) {
+                        $term_id = reset( $options );
+                        $term    = get_term( $term_id, 'pa_bulk-discount-price' );
+
+                        if ( $term && ! is_wp_error( $term ) ) {
+                            $bulk_price = floatval( $term->name );
+
+                            if ( $bulk_price > 0 ) {
+                                $final_price = $bulk_price;
+                            }
+                        }
+                    }
+                }
+            }
         }
+
+        $product->set_price( $final_price );
     }
 }
 
@@ -43,7 +60,6 @@ add_filter( 'woocommerce_sale_flash', 'custom_woocommerce_sale_flash', 10, 3 );
 function custom_woocommerce_sale_flash( $html, $post, $product ) {
     return '<span class="onsale">Pre-order</span>';
 }
-
 
 // Add custom social icons inside navigation
 add_action( 'generate_inside_navigation', function() {

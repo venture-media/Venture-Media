@@ -109,3 +109,28 @@ h1.entry-title {
 .wc-block-components-button.wp-element-button.wc-block-cart__submit-button.contained:hover{
 	color: black;
 }
+
+.wc-block-components-checkbox__label {
+	color: black;
+}
+
+.wc-block-components-title.wc-block-components-checkout-step__title {
+	color: black;
+}
+
+.wc-block-components-checkout-step__description {
+	color: black;
+}
+
+.wp-block-woocommerce-checkout.alignwide.wc-block-checkout {
+	padding-left: 5vw;
+	padding-right: 5vw;
+}
+
+.wp-block-woocommerce-checkout-order-summary-block {
+	margin-top: 140px;
+}
+
+.wp-block-heading.has-text-align-center.with-empty-cart-icon.wc-block-cart__empty-cart__title {
+	color: black;
+}

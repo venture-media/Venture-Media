@@ -170,3 +170,11 @@ h1.entry-title {
 .woocommerce-Tabs-panel.woocommerce-Tabs-panel--description.panel.entry-content.wc-tab li {
 	padding-bottom: 10px;
 }
+
+.woocommerce table.shop_attributes th {
+	width: 250px;
+}
+
+span.onsale {
+	background-color: #f88c00 !important;
+}

@@ -113,7 +113,90 @@ function apply_bulk_discount_price_attribute( $cart ) {
     }
 }
 
+add_action( 'woocommerce_single_product_summary', 'show_bulk_discount_info', 11 );
+function show_bulk_discount_info() {
+    global $product;
 
+    // Get product attributes
+    $attributes = $product->get_attributes();
+
+    // Get Bulk Price
+    $bulk_price = null;
+    if ( isset( $attributes['pa_bulk-discount-price'] ) ) {
+        $attr_obj = $attributes['pa_bulk-discount-price'];
+        if ( is_object( $attr_obj ) && method_exists( $attr_obj, 'get_options' ) ) {
+            $options = $attr_obj->get_options();
+            if ( ! empty( $options ) ) {
+                $term_id = reset( $options );
+                $term    = get_term( $term_id, 'pa_bulk-discount-price' );
+                if ( $term && ! is_wp_error( $term ) ) {
+                    $bulk_price = floatval( $term->name );
+                }
+            }
+        }
+    }
+
+    // Get Minimum Bulk Discount Qty
+    $min_qty = null;
+    if ( isset( $attributes['pa_minimum-bulk-discount-qty'] ) ) {
+        $attr_obj = $attributes['pa_minimum-bulk-discount-qty'];
+        if ( is_object( $attr_obj ) && method_exists( $attr_obj, 'get_options' ) ) {
+            $options = $attr_obj->get_options();
+            if ( ! empty( $options ) ) {
+                $term_id = reset( $options );
+                $term    = get_term( $term_id, 'pa_minimum-bulk-discount-qty' );
+                if ( $term && ! is_wp_error( $term ) ) {
+                    $min_qty = intval( $term->name );
+                }
+            }
+        }
+    }
+
+    // Display Bulk Price Info
+    if ( $bulk_price !== null && $min_qty !== null ) {
+        echo '<p class="bulk-discount-info" style="margin-top:0px; font-weight:400;">';
+        echo "Bulk Price: " . wc_price($bulk_price) . " for " . $min_qty . "+ units";
+        echo '</p>';
+    }
+}
+
+add_action( 'woocommerce_single_product_summary', 'show_book_author_attribute', 6 );
+function show_book_author_attribute() {
+    global $product;
+
+    // Get product attributes
+    $attributes = $product->get_attributes();
+
+    $authors = [];
+
+    if ( isset( $attributes['pa_book-author'] ) ) {
+        $attr_obj = $attributes['pa_book-author'];
+
+        if ( is_object( $attr_obj ) && method_exists( $attr_obj, 'get_options' ) ) {
+            $options = $attr_obj->get_options();
+            if ( ! empty( $options ) ) {
+                foreach ( $options as $term_id ) {
+                    $term = get_term( $term_id, 'pa_book-author' );
+                    if ( $term && ! is_wp_error( $term ) ) {
+                        $authors[] = $term->name;
+                    }
+                }
+            }
+        }
+    }
+
+    if ( ! empty( $authors ) ) {
+        // Format authors: "A", "A & B", "A, B & C"
+        if ( count( $authors ) === 1 ) {
+            $formatted = $authors[0];
+        } else {
+            $last = array_pop( $authors );
+            $formatted = implode( ', ', $authors ) . ' & ' . $last;
+        }
+
+        echo '<p class="product-authors" style="font-style:italic; margin:5px 0 10px;">by ' . esc_html( $formatted ) . '</p>';
+    }
+}
 
 add_filter( 'woocommerce_sale_flash', 'custom_woocommerce_sale_flash', 10, 3 );
 function custom_woocommerce_sale_flash( $html, $post, $product ) {

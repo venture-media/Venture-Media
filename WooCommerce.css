@@ -175,6 +175,10 @@ h1.entry-title {
 	width: 250px;
 }
 
+.woocommerce-product-attributes-item__value p{
+	padding-left: 10px !important;
+}
+
 span.onsale {
 	background-color: #f88c00 !important;
 }

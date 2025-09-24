@@ -26,6 +26,10 @@ span.posted_in {
 	color: #7A7A7A;
 }
 
+.woocommerce-Tabs-panel h2{
+	display: none;
+}
+
 .woocommerce-product-gallery {
 	max-width: 325px;
 }
@@ -149,4 +153,20 @@ h1.entry-title {
 
 .wc-block-components-sidebar.wc-block-checkout__sidebar.wp-block-woocommerce-checkout-totals-block.is-sticky.is-large {
 	top: 160px;
+}
+
+.woocommerce-LoopProduct-link.woocommerce-loop-product__link:hover {
+	color: #f88c00;
+}
+
+.added_to_cart.wc-forward {
+	margin-left: 20px;
+}
+
+.added_to_cart.wc-forward:hover {
+	color: #f88c00;
+}
+
+.woocommerce-Tabs-panel.woocommerce-Tabs-panel--description.panel.entry-content.wc-tab li {
+	padding-bottom: 10px;
 }

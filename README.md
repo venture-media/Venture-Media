@@ -21,4 +21,4 @@ FEATURES
 - Add authors to products via attributes.
 - Add bulk-discount price to products via attributes.
 - Add minimum bulk-discount Qty to products via attributes.
-- User guides available at https://github.com/Leon2332/Venture-Media/wiki
+- User guides available at https://github.com/venture-media/Venture-Media/wiki

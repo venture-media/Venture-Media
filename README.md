@@ -12,7 +12,6 @@
 
 - The files in this reposotory are the custom PHP, HTML, CSS and JS for this website.
 - Author: Leon de Klerk (https://github.com/Leon2332)
-- Contributing author: Venture Media (https://github.com/venture-media)
 
 ------------------------------------------------------------
 FEATURES

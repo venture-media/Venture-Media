@@ -1,37 +1,52 @@
 /* ================================
-   GLOBAL COLOR VARIABLES
+   COLOR VARIABLES (Elementor Reference)
 
-  --e-global-color-primary:   #f4a239; Orange
-  --e-global-color-secondary: #7a7a7a; Dark grey
-  --e-global-color-text:      #221f21; Black
-  --e-global-color-accent:    #d1d741; Lime green
-
-  --e-global-color-e4ef472:  #baaf55; Bark green
-  --e-global-color-8665ec8:  #259887; Appelzeeblaauw
-  --e-global-color-5fa0387:  #db1277; Pink
-  --e-global-color-c778917:  #eee3c8; Lime Sand
-  --e-global-color-6419ee2:  #ffffff; Pure white
+   Primary:   #f4a239 – Orange
+   Secondary: #7a7a7a – Dark grey
+   Text:      #221f21 – Black
+   Accent:    #d1d741 – Lime green
+   Custom 1:  #baaf55 – Bark green
+   Custom 2:  #259887 – Appelzeeblaauw
+   Custom 3:  #db1277 – Pink
+   Custom 4:  #eee3c8 – Lime Sand
+   Custom 5:  #ffffff – Pure white
    ================================ */
 
 
+/* NOTE: Always check that Elementor colors have correct tags */
+.elementor-kit-6 {
+  --color-primary:   var(--e-global-color-primary,   #f4a239);
+  --color-secondary: var(--e-global-color-secondary, #7a7a7a);
+  --color-text:      var(--e-global-color-text,      #221f21);
+  --color-accent:    var(--e-global-color-accent,    #d1d741);
+
+  --color-custom-1:  var(--e-global-color-e4ef472,   #baaf55);
+  --color-custom-2:  var(--e-global-color-8665ec8,   #259887);
+  --color-custom-3:  var(--e-global-color-5fa0387,   #db1277);
+  --color-custom-4:  var(--e-global-color-c778917,   #eee3c8);
+  --color-custom-5:  var(--e-global-color-6419ee2,   #ffffff);
+}
+
+
+
 h1.product_title.entry-title {
-	color: var(--e-global-color-text);
+	color: var(--color-text);
 }
 
 .woocommerce-product-details__short-description {
-	color: var(--e-global-color-secondary);
+	color: var(--color-secondary);
 }
 
 button.single_add_to_cart_button.button.alt {
-	background-color: var(--e-global-color-accent);
+	background-color: var(--color-accent);
 }
 
 button.single_add_to_cart_button.button.alt:hover{
-	background-color: var(--e-global-color-e4ef472);
+	background-color: var(--color-custom-1);
 }
 
 span.woocommerce-Price-amount.amount {
-	color: var(--e-global-color-primary);
+	color: var(--color-primary);
 }
 
 span.posted_in {
@@ -39,7 +54,7 @@ span.posted_in {
 }
 
 .woocommerce-Tabs-panel {
-	color: var(--e-global-color-secondary);
+	color: var(--color-secondary);
 }
 
 .woocommerce-Tabs-panel h2{
@@ -55,21 +70,21 @@ nav.woocommerce-breadcrumb {
 }
 
 .quantity input{
-	color: var(--e-global-color-text);
+	color: var(--color-text);
 	padding: 5px 5px;
 	border: solid;
 	border-width: 1px;
 	border-radius: 5px;
-	border-color: var(--e-global-color-e4ef472);
+	border-color: var(--color-custom-1);
 }
 
 .quantity input:focus{
-	color: var(--e-global-color-text);
+	color: var(--color-text);
 	padding: 5px 5px;
 	border: solid;
 	border-width: 1px;
 	border-radius: 5px;
-	border-color: var(--e-global-color-e4ef472);
+	border-color: var(--color-custom-1);
 }
 
 
@@ -85,61 +100,61 @@ input[type=number] {
 }
 
 h1.entry-title {
-	color: var(--e-global-color-text);
+	color: var(--color-text);
 	padding-left: 5vw;
 	padding-right: 5vw;
 }
 
 .wc-block-cart-items__header-image {
-	color: var(--e-global-color-text);
+	color: var(--color-text);
 }
 
 .price.wc-block-components-product-price {
-	color: var(--e-global-color-text);
+	color: var(--color-text);
 }
 
 .wc-block-cart-item__wrap p{
-	color: var(--e-global-color-text);
+	color: var(--color-text);
 }
 
 .wc-block-cart-item__quantity {
-	color: var(--e-global-color-text);
+	color: var(--color-text);
 }
 
 .wc-block-cart-items__header-total {
-	color: var(--e-global-color-text);
+	color: var(--color-text);
 }
 
 .wp-block-woocommerce-cart-order-summary-heading-block.wc-block-cart__totals-title {
-	color: var(--e-global-color-text);
+	color: var(--color-text);
 }
 
 .wc-block-components-totals-wrapper {
-	color: var(--e-global-color-text);
+	color: var(--color-text);
 }
 
 .wc-block-components-button.wp-element-button.wc-block-cart__submit-button.contained {
 	border: solid;
 	border-width: 1px;
-	border-color: var(--e-global-color-text);
+	border-color: var(--color-text);
 	border-radius: 5px;
-	color: var(--e-global-color-text);
+	color: var(--color-text);
 }
 
 .wc-block-components-button.wp-element-button.wc-block-cart__submit-button.contained:hover{
-	color: var(--e-global-color-text);
+	color: var(--color-text);
 }
 
 .wc-block-components-checkbox__label {
-	color: var(--e-global-color-text);
+	color: var(--color-text);
 }
 
 .wc-block-components-title.wc-block-components-checkout-step__title {
-	color: var(--e-global-color-text);
+	color: var(--color-text);
 }
 
 .wc-block-components-checkout-step__description {
-	color: var(--e-global-color-text);
+	color: var(--color-text);
 }
 
 .wp-block-woocommerce-checkout.alignwide.wc-block-checkout {
@@ -148,15 +163,15 @@ h1.entry-title {
 }
 
 .wp-block-heading.has-text-align-center.with-empty-cart-icon.wc-block-cart__empty-cart__title {
-	color: var(--e-global-color-text);
+	color: var(--color-text);
 }
 
 .wc-block-checkout__actions_row a:hover {
-	color: var(--e-global-color-primary);
+	color: var(--color-primary);
 }
 
 .wc-block-components-checkbox__label a:hover{
-	color: var(--e-global-color-primary);
+	color: var(--color-primary);
 }
 
 .wc-block-components-order-summary .wc-block-components-order-summary-item {
@@ -172,7 +187,7 @@ h1.entry-title {
 }
 
 .woocommerce-LoopProduct-link.woocommerce-loop-product__link:hover {
-	color: var(--e-global-color-primary);
+	color: var(--color-primary);
 }
 
 .added_to_cart.wc-forward {
@@ -180,7 +195,7 @@ h1.entry-title {
 }
 
 .added_to_cart.wc-forward:hover {
-	color: var(--e-global-color-primary);
+	color: var(--color-primary);
 }
 
 .woocommerce-Tabs-panel.woocommerce-Tabs-panel--description.panel.entry-content.wc-tab li {
@@ -196,11 +211,11 @@ h1.entry-title {
 }
 
 span.onsale {
-	background-color: var(--e-global-color-primary) !important;
+	background-color: var(--color-primary) !important;
 }
 
 .bulk-discount-info {
-	color: var(--e-global-color-text);
+	color: var(--color-text);
 	font-size: 14px;
 	margin-bottom: 0px;
 }
@@ -214,10 +229,10 @@ p.price {
 }
 
 .product-authors {
-	color: var(--e-global-color-text);
+	color: var(--color-text);
 	padding-left: 20px;
 }
 
 .wc-block-components-product-name:hover {
-	color: var(--e-global-color-primary);
+	color: var(--color-primary);
 }

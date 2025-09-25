@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Brand Color Palette – Swatches</title>
+  <style>
+    :root{
+      --orange: #F4A239;
+      --dark-grey: #7A7A7A;
+      --text-black: #221F21;
+      --lime-green: #D1D741;
+      --bark-green: #BAAF55;
+      --appelzeeblaauw: #259887;
+      --pink: #DB1277;
+      --lime-sand: #EEE3C8;
+      --white: #FFFFFF;
+      --max-width: 1100px;
+      --g: 16px; /* base grid */
+      --radius: 10px;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      color: var(--text-black);
+      background: linear-gradient(180deg, #fff 0%, #fbfbfb 100%);
+    }
+    *{box-sizing:border-box}
+    body{margin:0;padding:32px;display:flex;justify-content:center}
+    .sheet{width:100%;max-width:var(--max-width);background:var(--white);border-radius:12px;box-shadow:0 6px 20px rgba(34,31,33,0.06);padding:32px}
+    header{display:flex;gap:24px;align-items:center;margin-bottom:24px}
+    .brand-mark{width:72px;height:72px;border-radius:10px;background:linear-gradient(135deg,var(--orange),var(--appelzeeblaauw));display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:20px}
+    h1{margin:0;font-size:20px;letter-spacing:-0.02em}
+    p.lead{margin:4px 0 0;color:var(--dark-grey);font-size:13px}
+
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px}
+    .swatch{border-radius:10px;overflow:hidden;border:1px solid rgba(34,31,33,0.06);display:flex;flex-direction:column}
+    .swatch-visual{height:120px;display:flex;align-items:center;justify-content:center;font-weight:700}
+    .swatch-meta{padding:12px;background:linear-gradient(180deg, rgba(255,255,255,0.6), rgba(250,250,250,1));}
+    .swatch-meta h3{margin:0;font-size:14px}
+    .swatch-meta code{display:inline-block;margin-top:6px;padding:4px 8px;background:#f6f6f6;border-radius:6px;font-size:12px;color:#333}
+    .usage{margin-top:8px;font-size:13px;color:var(--dark-grey)}
+
+    /* individual backgrounds */
+    .c-orange{background:var(--orange);color:var(--white)}
+    .c-dark-grey{background:var(--dark-grey);color:var(--white)}
+    .c-text-black{background:var(--text-black);color:var(--white)}
+    .c-lime-green{background:var(--lime-green);color:var(--text-black)}
+    .c-bark-green{background:var(--bark-green);color:var(--text-black)}
+    .c-app{background:var(--appelzeeblaauw);color:var(--white)}
+    .c-pink{background:var(--pink);color:var(--white)}
+    .c-lime-sand{background:var(--lime-sand);color:var(--text-black)}
+    .c-white{background:var(--white);color:var(--text-black)}
+
+    /* sample components */
+    .samples{margin-top:28px;display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .card{padding:18px;border-radius:10px;border:1px solid rgba(34,31,33,0.04)}
+    .btn{display:inline-block;padding:10px 16px;border-radius:8px;font-weight:700;text-decoration:none}
+    .btn-primary{background:var(--orange);color:var(--white)}
+    .btn-accent{background:var(--appelzeeblaauw);color:var(--white)}
+    .btn-outline{border:1px solid var(--dark-grey);color:var(--dark-grey);background:transparent}
+    .typography-samples{margin-top:12px}
+    .h-preview{font-size:28px;margin:6px 0}
+    .lead-preview{font-size:16px;color:var(--dark-grey);margin:8px 0}
+
+    footer{margin-top:28px;color:var(--dark-grey);font-size:13px;display:flex;gap:12px;align-items:center}
+
+    @media (max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}.samples{grid-template-columns:1fr}}
+    @media (max-width:600px){.grid{grid-template-columns:1fr}.brand-mark{width:56px;height:56px}}
+  </style>
+</head>
+<body>
+  <div class="sheet" role="main">
+    <header>
+      <div class="brand-mark">BN</div>
+      <div>
+        <h1>Brand Color Palette – swatches & usage</h1>
+        <p class="lead">A one‑page reference showing color swatches, hex codes, and common usage.</p>
+      </div>
+    </header>
+
+    <section class="grid">
+      <div class="swatch">
+        <div class="swatch-visual c-orange">ORANGE</div>
+        <div class="swatch-meta">
+          <h3>Primary – Orange</h3>
+          <code>#F4A239</code>
+          <div class="usage">Use for primary CTAs, key accents, and hero highlights.</div>
+        </div>
+      </div>
+
+      <div class="swatch">
+        <div class="swatch-visual c-dark-grey">DARK GREY</div>
+        <div class="swatch-meta">
+          <h3>Secondary – Dark Grey</h3>
+          <code>#7A7A7A</code>
+          <div class="usage">Supporting UI elements, borders, muted text, and dividers.</div>
+        </div>
+      </div>
+
+      <div class="swatch">
+        <div class="swatch-visual c-text-black">TEXT</div>
+        <div class="swatch-meta">
+          <h3>Text – Black</h3>
+          <code>#221F21</code>
+          <div class="usage">Primary body copy and headings – high contrast for legibility.</div>
+        </div>
+      </div>
+
+      <div class="swatch">
+        <div class="swatch-visual c-lime-green">LIME GREEN</div>
+        <div class="swatch-meta">
+          <h3>Accent – Lime Green</h3>
+          <code>#D1D741</code>
+          <div class="usage">Use sparingly for highlights, badges, and attention states.</div>
+        </div>
+      </div>
+
+      <div class="swatch">
+        <div class="swatch-visual c-bark-green">BARK GREEN</div>
+        <div class="swatch-meta">
+          <h3>Custom – Bark Green</h3>
+          <code>#BAAF55</code>
+          <div class="usage">Earthy accents and background tints for magazine spreads.</div>
+        </div>
+      </div>
+
+      <div class="swatch">
+        <div class="swatch-visual c-app">APPELZEEBLAAUW</div>
+        <div class="swatch-meta">
+          <h3>Custom – Appelzeeblaauw</h3>
+          <code>#259887</code>
+          <div class="usage">Secondary accent used to balance warm tones – good for links and badges.</div>
+        </div>
+      </div>
+
+      <div class="swatch">
+        <div class="swatch-visual c-pink">PINK</div>
+        <div class="swatch-meta">
+          <h3>Custom – Pink</h3>
+          <code>#DB1277</code>
+          <div class="usage">Bold highlights, special offers, and decorative elements.</div>
+        </div>
+      </div>
+
+      <div class="swatch">
+        <div class="swatch-visual c-lime-sand">LIME SAND</div>
+        <div class="swatch-meta">
+          <h3>Custom – Lime Sand</h3>
+          <code>#EEE3C8</code>
+          <div class="usage">Soft backgrounds and cards – pairs well with dark text.</div>
+        </div>
+      </div>
+
+      <div class="swatch">
+        <div class="swatch-visual c-white">PURE WHITE</div>
+        <div class="swatch-meta">
+          <h3>Custom – Pure White</h3>
+          <code>#FFFFFF</code>
+          <div class="usage">Primary page background and whitespace.</div>
+        </div>
+      </div>
+
+    </section>
+  </div>
+</body>
+</html>

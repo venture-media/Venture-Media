@@ -203,6 +203,28 @@ function custom_woocommerce_sale_flash( $html, $post, $product ) {
     return '<span class="onsale">Pre-order</span>';
 }
 
+
+// Remove upsells and related products
+remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_upsell_display', 15 );
+remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 20 );
+
+
+// Shortcode to display an Elementor template
+function my_elementor_template_shortcode( $atts ) {
+    $atts = shortcode_atts( [
+        'id' => '', // Elementor template ID
+    ], $atts, 'elementor_template' );
+
+    if ( empty( $atts['id'] ) ) {
+        return ''; // no ID provided
+    }
+
+    return \Elementor\Plugin::instance()->frontend->get_builder_content_for_display( $atts['id'] );
+}
+add_shortcode( 'elementor_template', 'my_elementor_template_shortcode' );
+
+
+
 // Add custom social icons inside navigation
 add_action( 'generate_inside_navigation', function() {
     ?>

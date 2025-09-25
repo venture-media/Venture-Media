@@ -1,21 +1,37 @@
+/* ================================
+   GLOBAL COLOR VARIABLES
+
+  --e-global-color-primary:   #f4a239; Orange
+  --e-global-color-secondary: #7a7a7a; Dark grey
+  --e-global-color-text:      #221f21; Black
+  --e-global-color-accent:    #d1d741; Lime green
+
+  --e-global-color-e4ef472:  #baaf55; Bark green
+  --e-global-color-8665ec8:  #259887; Appelzeeblaauw
+  --e-global-color-5fa0387:  #db1277; Pink
+  --e-global-color-c778917:  #eee3c8; Lime Sand
+  --e-global-color-6419ee2:  #ffffff; Pure white
+   ================================ */
+
+
 h1.product_title.entry-title {
-	color: #221F21;
+	color: var(--e-global-color-text);
 }
 
 .woocommerce-product-details__short-description {
-	color: #7A7A7A;
+	color: var(--e-global-color-secondary);
 }
 
 button.single_add_to_cart_button.button.alt {
-	background-color: #D1D741;
+	background-color: var(--e-global-color-accent);
 }
 
 button.single_add_to_cart_button.button.alt:hover{
-	background-color: #C8D07A;
+	background-color: var(--e-global-color-e4ef472);
 }
 
 span.woocommerce-Price-amount.amount {
-	color: #F4A23A;
+	color: var(--e-global-color-primary);
 }
 
 span.posted_in {
@@ -23,7 +39,7 @@ span.posted_in {
 }
 
 .woocommerce-Tabs-panel {
-	color: #7A7A7A;
+	color: var(--e-global-color-secondary);
 }
 
 .woocommerce-Tabs-panel h2{
@@ -39,21 +55,21 @@ nav.woocommerce-breadcrumb {
 }
 
 .quantity input{
-	color: #221F21;
+	color: var(--e-global-color-text);
 	padding: 5px 5px;
 	border: solid;
 	border-width: 1px;
 	border-radius: 5px;
-	border-color: #C8D07A;
+	border-color: var(--e-global-color-e4ef472);
 }
 
 .quantity input:focus{
-	color: #221F21;
+	color: var(--e-global-color-text);
 	padding: 5px 5px;
 	border: solid;
 	border-width: 1px;
 	border-radius: 5px;
-	border-color: #C8D07A;
+	border-color: var(--e-global-color-e4ef472);
 }
 
 
@@ -69,61 +85,61 @@ input[type=number] {
 }
 
 h1.entry-title {
-	color: black;
+	color: var(--e-global-color-text);
 	padding-left: 5vw;
 	padding-right: 5vw;
 }
 
 .wc-block-cart-items__header-image {
-	color: black;
+	color: var(--e-global-color-text);
 }
 
 .price.wc-block-components-product-price {
-	color: black;
+	color: var(--e-global-color-text);
 }
 
 .wc-block-cart-item__wrap p{
-	color: black;
+	color: var(--e-global-color-text);
 }
 
 .wc-block-cart-item__quantity {
-	color: black;
+	color: var(--e-global-color-text);
 }
 
 .wc-block-cart-items__header-total {
-	color: black;
+	color: var(--e-global-color-text);
 }
 
 .wp-block-woocommerce-cart-order-summary-heading-block.wc-block-cart__totals-title {
-	color: black;
+	color: var(--e-global-color-text);
 }
 
 .wc-block-components-totals-wrapper {
-	color: black;
+	color: var(--e-global-color-text);
 }
 
 .wc-block-components-button.wp-element-button.wc-block-cart__submit-button.contained {
 	border: solid;
 	border-width: 1px;
-	border-color: black;
+	border-color: var(--e-global-color-text);
 	border-radius: 5px;
-	color: black;
+	color: var(--e-global-color-text);
 }
 
 .wc-block-components-button.wp-element-button.wc-block-cart__submit-button.contained:hover{
-	color: black;
+	color: var(--e-global-color-text);
 }
 
 .wc-block-components-checkbox__label {
-	color: black;
+	color: var(--e-global-color-text);
 }
 
 .wc-block-components-title.wc-block-components-checkout-step__title {
-	color: black;
+	color: var(--e-global-color-text);
 }
 
 .wc-block-components-checkout-step__description {
-	color: black;
+	color: var(--e-global-color-text);
 }
 
 .wp-block-woocommerce-checkout.alignwide.wc-block-checkout {
@@ -132,15 +148,15 @@ h1.entry-title {
 }
 
 .wp-block-heading.has-text-align-center.with-empty-cart-icon.wc-block-cart__empty-cart__title {
-	color: black;
+	color: var(--e-global-color-text);
 }
 
 .wc-block-checkout__actions_row a:hover {
-	color: #f88c00;
+	color: var(--e-global-color-primary);
 }
 
 .wc-block-components-checkbox__label a:hover{
-	color: #f88c00;
+	color: var(--e-global-color-primary);
 }
 
 .wc-block-components-order-summary .wc-block-components-order-summary-item {
@@ -156,7 +172,7 @@ h1.entry-title {
 }
 
 .woocommerce-LoopProduct-link.woocommerce-loop-product__link:hover {
-	color: #f88c00;
+	color: var(--e-global-color-primary);
 }
 
 .added_to_cart.wc-forward {
@@ -164,7 +180,7 @@ h1.entry-title {
 }
 
 .added_to_cart.wc-forward:hover {
-	color: #f88c00;
+	color: var(--e-global-color-primary);
 }
 
 .woocommerce-Tabs-panel.woocommerce-Tabs-panel--description.panel.entry-content.wc-tab li {
@@ -180,11 +196,11 @@ h1.entry-title {
 }
 
 span.onsale {
-	background-color: #f88c00 !important;
+	background-color: var(--e-global-color-primary) !important;
 }
 
 .bulk-discount-info {
-	color: black;
+	color: var(--e-global-color-text);
 	font-size: 14px;
 	margin-bottom: 0px;
 }
@@ -198,6 +214,10 @@ p.price {
 }
 
 .product-authors {
-	color: black;
+	color: var(--e-global-color-text);
 	padding-left: 20px;
+}
+
+.wc-block-components-product-name:hover {
+	color: var(--e-global-color-primary);
 }

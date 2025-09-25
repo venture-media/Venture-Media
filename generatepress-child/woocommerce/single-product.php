@@ -4,7 +4,7 @@
  *
  * Override this template by copying it to yourtheme/woocommerce/single-product.php
  *
- * @author: Leon de Klerk
+ * @author: Leon de Klerk    
  */
 
 
@@ -51,5 +51,8 @@ get_header('shop'); ?>
 	?>
 
 </div>
+
+<?php echo \Elementor\Plugin::instance()->frontend->get_builder_content_for_display( 529 ); ?>
+
 
 <?php get_footer('shop'); ?>

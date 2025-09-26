@@ -23,9 +23,8 @@
   1. Social Icons (header)
 ===================== */
 
+
   .custom-social-icons svg {
-    width: 25px;
-    height: 25px;
     fill: currentColor;
     display: inline-block;
   }
@@ -61,6 +60,7 @@
     position: absolute;
     top: 100%;
     right: 0;
+	font-family: "Effra", sans-serif;
   }
 
   .main-navigation #primary-menu li{
@@ -148,7 +148,7 @@
 
   /* Top state */
   #masthead {
-    background: transparent);
+    background: transparent;
     transition: background 0.5s ease;
   }
 

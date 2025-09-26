@@ -97,18 +97,17 @@
     padding-bottom: 15px;
   }
 
-  @media only screen and (min-width: 1080px) {
+  @media only screen and (min-width: 1200px) {
     .main-navigation.toggled #primary-menu {
       width: 1080px;
     }
   }
 
 
-  @media only screen and (max-width: 1079px) {
+  @media only screen and (max-width: 1199px) {
     .main-navigation.toggled #primary-menu {
       width: 90vw;
       margin-left: 5vw;
-      margin-right: 5vw;
     }
   }
 

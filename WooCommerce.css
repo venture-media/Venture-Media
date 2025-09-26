@@ -15,15 +15,15 @@
 
 /* NOTE: Always check that Elementor colors have correct tags */
 .elementor-kit-6 {
-  --color-primary:   var(--e-global-color-primary,   #f4a239);
-  --color-secondary: var(--e-global-color-secondary, #7a7a7a);
+  --color-primary:   var(--e-global-color-primary,   #221f21);
+  --color-secondary: var(--e-global-color-secondary, #221f21);
   --color-text:      var(--e-global-color-text,      #221f21);
-  --color-accent:    var(--e-global-color-accent,    #d1d741);
+  --color-accent:    var(--e-global-color-accent,    #221f21);
 
-  --color-custom-1:  var(--e-global-color-e4ef472,   #baaf55);
-  --color-custom-2:  var(--e-global-color-8665ec8,   #259887);
-  --color-custom-3:  var(--e-global-color-5fa0387,   #db1277);
-  --color-custom-4:  var(--e-global-color-c778917,   #eee3c8);
+  --color-custom-1:  var(--e-global-color-e4ef472,   #221f21);
+  --color-custom-2:  var(--e-global-color-8665ec8,   #221f21);
+  --color-custom-3:  var(--e-global-color-5fa0387,   #221f21);
+  --color-custom-4:  var(--e-global-color-c778917,   #221f21);
   --color-custom-5:  var(--e-global-color-6419ee2,   #ffffff);
 }
 

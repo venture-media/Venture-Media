@@ -15,15 +15,15 @@
 
 /* NOTE: Always check that Elementor colors have correct tags */
 .elementor-kit-6 {
-  --color-primary:   var(--e-global-color-primary,   #221f21);
-  --color-secondary: var(--e-global-color-secondary, #221f21);
+  --color-primary:   var(--e-global-color-primary,   #f4a239);
+  --color-secondary: var(--e-global-color-secondary, #7a7a7a);
   --color-text:      var(--e-global-color-text,      #221f21);
-  --color-accent:    var(--e-global-color-accent,    #221f21);
+  --color-accent:    var(--e-global-color-accent,    #d1d741);
 
-  --color-custom-1:  var(--e-global-color-e4ef472,   #221f21);
-  --color-custom-2:  var(--e-global-color-8665ec8,   #221f21);
-  --color-custom-3:  var(--e-global-color-5fa0387,   #221f21);
-  --color-custom-4:  var(--e-global-color-c778917,   #221f21);
+  --color-custom-1:  var(--e-global-color-e4ef472,   #baaf55);
+  --color-custom-2:  var(--e-global-color-8665ec8,   #259887);
+  --color-custom-3:  var(--e-global-color-5fa0387,   #db1277);
+  --color-custom-4:  var(--e-global-color-c778917,   #eee3c8);
   --color-custom-5:  var(--e-global-color-6419ee2,   #ffffff);
 }
 
@@ -31,22 +31,31 @@
 
 h1.product_title.entry-title {
 	color: var(--color-text);
+	font-family: "Effra", san-serif;
 }
 
 .woocommerce-product-details__short-description {
 	color: var(--color-secondary);
+	font-family: "Effra", san-serif;
+	font-weight: 300 !important;
 }
 
 button.single_add_to_cart_button.button.alt {
 	background-color: var(--color-accent);
+	font-family: "Effra", san-serif;
+	font-weight: 300 !important;
 }
 
 button.single_add_to_cart_button.button.alt:hover{
 	background-color: var(--color-custom-1);
+	font-family: "Effra", san-serif;
+	font-weight: 300 !important;
 }
 
 span.woocommerce-Price-amount.amount {
 	color: var(--color-primary);
+	font-family: "Effra", san-serif;
+	font-weight: 300 !important;
 }
 
 span.posted_in {
@@ -55,6 +64,8 @@ span.posted_in {
 
 .woocommerce-Tabs-panel {
 	color: var(--color-secondary);
+	font-family: "Effra", san-serif;
+	font-weight: 300 !important;
 }
 
 .woocommerce-Tabs-panel h2{
@@ -76,6 +87,8 @@ nav.woocommerce-breadcrumb {
 	border-width: 1px;
 	border-radius: 5px;
 	border-color: var(--color-custom-1);
+	font-family: "Effra", san-serif;
+	font-weight: 300 !important;
 }
 
 .quantity input:focus{
@@ -85,6 +98,8 @@ nav.woocommerce-breadcrumb {
 	border-width: 1px;
 	border-radius: 5px;
 	border-color: var(--color-custom-1);
+	font-family: "Effra", san-serif;
+	font-weight: 300 !important;
 }
 
 
@@ -103,34 +118,49 @@ h1.entry-title {
 	color: var(--color-text);
 	padding-left: 5vw;
 	padding-right: 5vw;
+	font-family: "Effra", san-serif;
 }
 
 .wc-block-cart-items__header-image {
 	color: var(--color-text);
+	font-family: "Effra", san-serif;
+	font-weight: 300 !important;
 }
 
 .price.wc-block-components-product-price {
 	color: var(--color-text);
+	font-family: "Effra", san-serif;
+	font-weight: 300 !important;
 }
 
 .wc-block-cart-item__wrap p{
 	color: var(--color-text);
+	font-family: "Effra", san-serif;
+	font-weight: 300 !important;
 }
 
 .wc-block-cart-item__quantity {
 	color: var(--color-text);
+	font-family: "Effra", san-serif;
+	font-weight: 300 !important;
 }
 
 .wc-block-cart-items__header-total {
 	color: var(--color-text);
+	font-family: "Effra", san-serif;
+	font-weight: 300 !important;
 }
 
 .wp-block-woocommerce-cart-order-summary-heading-block.wc-block-cart__totals-title {
 	color: var(--color-text);
+	font-family: "Effra", san-serif;
+	font-weight: 300 !important;
 }
 
 .wc-block-components-totals-wrapper {
 	color: var(--color-text);
+	font-family: "Effra", san-serif;
+	font-weight: 300 !important;
 }
 
 .wc-block-components-button.wp-element-button.wc-block-cart__submit-button.contained {
@@ -139,39 +169,57 @@ h1.entry-title {
 	border-color: var(--color-text);
 	border-radius: 5px;
 	color: var(--color-text);
+	font-family: "Effra", san-serif;
+	font-weight: 300 !important;
 }
 
 .wc-block-components-button.wp-element-button.wc-block-cart__submit-button.contained:hover{
 	color: var(--color-text);
+	font-family: "Effra", san-serif;
+	font-weight: 300 !important;
 }
 
 .wc-block-components-checkbox__label {
 	color: var(--color-text);
+	font-family: "Effra", san-serif;
+	font-weight: 300 !important;
 }
 
 .wc-block-components-title.wc-block-components-checkout-step__title {
 	color: var(--color-text);
+	font-family: "Effra", san-serif;
+	font-weight: 300 !important;
 }
 
 .wc-block-components-checkout-step__description {
 	color: var(--color-text);
+	font-family: "Effra", san-serif;
+	font-weight: 300 !important;
 }
 
 .wp-block-woocommerce-checkout.alignwide.wc-block-checkout {
 	padding-left: 5vw;
 	padding-right: 5vw;
+	font-family: "Effra", san-serif;
+	font-weight: 300 !important;
 }
 
 .wp-block-heading.has-text-align-center.with-empty-cart-icon.wc-block-cart__empty-cart__title {
 	color: var(--color-text);
+	font-family: "Effra", san-serif;
+	font-weight: 300 !important;
 }
 
 .wc-block-checkout__actions_row a:hover {
 	color: var(--color-primary);
+	font-family: "Effra", san-serif;
+	font-weight: 300 !important;
 }
 
 .wc-block-components-checkbox__label a:hover{
 	color: var(--color-primary);
+	font-family: "Effra", san-serif;
+	font-weight: 300 !important;
 }
 
 .wc-block-components-order-summary .wc-block-components-order-summary-item {
@@ -180,59 +228,87 @@ h1.entry-title {
 
 .wc-block-components-product-metadata__description {
 	font-size: 0.75em;
+	font-family: "Effra", san-serif;
+	font-weight: 300 !important;
 }
 
 .wc-block-components-sidebar.wc-block-checkout__sidebar.wp-block-woocommerce-checkout-totals-block.is-sticky.is-large {
 	top: 160px;
+	font-family: "Effra", san-serif;
+	font-weight: 300 !important;
 }
 
 .woocommerce-LoopProduct-link.woocommerce-loop-product__link:hover {
 	color: var(--color-primary);
+	font-family: "Effra", san-serif;
+	font-weight: 300 !important;
 }
 
 .added_to_cart.wc-forward {
 	margin-left: 20px;
+	font-family: "Effra", san-serif;
+	font-weight: 300 !important;
 }
 
 .added_to_cart.wc-forward:hover {
 	color: var(--color-primary);
+	font-family: "Effra", san-serif;
+	font-weight: 300 !important;
 }
 
 .woocommerce-Tabs-panel.woocommerce-Tabs-panel--description.panel.entry-content.wc-tab li {
 	padding-bottom: 10px;
+	font-family: "Effra", san-serif;
+	font-weight: 300 !important;
 }
 
 .woocommerce table.shop_attributes th {
 	width: 250px;
+	font-family: "Effra", san-serif;
+	font-weight: 300 !important;
 }
 
 .woocommerce-product-attributes-item__value p{
 	padding-left: 10px !important;
+	font-family: "Effra", san-serif;
+	font-weight: 300 !important;
 }
 
 span.onsale {
 	background-color: var(--color-primary) !important;
+	font-family: "Effra", san-serif;
+	font-weight: 300 !important;
 }
 
 .bulk-discount-info {
 	color: var(--color-text);
 	font-size: 14px;
 	margin-bottom: 0px;
+	font-family: "Effra", san-serif;
+	font-weight: 300 !important;
 }
 
 p.price {
 	margin-bottom: 0px;
+	font-family: "Effra", san-serif;
+	font-weight: 300 !important;
 }
 
 .woocommerce-product-details__short-description {
 	margin-top: 20px;
+	font-family: "Effra", san-serif;
+	font-weight: 300 !important;
 }
 
 .product-authors {
 	color: var(--color-text);
 	padding-left: 20px;
+	font-family: "Effra", san-serif;
+	font-weight: 300 !important;
 }
 
 .wc-block-components-product-name:hover {
 	color: var(--color-primary);
+	font-family: "Effra", san-serif;
+	font-weight: 300 !important;
 }

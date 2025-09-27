@@ -186,10 +186,20 @@
   3. Menu Banner
 ===================== */
 
-#venture-menu-banner {
-  width: 100%;
-  max-width: none;
-}
+	#venture-menu-banner {
+		width: 100%;
+		max-width: none;
+		transform: scale(1);
+		transition: transform 1s ease-out;
+	}
+
+	#venture-menu-banner:hover {
+		transform: scale(1.06);
+	}
+
+	.menu-item {
+		overflow: hidden;
+	}
 
 
 /* =====================

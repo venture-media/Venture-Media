@@ -116,8 +116,18 @@
     .site-header .header-image {
       width: 140px;
     }
+	.inside-header {
+		padding-top: 5px;
+		padding-bottom: 5px;
+	}
   }
 
+	@media only screen and (min-width: 371px) {
+	.inside-header {
+		padding-top: 10px;
+		padding-bottom: 10px;
+	}
+}
 
   .has-inline-mobile-toggle #site-navigation.toggled {
     margin-top: 0px;
@@ -128,9 +138,8 @@
     line-height: 100px;
   }
 
-  .inside-header {
-    padding-top: 20px;
-    align-items: start;
+  .inside-header { 
+    align-items: center;
   }
 
   .main-navigation .main-nav ul li a {

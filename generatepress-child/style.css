@@ -256,11 +256,19 @@ div.inside-article {
     margin-top: -140px;
 	margin-left: 0px;
 	padding-right: 0px;
+	height: 50vh;
+	position: relative;
 }
 
 .custom-top-banner img {
     display: block;
+	position: fixed;
     width: 100%;
-    height: 40vh;
+    height: 50vh;
     object-fit: cover;
+	z-index: -1;
+}
+
+.row {
+	background-color: white;
 }

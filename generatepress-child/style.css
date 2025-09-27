@@ -86,7 +86,6 @@
 
   .main-navigation.toggled #primary-menu {
     display: block;
-    margin-top: 25px;
     background: #f2f2f2;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-top: solid;
@@ -99,34 +98,40 @@
   }
 
   @media only screen and (min-width: 1200px) {
-    .main-navigation.toggled #primary-menu {
-      width: 1120px;
-    }
+		.main-navigation.toggled #primary-menu {
+			width: 1120px;
+		}
   }
 
 
   @media only screen and (max-width: 1199px) {
-    .main-navigation.toggled #primary-menu {
-      width: 90vw;
-      margin-left: 5vw;
-    }
+		.main-navigation.toggled #primary-menu {
+			width: 90vw;
+			margin-left: 5vw;
+		}
   }
 
     @media only screen and (max-width: 370px) {
-    .site-header .header-image {
-      width: 140px;
-    }
-	.inside-header {
-		padding-top: 0px;
-		padding-bottom: 0px;
-	}
-  }
+		.site-header .header-image {
+			width: 140px;
+		}
+		.inside-header {
+			padding-top: 0px;
+			padding-bottom: 0px;
+		}
+		.main-navigation.toggled #primary-menu {
+			margin-top: 10px;
+		}
+	  }
 
 	@media only screen and (min-width: 371px) {
-	.inside-header {
-		padding-top: 10px;
-		padding-bottom: 10px;
-	}
+		.inside-header {
+			padding-top: 10px;
+			padding-bottom: 10px;
+		}
+		.main-navigation.toggled #primary-menu {
+			margin-top: 25px;
+		}
 }
 
   .has-inline-mobile-toggle #site-navigation.toggled {

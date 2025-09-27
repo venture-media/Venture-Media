@@ -12,8 +12,9 @@
 
   1. Social Icons (header)
   2. Site Header
-  3. Hide Page Header Featured Image
-  4. Woocommerce Single Product
+  3. Menu Banner
+  4. Hide Page Header Featured Image
+  5. Woocommerce Single Product
 ===================== */
 
 
@@ -92,14 +93,14 @@
     border-top-width: 3px;
     border-top-color: #f4a23a;
     padding-top: 10px;
-    padding-left: 40px;
-    padding-right: 40px;
-    padding-bottom: 15px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 25px;
   }
 
   @media only screen and (min-width: 1200px) {
     .main-navigation.toggled #primary-menu {
-      width: 1080px;
+      width: 1120px;
     }
   }
 
@@ -181,10 +182,18 @@
   }
 
 
+/* =====================
+  3. Menu Banner
+===================== */
+
+#venture-menu-banner {
+  width: 100%;
+  max-width: none;
+}
 
 
 /* =====================
-  3. Hide Page Header Featured Image
+  4. Hide Page Header Featured Image
 ===================== */
 
   .page-header-image {
@@ -194,7 +203,7 @@
 
 
 /* =====================
-  4. Woocommerce Single Product
+  5. Woocommerce Single Product
 ===================== */
 
 

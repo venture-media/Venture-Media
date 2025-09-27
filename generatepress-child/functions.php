@@ -224,6 +224,11 @@ function my_elementor_template_shortcode( $atts ) {
 add_shortcode( 'elementor_template', 'my_elementor_template_shortcode' );
 
 
+// Allow shortcodes in menu item titles
+add_filter( 'wp_nav_menu_items', function( $items, $args ) {
+    return do_shortcode( $items );
+}, 10, 2 );
+
 
 // Add custom social icons inside navigation
 add_action( 'generate_inside_navigation', function() {

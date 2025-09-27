@@ -5,7 +5,7 @@
 - Platform: WordPress
 - Theme: GeneratePress
 - Plugins:
-    - Elementor
+    - Elementor Pro
     - ShortPixel Image Optimizer
     - Simple Custom CSS and JS
     - WooCommerce

@@ -54,5 +54,6 @@ get_header('shop'); ?>
 
 <?php echo \Elementor\Plugin::instance()->frontend->get_builder_content_for_display( 529 ); ?>
 
+<div class="custom_product-page-spacer"></div>
 
 <?php get_footer('shop'); ?>

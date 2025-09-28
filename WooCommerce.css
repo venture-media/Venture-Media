@@ -127,6 +127,22 @@ h1.entry-title {
 	font-weight: 300 !important;
 }
 
+.tabs.wc-tabs li {
+	font-family: "Effra", san-serif;
+	font-weight: 300 !important;
+	font-size: 14px;
+}
+
+.woocommerce-tabs.wc-tabs-wrapper {
+	font-family: "Effra", san-serif;
+	font-weight: 300 !important;
+	font-size: 16px;
+}
+
+.custom_product-page-spacer {
+	height: 50px;
+}
+
 .price.wc-block-components-product-price {
 	color: var(--color-text);
 	font-family: "Effra", san-serif;
@@ -157,6 +173,11 @@ h1.entry-title {
 	font-weight: 300 !important;
 }
 
+div.wc-block-cart__submit-container.wc-block-cart__submit-container--sticky {
+	background-color: white !important;
+	z-index: 20;
+}
+
 .wc-block-components-totals-wrapper {
 	color: var(--color-text);
 	font-family: "Effra", san-serif;
@@ -164,19 +185,20 @@ h1.entry-title {
 }
 
 .wc-block-components-button.wp-element-button.wc-block-cart__submit-button.contained {
+	background-color: var(--color-custom-5);
 	border: solid;
-	border-width: 1px;
-	border-color: var(--color-text);
+	border-width: 2px;
+	border-color: var(--color-primary);
 	border-radius: 5px;
-	color: var(--color-text);
+	color: var(--color-primary);
 	font-family: "Effra", san-serif;
 	font-weight: 300 !important;
+	transition: all 0.2s ease-out;
 }
 
 .wc-block-components-button.wp-element-button.wc-block-cart__submit-button.contained:hover{
-	color: var(--color-text);
-	font-family: "Effra", san-serif;
-	font-weight: 300 !important;
+	background-color: var(--color-primary);
+	color: var(--color-custom-5);
 }
 
 .wc-block-components-checkbox__label {
@@ -201,6 +223,15 @@ h1.entry-title {
 	padding-left: 5vw;
 	padding-right: 5vw;
 	font-family: "Effra", san-serif;
+	font-weight: 300 !important;
+}
+
+.wc-block-components-form.wc-block-checkout__form input {
+	font-family: "Effra", san-serif;
+	font-weight: 300 !important;
+}
+
+p.wc-block-components-totals-footer-item-tax {
 	font-weight: 300 !important;
 }
 
@@ -263,7 +294,7 @@ h1.entry-title {
 }
 
 .woocommerce table.shop_attributes th {
-	width: 250px;
+	width: 50%;
 	font-family: "Effra", san-serif;
 	font-weight: 300 !important;
 }
@@ -307,8 +338,22 @@ p.price {
 	font-weight: 300 !important;
 }
 
+.wc-block-components-product-name {
+	color: var(--color-primary);
+	font-family: "Effra", san-serif;
+	font-weight: 500 !important;
+}
+
 .wc-block-components-product-name:hover {
 	color: var(--color-primary);
 	font-family: "Effra", san-serif;
-	font-weight: 300 !important;
+	font-weight: 500 !important;
+}
+
+.wc-block-components-product-metadata__description {
+	font-size: 12px;
+}
+
+.e-con {
+--flex-wrap-mobile: auto;
 }

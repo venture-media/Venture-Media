@@ -1,0 +1,22 @@
+.report-chart-widget {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  height: 250px;
+  margin: 2rem auto;
+}
+
+.report-chart-widget h3 {
+	display:none;
+}
+
+.report-chart-widget canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+@media (max-width: 768px) {
+  .report-chart-widget {
+    height: 250px;
+  }
+}

@@ -462,6 +462,7 @@ add_action( 'generate_inside_navigation', function() {
     <?php
 }, 20);
 
+
 // Redirect non-logged-in users away from Staff Dashboard page
 function protect_staff_dashboard_page() {
     if ( is_page(1134) && ! is_user_logged_in() ) {
@@ -471,3 +472,50 @@ function protect_staff_dashboard_page() {
 }
 add_action( 'template_redirect', 'protect_staff_dashboard_page' );
 
+
+// Register "Staff" role
+function register_staff_role() {
+    add_role(
+        'staff',
+        'Staff',
+        array(
+            'read' => true,  // basic permission
+        )
+    );
+}
+add_action('init', 'register_staff_role');
+
+
+function vv_last_updated_shortcode( $atts ) {
+    global $post;
+
+    $atts = shortcode_atts( array(
+        'format'       => get_option( 'date_format' ),
+        'label'        => '',
+        'show_time'    => 'false',
+        'hide_if_same' => 'false',
+        'class'        => 'last-updated-date', // default CSS class
+    ), $atts, 'last_updated' );
+
+    $post_id = ( is_object( $post ) && isset( $post->ID ) ) ? $post->ID : get_the_ID();
+    if ( ! $post_id ) {
+        return '';
+    }
+
+    $format = $atts['format'];
+    if ( strtolower( $atts['show_time'] ) === 'true' ) {
+        $format = $format . ' ' . get_option( 'time_format' );
+    }
+
+    $modified  = get_the_modified_date( $format, $post_id );
+    $published = get_the_date( $format, $post_id );
+
+    if ( strtolower( $atts['hide_if_same'] ) === 'true' && $modified === $published ) {
+        return '';
+    }
+
+    $output = esc_html( $atts['label'] . $modified );
+
+    return '<span class="' . esc_attr( $atts['class'] ) . '">' . $output . '</span>';
+}
+add_shortcode( 'last_updated', 'vv_last_updated_shortcode' );

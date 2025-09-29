@@ -1,4 +1,4 @@
-/* --- NOTE: To enable pages, comment out the relevant target --- */
+/* --- NOTE: To enable pages, comment out the relevant sections --- */
 
 
 #toplevel_page_woocommerce-marketing {
@@ -8,7 +8,3 @@
 #menu-comments {
 	display:none;
 }
-
-/*#menu-posts {
-	display: none;
-}*/

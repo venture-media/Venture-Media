@@ -204,6 +204,29 @@ function custom_woocommerce_sale_flash( $html, $post, $product ) {
 }
 
 
+function my_enqueue_chartjs() {
+    // Load only on single posts
+    if ( is_single() && get_post_type() === 'post' ) {
+        wp_enqueue_script(
+            'chartjs',
+            'https://cdn.jsdelivr.net/npm/chart.js',
+            [],
+            null,
+            true
+        );
+    }
+}
+add_action( 'elementor/frontend/after_enqueue_scripts', 'my_enqueue_chartjs' );
+
+
+function my_register_report_chart_widget( $widgets_manager ) {
+    require_once get_stylesheet_directory() . '/elementor-widgets/class-report-chart-widget.php';
+    $widgets_manager->register( new \Report_Chart_Widget() );
+}
+add_action( 'elementor/widgets/register', 'my_register_report_chart_widget' );
+
+
+
 // Remove upsells and related products
 remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_upsell_display', 15 );
 remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 20 );
@@ -222,6 +245,22 @@ function my_elementor_template_shortcode( $atts ) {
     return \Elementor\Plugin::instance()->frontend->get_builder_content_for_display( $atts['id'] );
 }
 add_shortcode( 'elementor_template', 'my_elementor_template_shortcode' );
+
+
+function my_custom_image_above_password_form( $content ) {
+    if ( post_password_required() ) {
+        $image_url = 'https://dev.venture.com.na/wp-content/uploads/2025/09/Advertising.jpg';
+
+        $img_html = '<div class="protected-decorative-image"><img src="' . esc_url( $image_url ) . '" alt="" /></div>';
+
+        $form = get_the_password_form();
+        return $img_html . $form;
+    }
+
+    return $content;
+}
+add_filter( 'the_content', 'my_custom_image_above_password_form', 0 );
+
 
 
 // Allow shortcodes in menu item titles

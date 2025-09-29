@@ -16,6 +16,7 @@
   4. Hide Page Header Featured Image
   5. Woocommerce Single Product
   6. Staff Members Shortcode
+  7. Post Last Updated Shortcode
 ===================== */
 
 
@@ -452,4 +453,16 @@ div.inside-article {
   letter-spacing: 8px;
   color: var(--e-global-color-primary);
   text-align: center;
+}
+
+
+/* =====================
+  7. Post Last Updated Shortcode
+===================== */
+
+.last-updated-date {
+    font-family: Effra;
+    font-weight: 300;
+    font-size: 15px;
+	color: var(--e-global-color-secondary);
 }

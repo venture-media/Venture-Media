@@ -473,17 +473,20 @@ function protect_staff_dashboard_page() {
 add_action( 'template_redirect', 'protect_staff_dashboard_page' );
 
 
-// Register "Staff" role
+// Register "Staff" role with basic permissions
 function register_staff_role() {
     add_role(
         'staff',
         'Staff',
         array(
-            'read' => true,  // basic permission
+            'read'         => true,
+            'upload_files' => true, // allow image uploads
+            'edit_posts'   => false // NOT allowed to publish/edit posts
         )
     );
 }
 add_action('init', 'register_staff_role');
+
 
 
 function vv_last_updated_shortcode( $atts ) {

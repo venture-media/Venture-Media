@@ -488,6 +488,24 @@ function register_staff_role() {
 add_action('init', 'register_staff_role');
 
 
+// Redirect Staff users away from wp-admin to the staff page
+function redirect_staff_from_admin() {
+    if ( is_admin() && ! defined('DOING_AJAX') && current_user_can('staff') ) {
+        wp_redirect( get_permalink(1134) ); // staff page ID
+        exit;
+    }
+}
+add_action( 'admin_init', 'redirect_staff_from_admin' );
+
+// On login, redirect Staff to staff page
+function staff_login_redirect( $redirect_to, $request, $user ) {
+    if ( isset($user->roles) && is_array($user->roles) && in_array( 'staff', $user->roles ) ) {
+        return get_permalink(1134); // staff page ID
+    }
+    return $redirect_to;
+}
+add_filter( 'login_redirect', 'staff_login_redirect', 10, 3 );
+
 
 function vv_last_updated_shortcode( $atts ) {
     global $post;

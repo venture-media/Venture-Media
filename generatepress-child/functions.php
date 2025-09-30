@@ -522,3 +522,21 @@ function vv_last_updated_shortcode( $atts ) {
     return '<span class="' . esc_attr( $atts['class'] ) . '">' . $output . '</span>';
 }
 add_shortcode( 'last_updated', 'vv_last_updated_shortcode' );
+
+/*
+// Disable plugin installation UI
+function restrict_plugin_installation() {
+    // Remove "Add New" submenu
+    remove_submenu_page('plugins.php', 'plugin-install.php');
+
+    // Hide the "Add New" button with CSS
+    echo '<style>
+        .wrap .page-title-action,
+        .plugin-install-php .page-title-action {
+            display: none !important;
+        }
+    </style>';
+}
+add_action('admin_menu', 'restrict_plugin_installation', 999);
+add_action('admin_head', 'restrict_plugin_installation');
+*/

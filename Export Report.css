@@ -1,0 +1,42 @@
+@media print {
+  body * {
+    visibility: hidden !important;
+  }
+  .print-target,
+  .print-target * {
+    visibility: visible !important;
+  }
+  .print-target {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    z-index: 9999 !important;
+  }
+  .accordion-export-btn {
+    display: none !important;
+  }
+
+  html, body {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    background: #fff !important;
+  }
+}
+
+
+.accordion-export-btn {
+	padding: 3px 20px 3px 20px;
+	font-family: Effra;
+	font-weight: 300;
+	font-size: 14px;
+	background-color: var(--e-global-color-text);
+}
+
+@media only screen and (max-width: 1024px) {
+	.accordion-export-btn {
+		display: none;
+	}
+}

@@ -249,7 +249,7 @@ add_shortcode( 'elementor_template', 'my_elementor_template_shortcode' );
 
 function my_custom_image_above_password_form( $content ) {
     if ( post_password_required() ) {
-        $image_url = 'https://dev.venture.com.na/wp-content/uploads/2025/09/Advertising.jpg';
+        $image_url = 'https://www.venture.com.na/wp-content/uploads/2025/09/Advertising.jpg';
 
         $img_html = '<div class="protected-decorative-image"><img src="' . esc_url( $image_url ) . '" alt="" /></div>';
 

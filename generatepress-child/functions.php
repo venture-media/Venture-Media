@@ -444,6 +444,100 @@ function staff_image1_shortcode() {
 add_shortcode( 'staff_image1', 'staff_image1_shortcode' );
 
 
+// Shortcode: [staff_image2]
+function staff_image2_shortcode() {
+    if ( ! is_user_logged_in() ) {
+        return ''; // hide for guests
+    }
+
+    $user_id = get_current_user_id();
+    $img2_id = get_user_meta( $user_id, 'staff_img2', true );
+    $img2    = wp_get_attachment_url( $img2_id );
+
+    if ( ! $img2 ) {
+        return ''; // no image set
+    }
+
+    // Output container with image
+    ob_start(); ?>
+    <div class="staff-image2-container">
+        <img src="<?php echo esc_url( $img2 ); ?>" alt="Staff Image 2">
+    </div>
+    <?php
+    return ob_get_clean();
+}
+add_shortcode( 'staff_image2', 'staff_image2_shortcode' );
+
+
+// Shortcode: [staff_image3]
+function staff_image3_shortcode() {
+    if ( ! is_user_logged_in() ) {
+        return ''; // hide for guests
+    }
+
+    $user_id = get_current_user_id();
+    $img3_id = get_user_meta( $user_id, 'staff_img3', true );
+    $img3    = wp_get_attachment_url( $img3_id );
+
+    if ( ! $img3 ) {
+        return ''; // no image set
+    }
+
+    // Output container with image
+    ob_start(); ?>
+    <div class="staff-image3-container">
+        <img src="<?php echo esc_url( $img3 ); ?>" alt="Staff Image 3">
+    </div>
+    <?php
+    return ob_get_clean();
+}
+add_shortcode( 'staff_image3', 'staff_image3_shortcode' );
+
+
+
+// Shortcode: [staff_images user="123"]
+function staff_images_shortcode( $atts ) {
+    $atts = shortcode_atts( array(
+        'user' => 0, // default: none
+    ), $atts, 'staff_images' );
+
+    $user_id = intval( $atts['user'] );
+    if ( ! $user_id ) {
+        return ''; // no user specified
+    }
+
+    // Get img2 and img3
+    $img2_id = get_user_meta( $user_id, 'staff_img2', true );
+    $img3_id = get_user_meta( $user_id, 'staff_img3', true );
+
+    $img2 = $img2_id ? wp_get_attachment_url( $img2_id ) : '';
+    $img3 = $img3_id ? wp_get_attachment_url( $img3_id ) : '';
+
+    if ( ! $img2 && ! $img3 ) {
+        return ''; // no images set
+    }
+
+    ob_start(); ?>
+    <div class="staff-images-container">
+        <?php if ( $img2 ): ?>
+            <div class="staff-image2-container">
+                <img src="<?php echo esc_url( $img2 ); ?>" alt="Staff Image 2">
+            </div>
+        <?php endif; ?>
+
+        <?php if ( $img3 ): ?>
+            <div class="staff-image3-container">
+                <img src="<?php echo esc_url( $img3 ); ?>" alt="Staff Image 3">
+            </div>
+        <?php endif; ?>
+    </div>
+    <?php
+    return ob_get_clean();
+}
+add_shortcode( 'staff_images', 'staff_images_shortcode' );
+
+
+
 // Add custom social icons inside navigation
 add_action( 'generate_inside_navigation', function() {
     ?>

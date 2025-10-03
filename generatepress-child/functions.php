@@ -328,16 +328,13 @@ function staff_dashboard_shortcode() {
                 delete_user_meta($user_id, $field);
             }
 
-            // Upload new
+               // Upload new
             if (!empty($_FILES[$field]['name'])) {
-                // Restrict staff_img3 to PNG only
-                if ($field === 'staff_img3' && strtolower(pathinfo($_FILES[$field]['name'], PATHINFO_EXTENSION)) !== 'png') {
-                    echo '<p class="staff-error">❌ "'.$label.'" must be a PNG file.</p>';
+                $img_id = media_handle_upload($field, 0);
+                if (is_wp_error($img_id)) {
+                    echo '<p class="staff-error">❌ Error uploading "' . esc_html($label) . '": ' . esc_html($img_id->get_error_message()) . '</p>';
                 } else {
-                    $img_id = media_handle_upload($field, 0);
-                    if (!is_wp_error($img_id)) {
-                        update_user_meta($user_id, $field, $img_id);
-                    }
+                    update_user_meta($user_id, $field, $img_id);
                 }
             }
         }

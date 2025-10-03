@@ -318,7 +318,7 @@ function staff_dashboard_shortcode() {
         // Handle image uploads
         $image_fields = [
             'staff_img1' => 'Profile picture',
-            'staff_img2' => 'Slider image (About us)',
+            'staff_img2' => 'Feature image (About us)',
             'staff_img3' => 'Your handwriting (About us)',
         ];
 

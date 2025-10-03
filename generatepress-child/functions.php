@@ -363,8 +363,8 @@ function staff_dashboard_shortcode() {
         <?php
         $image_fields = [
             'staff_img1' => 'Profile picture',
-            'staff_img2' => 'Slider image (About us)',
-            'staff_img3' => 'Your handwriting (About us)',
+            'staff_img2' => 'About us (desktop 16:9)',
+            'staff_img3' => 'About us (mobile 1:1)',
         ];
         foreach ($image_fields as $field => $label):
             $img_id = get_user_meta($user_id, $field, true);

@@ -1,11 +1,11 @@
 /*
- Theme Name: GeneratePress Child v0.9.3-beta
+ Theme Name: GeneratePress Child v0.9.4-beta
  Theme URI: https://generatepress.com
  Description: Child theme for GeneratePress
  Author: Leon de Klerk
- Author URI: https://github.com/Leon2332/Venture-Media
+ Author URI: https://github.com/Leon2332/
  Template: generatepress
- Version: 0.9.3-beta
+ Version: 0.9.4-beta
 
 =====================
   TABLE OF CONTENTS
@@ -298,12 +298,13 @@ div.inside-article {
   6. Staff Members Shortcode
 ===================== */
 
+
 .staff-profile-form {
   max-width: 600px;
   margin: 2rem auto;
   padding: 2rem;
   background: #ffffff;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  box-shadow: none;
   font-family: inherit;
 }
 
@@ -402,7 +403,7 @@ div.inside-article {
 }
 
 .staff-image-preview {
-  display: flex;
+  display: none;
   align-items: center;
   gap: 10px;
   margin: 0.5rem 0;
@@ -454,6 +455,7 @@ div.inside-article {
   color: var(--e-global-color-primary);
   text-align: center;
 }
+
 
 
 /* =====================

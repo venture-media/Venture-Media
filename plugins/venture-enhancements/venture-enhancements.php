@@ -31,3 +31,10 @@ require_once plugin_dir_path(__FILE__) . 'includes/woocommerce-tweaks.php';
  * -----------------------------
  */
 require_once plugin_dir_path(__FILE__) . 'includes/frontend-enhancements.php';
+
+/**
+ * -----------------------------
+ * 4. Admin Enhancements
+ * -----------------------------
+ */
+require_once plugin_dir_path(__FILE__) . 'includes/admin-sort-tags.php';

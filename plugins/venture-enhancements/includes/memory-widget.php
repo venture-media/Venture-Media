@@ -1,9 +1,9 @@
 <?php
 
 // -----------------------------
-// 1. Create a custom table for memory logs & schedule cleanup
+// 1. Create custom table for memory logs & schedule cleanup
 // -----------------------------
-add_action('after_switch_theme', function() {
+function venture_create_memory_log_table() {
     global $wpdb;
     $table_name = $wpdb->prefix . 'memory_log';
     $charset_collate = $wpdb->get_charset_collate();
@@ -25,7 +25,9 @@ add_action('after_switch_theme', function() {
     if (!wp_next_scheduled('memory_log_cleanup_daily')) {
         wp_schedule_event(time(), 'daily', 'memory_log_cleanup_daily');
     }
-});
+}
+register_activation_hook(__FILE__, 'venture_create_memory_log_table');
+
 
 // -----------------------------
 // 2. Log peak memory usage on every request (admins only to reduce database writes)

@@ -1,9 +1,9 @@
 <?php
 /**
- * Plugin Name: Venture Enhancements v0.9.2-beta
+ * Plugin Name: Venture Enhancements v0.9.3-beta
  * Plugin URI:  https://github.com/venture-media/Venture-Media
  * Description: Site-specific enhancements, non-essential features for Venture Media website.
- * Version:     0.9.2-beta
+ * Version:     0.9.3-beta
  * Author:      Leon de Klerk
  * Author URI:  https://github.com/Leon2332
  */
@@ -32,9 +32,11 @@ require_once plugin_dir_path(__FILE__) . 'includes/woocommerce-tweaks.php';
  */
 require_once plugin_dir_path(__FILE__) . 'includes/frontend-enhancements.php';
 
-/**
- * -----------------------------
- * 4. Dashboard Memory Widget
- * -----------------------------
- */
-require_once plugin_dir_path(__FILE__) . 'includes/memory-widget.php';
+
+register_deactivation_hook(__FILE__, function() {
+    $timestamp = wp_next_scheduled('memory_log_cleanup_daily');
+    if ($timestamp) {
+        wp_unschedule_event($timestamp, 'memory_log_cleanup_daily');
+    }
+});
+

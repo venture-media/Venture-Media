@@ -191,6 +191,12 @@ function custom_woocommerce_sale_flash( $html, $post, $product ) {
 }
 
 
-// Remove upsells and related products
-remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_upsell_display', 15 );
-remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 20 );
+add_action( 'wp', 'venture_remove_woo_upsells_related', 20 );
+function venture_remove_woo_upsells_related() {
+    if ( ! class_exists( 'WooCommerce' ) ) {
+        return;
+    }
+
+    remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_upsell_display', 15 );
+    remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 20 );
+}

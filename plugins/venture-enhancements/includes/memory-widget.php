@@ -37,7 +37,7 @@ add_action('shutdown', function() {
     $table_name = $wpdb->prefix . 'memory_log';
 
     $post_id = isset($GLOBALS['post']->ID) ? $GLOBALS['post']->ID : null;
-    $url = is_admin() ? admin_url($_SERVER['REQUEST_URI']) : get_permalink($post_id) ?: $_SERVER['REQUEST_URI'];
+    $url = is_admin() ? admin_url($_SERVER['REQUEST_URI']) : (get_permalink($post_id) ?: $_SERVER['REQUEST_URI']);
     $context = is_admin() ? 'admin' : 'frontend';
     $peak_memory = memory_get_peak_usage(true) / 1024 / 1024; // MB
     $logged_at = current_time('mysql');

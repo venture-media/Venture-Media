@@ -11,10 +11,10 @@ document.addEventListener("DOMContentLoaded", function () {
     // background + logo swap
     if (currentY > 0) {
       header.classList.add("scrolled");
-      logo.src = "https://dev.venture.com.na/wp-content/uploads/2025/09/venture-logo-black.svg";
+      logo.src = "https://www.venture.com.na/wp-content/uploads/2025/09/venture-logo-black.svg";
     } else {
       header.classList.remove("scrolled");
-      logo.src = "https://dev.venture.com.na/wp-content/uploads/2025/09/venture-logo-white.svg";
+      logo.src = "https://www.venture.com.na/wp-content/uploads/2025/09/venture-logo-white.svg";
     }
 
     // close menu only if moved far enough

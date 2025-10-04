@@ -1,76 +1,94 @@
-	/* Effra Hairline */
+/* Effra Hairline */
 	@font-face {
 	  font-family: 'Effra';
-	  src: url('/wp-content/uploads/2025/09/Effra_Trial_Hair.woff2') format('woff2');
+	  src: url('/wp-content/uploads/2025/09/Effra_Trial_Hair.woff2') format('woff2'),
+	       url('/wp-content/uploads/2025/09/Effra_Trial_Hair.woff') format('woff');
 	  font-weight: 100;
 	  font-style: normal;
 	  font-display: swap;
 	}
 	@font-face {
 	  font-family: 'Effra';
-	  src: url('/wp-content/uploads/2025/09/Effra_Trial_HairIt.woff2') format('woff2');
+	  src: url('/wp-content/uploads/2025/09/Effra_Trial_HairIt.woff2') format('woff2'),
+	       url('/wp-content/uploads/2025/09/Effra_Trial_HairIt.woff') format('woff');
 	  font-weight: 100;
 	  font-style: italic;
 	  font-display: swap;
 	}
-
+	
 	/* Effra Thin */
 	@font-face {
 	  font-family: 'Effra';
-	  src: url('/wp-content/uploads/2025/09/Effra_Trial_Th.woff2') format('woff2');
+	  src: url('/wp-content/uploads/2025/09/Effra_Trial_Th.woff2') format('woff2'),
+	       url('/wp-content/uploads/2025/09/Effra_Trial_Th.woff') format('woff');
 	  font-weight: 100;
 	  font-style: normal;
 	  font-display: swap;
 	}
 	@font-face {
 	  font-family: 'Effra';
-	  src: url('/wp-content/uploads/2025/09/Effra_Trial_ThIt.woff2') format('woff2');
+	  src: url('/wp-content/uploads/2025/09/Effra_Trial_ThIt.woff2') format('woff2'),
+	       url('/wp-content/uploads/2025/09/Effra_Trial_ThIt.woff') format('woff');
 	  font-weight: 100;
 	  font-style: italic;
 	  font-display: swap;
 	}
-
+	
 	/* Effra Light */
 	@font-face {
 	  font-family: 'Effra';
-	  src: url('/wp-content/uploads/2025/09/Effra_Trial_Lt.woff2') format('woff2');
+	  src: url('/wp-content/uploads/2025/09/Effra_Trial_Lt.woff2') format('woff2'),
+	       url('/wp-content/uploads/2025/09/Effra_Trial_Lt.woff') format('woff');
 	  font-weight: 300;
 	  font-style: normal;
 	  font-display: swap;
 	}
 	@font-face {
 	  font-family: 'Effra';
-	  src: url('/wp-content/uploads/2025/09/Effra_Trial_LtIt.woff2') format('woff2');
+	  src: url('/wp-content/uploads/2025/09/Effra_Trial_LtIt.woff2') format('woff2'),
+	       url('/wp-content/uploads/2025/09/Effra_Trial_LtIt.woff') format('woff');
 	  font-weight: 300;
 	  font-style: italic;
 	  font-display: swap;
 	}
 	@font-face {
 	  font-family: 'Effra';
-	  src: url('/wp-content/uploads/2025/09/effra_std_ltit-webfont.woff2') format('woff2');
+	  src: url('/wp-content/uploads/2025/09/effra_std_ltit-webfont.woff2') format('woff2'),
+	       url('/wp-content/uploads/2025/09/effra_std_ltit-webfont.woff') format('woff');
 	  font-weight: 300;
 	  font-style: italic;
+	  font-display: swap;
+	}
+	
+	/* Effra Regular */
+	@font-face {
+	  font-family: 'Effra';
+	  src: url('/wp-content/uploads/2025/09/Effra_Trial_Rg.woff2') format('woff2'),
+		   url('/wp-content/uploads/2025/09/Effra_Trial_Rg.woff') format('woff');
+	  font-weight: 400;
+	  font-style: normal;
 	  font-display: swap;
 	}
 
 	/* Effra Medium */
 	@font-face {
 	  font-family: 'Effra';
-	  src: url('/wp-content/uploads/2025/09/effra_medium-webfont.woff2') format('woff2');
+	  src: url('/wp-content/uploads/2025/09/effra_medium-webfont.woff2') format('woff2'),
+	       url('/wp-content/uploads/2025/09/effra_medium-webfont.woff') format('woff');
 	  font-weight: 500;
 	  font-style: normal;
 	  font-display: swap;
 	}
-
+	
 	/* Effra Bold */
 	@font-face {
 	  font-family: 'Effra';
-	  src: url('/wp-content/uploads/2025/09/effra_std_bd-webfont.woff2') format('woff2');
+	  src: url('/wp-content/uploads/2025/09/effra_std_bd-webfont.woff2') format('woff2'),
+	       url('/wp-content/uploads/2025/09/effra_std_bd-webfont.woff') format('woff');
 	  font-weight: 700;
 	  font-style: normal;
 	  font-display: swap;
 	}
-
 
 		/* Bodoni 72 */
 	@font-face {

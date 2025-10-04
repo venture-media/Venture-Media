@@ -11,7 +11,7 @@
 get_header('shop'); ?>
 
 <div class="custom-top-banner">
-    <img src="https://dev.venture.com.na/wp-content/uploads/2025/09/Sand-dunes-Sahara-desert.jpg.webp" alt="Decorative banner">
+    <img src="https://www.venture.com.na/wp-content/uploads/2025/09/Sand-dunes-Sahara-desert.jpg.webp" alt="Decorative banner">
 </div>
 
 	<div class="row">
@@ -28,7 +28,7 @@ get_header('shop'); ?>
 
 		<?php while ( have_posts() ) : the_post(); ?>
 
-			<?php woocommerce_get_template_part( 'content', 'single-product' ); ?>
+			<?php wc_get_template_part( 'content', 'single-product' ); ?>
 
 		<?php endwhile; // end of the loop. ?>
 
@@ -54,5 +54,6 @@ get_header('shop'); ?>
 
 <?php echo \Elementor\Plugin::instance()->frontend->get_builder_content_for_display( 529 ); ?>
 
+<div class="custom_product-page-spacer"></div>
 
 <?php get_footer('shop'); ?>

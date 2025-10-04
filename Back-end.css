@@ -1,0 +1,10 @@
+/* --- NOTE: To enable pages, comment out the relevant sections --- */
+
+
+#toplevel_page_woocommerce-marketing {
+	display: none;
+}
+
+#menu-comments {
+	display:none;
+}

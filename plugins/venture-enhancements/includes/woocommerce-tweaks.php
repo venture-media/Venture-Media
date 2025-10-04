@@ -189,3 +189,8 @@ add_filter( 'woocommerce_sale_flash', 'custom_woocommerce_sale_flash', 10, 3 );
 function custom_woocommerce_sale_flash( $html, $post, $product ) {
     return '<span class="onsale">Pre-order</span>';
 }
+
+
+// Remove upsells and related products
+remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_upsell_display', 15 );
+remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 20 );

@@ -17,12 +17,22 @@ add_action( 'wp_enqueue_scripts', function() {
 // Custom Dashboard widget to show PHP memory limit and path to wp-config.php
 add_action('wp_dashboard_setup', function() {
     wp_add_dashboard_widget(
-        'memory_limit_widget',                // Widget slug
-        'PHP Memory & Config Info',           // Widget title
-        function() {                          // Display callback
+        'memory_limit_widget',
+        'PHP Memory & Usage Info',
+        function() {
             if ( current_user_can('manage_options') ) {
                 $config_path = ABSPATH . 'wp-config.php';
-                echo '<p><strong>Current PHP memory limit:</strong> ' . ini_get('memory_limit') . '</p>';
+                $memory_limit = ini_get('memory_limit');
+                $memory_used = memory_get_usage(true) / 1024 / 1024; // Convert to MB
+                $memory_peak = memory_get_peak_usage(true) / 1024 / 1024; // Convert to MB
+                $wp_memory_limit = defined('WP_MEMORY_LIMIT') ? WP_MEMORY_LIMIT : 'Not defined';
+                $wp_max_memory_limit = defined('WP_MAX_MEMORY_LIMIT') ? WP_MAX_MEMORY_LIMIT : 'Not defined';
+
+                echo '<p><strong>PHP memory_limit (server):</strong> ' . esc_html($memory_limit) . '</p>';
+                echo '<p><strong>WP_MEMORY_LIMIT (wp-config):</strong> ' . esc_html($wp_memory_limit) . '</p>';
+                echo '<p><strong>WP_MAX_MEMORY_LIMIT (wp-config):</strong> ' . esc_html($wp_max_memory_limit) . '</p>';
+                echo '<p><strong>Current memory usage:</strong> ' . number_format($memory_used, 2) . ' MB</p>';
+                echo '<p><strong>Peak memory usage:</strong> ' . number_format($memory_peak, 2) . ' MB</p>';
                 echo '<p><strong>wp-config.php path:</strong><br>' . esc_html($config_path) . '</p>';
             } else {
                 echo '<p>You do not have permission to view this.</p>';
@@ -30,6 +40,7 @@ add_action('wp_dashboard_setup', function() {
         }
     );
 });
+
 
 
 

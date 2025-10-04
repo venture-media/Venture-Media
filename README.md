@@ -1,4 +1,4 @@
-<img width="1900" height="960" alt="Image" src="https://github.com/user-attachments/assets/6883fc08-249e-4249-adb9-ce594a066266" />
+<img width="1900" height="960" alt="Image" src="https://github.com/venture-media/Venture-Media/blob/main/Screenshot%20From%202025-09-27%2015-37-34.png" />
 
 
 - Website: https://www.venture.com.na/

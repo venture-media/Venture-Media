@@ -174,20 +174,56 @@ function vv_last_updated_shortcode( $atts ) {
 }
 add_shortcode( 'last_updated', 'vv_last_updated_shortcode' );
 
-/*
-// Disable plugin installation UI
-function restrict_plugin_installation() {
-    // Remove "Add New" submenu
-    remove_submenu_page('plugins.php', 'plugin-install.php');
 
-    // Hide the "Add New" button with CSS
-    echo '<style>
-        .wrap .page-title-action,
-        .plugin-install-php .page-title-action {
-            display: none !important;
+
+// Only define if not already defined
+if ( ! function_exists( 'child_theme_sort_posts_by_tags' ) ) :
+
+function child_theme_sort_posts_by_tags() {
+
+    // Make Tags column sortable
+    add_filter( 'manage_edit-post_sortable_columns', function( $columns ) {
+        if ( isset( $columns['tags'] ) ) return $columns; // avoid duplicate
+        $columns['tags'] = 'tags';
+        return $columns;
+    } );
+
+    // Default admin posts list to sort by tags
+    add_action( 'pre_get_posts', function( $query ) {
+        try {
+            if ( ! is_admin() || ! $query->is_main_query() ) return;
+
+            $screen = function_exists('get_current_screen') ? get_current_screen() : false;
+            if ( $screen && $screen->id === 'edit-post' && ! isset( $_GET['orderby'] ) ) {
+                $query->set( 'orderby', 'tags' );
+                $query->set( 'order', 'ASC' ); // change to DESC if needed
+            }
+        } catch ( Exception $e ) {
+            // silently fail to avoid breaking admin
         }
-    </style>';
+    } );
+
+    // Adjust the query when sorting by tags
+    add_filter( 'posts_clauses', function( $clauses, $query ) {
+        global $wpdb;
+        try {
+            if ( is_admin() && $query->get('orderby') === 'tags' ) {
+                $clauses['join'] .= " LEFT JOIN {$wpdb->term_relationships} AS tr ON {$wpdb->posts}.ID = tr.object_id
+                                      LEFT JOIN {$wpdb->term_taxonomy} AS tt ON tr.term_taxonomy_id = tt.term_taxonomy_id
+                                      LEFT JOIN {$wpdb->terms} AS t ON tt.term_id = t.term_id ";
+                $clauses['where'] .= " AND tt.taxonomy = 'post_tag' ";
+                $clauses['groupby'] = "{$wpdb->posts}.ID";
+                $clauses['orderby'] = "GROUP_CONCAT(t.name ORDER BY t.name ASC)";
+            }
+        } catch ( Exception $e ) {
+            // silently fail
+        }
+        return $clauses;
+    }, 10, 2 );
+
 }
-add_action('admin_menu', 'restrict_plugin_installation', 999);
-add_action('admin_head', 'restrict_plugin_installation');
-*/
+
+add_action( 'after_setup_theme', 'child_theme_sort_posts_by_tags' );
+
+endif;
+

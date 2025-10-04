@@ -1,9 +1,9 @@
 <?php
 /**
- * Plugin Name: Venture Enhancements v0.9.1-beta
+ * Plugin Name: Venture Enhancements v0.9.2-beta
  * Plugin URI:  https://github.com/venture-media/Venture-Media
  * Description: Site-specific enhancements, non-essential features for Venture Media website.
- * Version:     0.9.1-beta
+ * Version:     0.9.2-beta
  * Author:      Leon de Klerk
  * Author URI:  https://github.com/Leon2332
  */

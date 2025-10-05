@@ -121,6 +121,14 @@ function register_staff_role() {
 add_action('init', 'register_staff_role');
 
 
+// Hide admin bar for staff users
+add_action('after_setup_theme', function() {
+    if (current_user_can('staff') && !current_user_can('administrator')) {
+        show_admin_bar(false);
+    }
+});
+
+
 // Redirect Staff users away from wp-admin to the staff page
 function redirect_staff_from_admin() {
     if ( is_admin() && ! defined('DOING_AJAX') && current_user_can('staff') ) {
@@ -129,6 +137,7 @@ function redirect_staff_from_admin() {
     }
 }
 add_action( 'admin_init', 'redirect_staff_from_admin' );
+
 
 // On login, redirect Staff to staff page
 function staff_login_redirect( $redirect_to, $request, $user ) {

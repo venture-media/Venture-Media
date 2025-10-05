@@ -293,7 +293,7 @@ function staff_directory_shortcode() {
                 <tr>
                     <td class="staff-directory-photo">
                         <?php if ($img1): ?>
-                            <img src="<?php echo esc_url($img1); ?>" alt="<?php echo esc_attr($user->display_name); ?>" style="width:75px; height:75px; object-fit:cover; border-radius:50%;">
+                            <img src="<?php echo esc_url($img1); ?>" alt="<?php echo esc_attr($user->display_name); ?>" style="width:75px; height:75px; object-fit:cover;">
                         <?php endif; ?>
                     </td>
                     <td class="staff-directory-name"><?php echo esc_html($user->display_name); ?></td>

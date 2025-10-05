@@ -23,6 +23,10 @@ function staff_dashboard_shortcode() {
         // Save bio
         update_user_meta($user_id, 'staff_bio', sanitize_textarea_field($_POST['staff_bio']));
 
+        // Save mobile and email
+        update_user_meta($user_id, 'staff_mobile', sanitize_text_field($_POST['staff_mobile']));
+        update_user_meta($user_id, 'staff_email', sanitize_email($_POST['staff_email']));
+
         // Handle image uploads
         $image_fields = [
             'staff_img1' => 'Profile picture',
@@ -53,6 +57,8 @@ function staff_dashboard_shortcode() {
     // Get existing values
     $title = get_user_meta($user_id, 'staff_title', true);
     $bio   = get_user_meta($user_id, 'staff_bio', true);
+    $mobile = get_user_meta($user_id, 'staff_mobile', true);
+    $email  = get_user_meta($user_id, 'staff_email', true);
     $img1  = get_user_meta($user_id, 'staff_img1', true);
     $img2  = get_user_meta($user_id, 'staff_img2', true);
     $img3  = get_user_meta($user_id, 'staff_img3', true);
@@ -64,6 +70,12 @@ function staff_dashboard_shortcode() {
 
         <label for="staff_bio">Biography</label>
         <textarea id="staff_bio" name="staff_bio" rows="6"><?php echo esc_textarea($bio); ?></textarea>
+        
+        <label for="staff_mobile">Mobile number</label>
+        <input type="text" id="staff_mobile" name="staff_mobile" value="<?php echo esc_attr($mobile); ?>">
+        
+        <label for="staff_email">Email address</label>
+        <input type="email" id="staff_email" name="staff_email" value="<?php echo esc_attr($email); ?>">
 
         <?php
         $image_fields = [
@@ -241,3 +253,78 @@ function staff_images_shortcode( $atts ) {
 }
 add_shortcode( 'staff_images', 'staff_images_shortcode' );
 
+
+// Shortcode: [staff_directory]
+function staff_directory_shortcode() {
+    // Only show for logged-in staff or admins if desired
+    // remove this block if you want it public
+    /*
+    if ( ! ( current_user_can('staff') || current_user_can('administrator') ) ) {
+        return '<p>You do not have permission to view this list.</p>';
+    }
+    */
+
+    $args = array(
+        'role__in' => array('staff', 'administrator'),
+        'number'   => 9999, // adjust as needed
+    );
+
+    $users = get_users($args);
+
+    if (empty($users)) {
+        return '<p>No staff members found.</p>';
+    }
+
+    ob_start(); ?>
+
+    <table class="staff-directory">
+        <tbody>
+            <?php foreach ($users as $user):
+                $user_id = $user->ID;
+                $title   = get_user_meta($user_id, 'staff_title', true);
+                $mobile  = get_user_meta($user_id, 'staff_mobile', true);
+                $email   = get_user_meta($user_id, 'staff_email', true);
+                $img1_id = get_user_meta($user_id, 'staff_img1', true);
+                $img1    = $img1_id ? wp_get_attachment_url($img1_id) : '';
+                
+                // skip empty users (no profile data)
+                if (!$title && !$mobile && !$email && !$img1) continue;
+            ?>
+                <tr>
+                    <td class="staff-directory-photo">
+                        <?php if ($img1): ?>
+                            <img src="<?php echo esc_url($img1); ?>" alt="<?php echo esc_attr($user->display_name); ?>" style="width:75px; height:75px; object-fit:cover; border-radius:50%;">
+                        <?php endif; ?>
+                    </td>
+                    <td class="staff-directory-name"><?php echo esc_html($user->display_name); ?></td>
+                    <td class="staff-directory-title"><?php echo esc_html($title); ?></td>
+                    <td class="staff-directory-mobile"><?php echo esc_html($mobile); ?></td>
+                    <td class="staff-directory-email"><a href="mailto:<?php echo esc_attr($email); ?>"><?php echo esc_html($email); ?></a></td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+
+    <style>
+        .staff-directory {
+            border-collapse: collapse;
+            width: 100%;
+            border: none;
+        }
+        .staff-directory tr {
+            border: solid 1px var(--e-global-color-accent);
+        }
+        .staff-directory td {
+            padding: 10px;
+            border: none;
+            vertical-align: middle;
+        }
+        .staff-directory-photo {
+            width: 90px;
+        }
+    </style>
+
+    <?php
+    return ob_get_clean();
+}
+add_shortcode('staff_directory', 'staff_directory_shortcode');

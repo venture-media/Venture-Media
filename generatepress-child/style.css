@@ -295,9 +295,8 @@ div.inside-article {
 
 
 /* =====================
-  6. Staff Members Shortcode
+  6. Staff Members Shortcode (Final Merged)
 ===================== */
-
 
 .staff-profile-form {
   max-width: 600px;
@@ -305,11 +304,10 @@ div.inside-article {
   padding: 2rem;
   background: #ffffff;
   box-shadow: none;
-  font-family: inherit;
+  font-family: Effra, sans-serif;
 }
 
 .staff-profile-form label {
-    font-family: Effra;
   display: block;
   font-weight: 400;
   margin-bottom: 0.5rem;
@@ -318,10 +316,11 @@ div.inside-article {
 }
 
 .staff-profile-form textarea,
-.staff-profile-form input[type="file"] {
-    font-family: Effra;
-    font-weight: 300;
-    color: var(--e-global-color-text);
+.staff-profile-form input[type="file"],
+#staff_title {
+  font-family: Effra;
+  font-weight: 300;
+  color: var(--e-global-color-text);
   width: 100%;
   padding: 0.75rem;
   border: 1px solid #ccc;
@@ -335,19 +334,15 @@ div.inside-article {
 }
 
 .staff-profile-form button {
-    display: block;
-    justify-self: center;
+  display: block;
+  justify-self: center;
   margin-top: 2rem;
   padding: 7px 25px;
   background: var(--e-global-color-accent);
   color: #ffffff;
-  border: solid;
-  border-width: 1.5px;
+  border: solid 1.5px var(--e-global-color-accent);
   border-radius: 3px;
-  border-color: var(--e-global-color-accent);
   cursor: pointer;
-  font-family: Effra;
-  font-weight: 400;
   font-size: 1rem;
   letter-spacing: 0.2px;
   transition: all 0.2s ease-in-out;
@@ -360,8 +355,7 @@ div.inside-article {
 
 .staff-profile-form img {
   display: block;
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
+  margin: 0.5rem 0;
   border-radius: 8px;
   border: 1px solid #ddd;
 }
@@ -384,39 +378,50 @@ div.inside-article {
   font-size: 15px;
   color: #ffffff;
   font-weight: 400;
-  border: solid;
-  border-width: 1px;
+  border: solid 1px;
   padding: 2px 20px;
   border-radius: 3px;
   background-color: var(--e-global-color-primary);
 }
 
-.staff-profile-form-logout:hover{
-    color: var(--e-global-color-primary);
-    background-color: #ffffff;
+.staff-profile-form-logout:hover {
+  color: var(--e-global-color-primary);
+  background-color: #ffffff;
 }
 
-#staff_title {
-    width: 100%;
-    border: 1px solid #ccc;
-    color: var(--e-global-color-text);
+/* --- Plugin dynamic display retained --- */
+.staff-profile-preview {
+  display: none; /* default hidden */
 }
 
-.staff-image-preview {
-  display: none;
-  align-items: center;
-  gap: 10px;
-  margin: 0.5rem 0;
+:has(.staff-image2-container) :is(.staff-profile-preview),
+:has(.staff-image3-container) :is(.staff-profile-preview) {
+  display: block;
 }
 
-.staff-profile-form .staff-delete-btn {
+/* --- Plugin image container borders & hover --- */
+.staff-image2-container,
+.staff-image3-container {
+  border: solid 2px #ffffff00;
+}
+
+:has(input#staff_img2:hover) :is(.staff-image2-container),
+:has(input#staff_img3:hover) :is(.staff-image3-container) {
+  border-color: var(--e-global-color-accent);
+}
+
+input#staff_img2:hover,
+input#staff_img3:hover {
+  border-color: var(--e-global-color-accent);
+}
+
+/* --- Delete button hover retained from child theme --- */
+.staff-delete-btn {
   all: unset;
   display: inline-block;
   align-items: center;
   color: #f4a239;
-  border: solid;
-  border-color: #f4a239;
-  border-width: 1px;
+  border: solid 1px #f4a239;
   border-radius: 3px;
   padding: 2px;
   font-size: 20px;
@@ -425,36 +430,45 @@ div.inside-article {
   margin-left: 10px;
   transition: transform 0.2s ease-in-out;
   will-change: transform;
-	transform-origin: center center;
+  transform-origin: center center;
 }
 
-.staff-profile-form .staff-delete-btn:hover {
-    all: unset;
-    display: inline-block;
-    align-items: center;
-    margin-left: 10px;
+.staff-delete-btn:hover {
   transform: scale(1.1);
-  background-color: none;
-  color: #f4a239;
-  border: solid;
-  border-color: #f4a239;
-  border-width: 1px;
-  border-radius: 3px;
-  padding: 2px;
-  font-size: 20px;
-  cursor: pointer;
-  line-height: 1.1;
-   transition: transform 0.2s ease-in-out;
 }
 
 .staff-name {
   font-size: 24px;
-  font-family: Effra;
   font-weight: 300;
   letter-spacing: 8px;
   color: var(--e-global-color-primary);
   text-align: center;
 }
+
+/* --- Staff directory font & hover --- */
+.staff-directory {
+  font-family: Effra, sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--e-global-color-text);
+}
+
+.staff-directory a:hover {
+  color: var(--e-global-color-primary);
+}
+
+/* --- Staff dashboard label --- */
+.staff-dashboard-label {
+  font-family: Effra !important;
+  font-weight: 300 !important;
+  font-size: 14px !important;
+}
+
+/* --- Error message from plugin --- */
+.staff-error {
+  color: #baaf55;
+}
+
 
 
 

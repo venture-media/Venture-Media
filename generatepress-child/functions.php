@@ -1,31 +1,51 @@
 <?php
-add_action( 'wp_enqueue_scripts', function() {
-    wp_enqueue_style( 'generatepress-parent-style', get_template_directory_uri() . '/style.css' );
+// =======================
+// Front-end assets (CSS + JS)
+// =======================
+function gp_child_enqueue_assets() {
+    // Load parent and base child styles
+    wp_enqueue_style('gp-parent-style', get_template_directory_uri() . '/style.css');
+    wp_enqueue_style('gp-child-style', get_stylesheet_uri());
 
-    // Enqueue custom JS
+    // Auto-enqueue all CSS files from /css
+    $css_path = get_stylesheet_directory() . '/css/';
+    $css_files = glob($css_path . '*.css');
+
+    // Sort naturally (ensures 0, 1, 2... order)
+    natsort($css_files);
+
+    foreach ($css_files as $file) {
+        $handle = 'gp-' . basename($file, '.css');
+        wp_enqueue_style(
+            $handle,
+            get_stylesheet_directory_uri() . '/css/' . basename($file),
+            array('gp-child-style'),
+            filemtime($file) // cache-busting by modification time
+        );
+    }
+
+    // Custom JS: header scroll
     wp_enqueue_script(
         'child-header-scroll',
         get_stylesheet_directory_uri() . '/js/header-scroll.js',
         array(),
-        null,
-        true 
+        filemtime(get_stylesheet_directory() . '/js/header-scroll.js'),
+        true
     );
-});
 
-
-function my_enqueue_chartjs() {
-    // Load only on single posts
+    // Chart.js (load only on single post pages)
     if ( is_single() && get_post_type() === 'post' ) {
         wp_enqueue_script(
             'chartjs',
             'https://cdn.jsdelivr.net/npm/chart.js',
-            [],
+            array(),
             null,
             true
         );
     }
 }
-add_action( 'elementor/frontend/after_enqueue_scripts', 'my_enqueue_chartjs' );
+add_action('wp_enqueue_scripts', 'gp_child_enqueue_assets');
+
 
 
 function my_register_report_chart_widget( $widgets_manager ) {

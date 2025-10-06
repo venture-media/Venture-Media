@@ -10,13 +10,19 @@
 =====================
   TABLE OF CONTENTS
 
+  0. Global Links
   1. Social Icons (header)
   2. Site Header
   3. Menu Banner
   4. Hide Page Header Featured Image
-  5. Woocommerce Single Product
+  5. WooCommerce Single Product
   6. Staff Members Shortcode
   7. Post Last Updated Shortcode
+  8. Charts
+  9. Menu Overlay
+  10. Menu Shopping Cart
+  11. WooCommerce (global)
 =====================
 
-NOTE: Styles are modularly enqueued via functions.php */
+NOTE: Styles are modularly enqueued via functions.php
+*/

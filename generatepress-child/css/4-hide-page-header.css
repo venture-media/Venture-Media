@@ -1,0 +1,7 @@
+/* =====================
+  4. Hide Page Header Featured Image
+===================== */
+
+  .page-header-image {
+    display: none;
+  }

@@ -10,7 +10,6 @@
 =====================
   TABLE OF CONTENTS
 
-  0. Global links
   1. Social Icons (header)
   2. Site Header
   3. Menu Banner
@@ -403,8 +402,8 @@ div.inside-article {
 }
 
 .staff-profile-form-logout {
-  display: block;
-  justify-self: right;
+  display: inline-block;
+  float: right;
   font-family: Effra;
   font-size: 15px;
   color: #ffffff;
@@ -413,6 +412,7 @@ div.inside-article {
   padding: 2px 20px;
   border-radius: 3px;
   background-color: var(--e-global-color-primary);
+  cursor: pointer;
 }
 
 .staff-profile-form-logout:hover {

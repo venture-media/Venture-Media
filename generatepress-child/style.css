@@ -9,7 +9,10 @@
 
 =====================
   TABLE OF CONTENTS
+=====================
 
+  CSS FILES (auto-enqueued via functions.php)
+  ------------------------------------------
   00. Global Links
   01. Social Icons (Header)
   02. Site Header
@@ -22,7 +25,20 @@
   09. Menu Overlay
   10. Menu Shopping Cart
   11. WooCommerce (Global)
+
+
+  JS FILES (auto-enqueued via functions.php)
+  -----------------------------------------
+  00. Header Scroll
+  01. Menu Overlay
+
+
+
+=====================
+  NOTES
 =====================
 
-NOTE: Styles are modularly enqueued via functions.php
+  • All styles and scripts are modularly enqueued from the /css/ and /js/ directories.
+  • Filenames are numbered for consistent load order and version control.
+  • Cache-busting is automatically handled using file modification timestamps.
 */

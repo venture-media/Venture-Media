@@ -1,0 +1,10 @@
+/* =====================
+  7. Post Last Updated Shortcode
+===================== */
+
+.last-updated-date {
+    font-family: Effra;
+    font-weight: 300;
+    font-size: 15px;
+	  color: var(--e-global-color-secondary);
+}

@@ -1,17 +1,14 @@
 <?php
-// =======================
-// Front-end assets (CSS + JS)
-// =======================
 function gp_child_enqueue_assets() {
     // Load parent and base child styles
     wp_enqueue_style('gp-parent-style', get_template_directory_uri() . '/style.css');
     wp_enqueue_style('gp-child-style', get_stylesheet_uri());
 
-    // Auto-enqueue all CSS files from /css
+    // =====================
+    //  CSS: Auto-enqueue all files from /css
+    // =====================
     $css_path = get_stylesheet_directory() . '/css/';
     $css_files = glob($css_path . '*.css');
-
-    // Sort naturally (ensures 0, 1, 2... order)
     natsort($css_files);
 
     foreach ($css_files as $file) {
@@ -20,20 +17,31 @@ function gp_child_enqueue_assets() {
             $handle,
             get_stylesheet_directory_uri() . '/css/' . basename($file),
             array('gp-child-style'),
-            filemtime($file) // cache-busting by modification time
+            filemtime($file)
         );
     }
 
-    // Custom JS: header scroll
-    wp_enqueue_script(
-        'child-header-scroll',
-        get_stylesheet_directory_uri() . '/js/header-scroll.js',
-        array(),
-        filemtime(get_stylesheet_directory() . '/js/header-scroll.js'),
-        true
-    );
+    // =====================
+    //  JS: Auto-enqueue all files from /js
+    // =====================
+    $js_path = get_stylesheet_directory() . '/js/';
+    $js_files = glob($js_path . '*.js');
+    natsort($js_files);
 
-    // Chart.js (load only on single post pages)
+    foreach ($js_files as $file) {
+        $handle = 'gp-' . basename($file, '.js');
+        wp_enqueue_script(
+            $handle,
+            get_stylesheet_directory_uri() . '/js/' . basename($file),
+            array('jquery'),
+            filemtime($file),
+            true // load in footer
+        );
+    }
+
+    // =====================
+    //  External: Chart.js (only load on single post pages)
+    // =====================
     if ( is_single() && get_post_type() === 'post' ) {
         wp_enqueue_script(
             'chartjs',
@@ -45,7 +53,6 @@ function gp_child_enqueue_assets() {
     }
 }
 add_action('wp_enqueue_scripts', 'gp_child_enqueue_assets');
-
 
 
 function my_register_report_chart_widget( $widgets_manager ) {

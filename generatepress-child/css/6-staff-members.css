@@ -1,0 +1,197 @@
+/* =====================
+  6. Staff Members Shortcode
+===================== */
+
+.staff-profile-form {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #ffffff;
+  box-shadow: none;
+  font-family: Effra, sans-serif;
+}
+
+.staff-profile-form label {
+  display: block;
+  font-weight: 400;
+  margin-bottom: 0.5rem;
+  margin-top: 1.5rem;
+  color: var(--e-global-color-text);
+}
+
+.staff-profile-form textarea,
+.staff-profile-form input[type="file"],
+#staff_title {
+  font-family: Effra;
+  font-weight: 300;
+  color: var(--e-global-color-text);
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.staff-profile-form textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.staff-profile-form button {
+  display: block;
+  justify-self: center;
+  margin-top: 2rem;
+  padding: 7px 25px;
+  background: var(--e-global-color-accent);
+  color: #ffffff;
+  border: solid 1.5px var(--e-global-color-accent);
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 1rem;
+  letter-spacing: 0.2px;
+  transition: all 0.2s ease-in-out;
+}
+
+.staff-profile-form button:hover {
+  background: #AFB52D;
+  color: #ffffff;
+}
+
+.staff-profile-form img {
+  display: block;
+  margin: 0.5rem 0;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+.staff-image-preview img{
+	display: none;
+}
+
+.staff-delete-btn {
+	padding: 5px !important;
+	background: none !important;
+	border-color: var(--e-global-color-primary) !important;
+	margin-bottom: 2px !important;
+	margin-top: 0px !important;
+	justify-self: right !important;
+}
+
+#staff_mobile, #staff_email {
+	width: 100%;
+	font-family: Effra;
+	font-size: 16px;
+	font-weight: 300;
+	border-color: #ccc;
+	color: var(--e-global-color-text);
+}
+
+.staff-success {
+  background: #e6f9ee;
+  border: 1px solid #b5e5c9;
+  color: #2e7d32;
+  padding: 1rem;
+  margin: 1rem auto;
+  max-width: 600px;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+.staff-profile-form-logout {
+  display: inline-block;
+  float: right;
+  font-family: Effra;
+  font-size: 15px;
+  color: #ffffff;
+  font-weight: 400;
+  border: solid 1px;
+  padding: 2px 20px;
+  border-radius: 3px;
+  background-color: var(--e-global-color-primary);
+  cursor: pointer;
+}
+
+.staff-profile-form-logout:hover {
+  color: var(--e-global-color-primary);
+  background-color: #ffffff;
+}
+
+/* --- Plugin dynamic display retained --- */
+.staff-profile-preview {
+  display: none; /* default hidden */
+}
+
+:has(.staff-image2-container) :is(.staff-profile-preview),
+:has(.staff-image3-container) :is(.staff-profile-preview) {
+  display: block;
+}
+
+/* --- Plugin image container borders & hover --- */
+.staff-image2-container,
+.staff-image3-container {
+  border: solid 2px #ffffff00;
+}
+
+:has(input#staff_img2:hover) :is(.staff-image2-container),
+:has(input#staff_img3:hover) :is(.staff-image3-container) {
+  border-color: var(--e-global-color-accent);
+}
+
+input#staff_img2:hover,
+input#staff_img3:hover {
+  border-color: var(--e-global-color-accent);
+}
+
+/* --- Delete button hover retained from child theme --- */
+.staff-delete-btn {
+  all: unset;
+  display: inline-block;
+  align-items: center;
+  color: #f4a239;
+  border: solid 1px #f4a239;
+  border-radius: 3px;
+  padding: 2px;
+  font-size: 20px;
+  cursor: pointer;
+  line-height: 1.1;
+  margin-left: 10px;
+  transition: transform 0.2s ease-in-out;
+  will-change: transform;
+  transform-origin: center center;
+}
+
+.staff-delete-btn:hover {
+  transform: scale(1.1);
+}
+
+.staff-name {
+  font-size: 24px;
+  font-weight: 300;
+  letter-spacing: 8px;
+  color: var(--e-global-color-primary);
+  text-align: center;
+}
+
+/* --- Staff directory font & hover --- */
+.staff-directory {
+  font-family: Effra, sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--e-global-color-text);
+}
+
+.staff-directory a:hover {
+  color: var(--e-global-color-primary);
+}
+
+/* --- Staff dashboard label --- */
+.staff-dashboard-label {
+  font-family: Effra !important;
+  font-weight: 300 !important;
+  font-size: 14px !important;
+}
+
+/* --- Error message from plugin --- */
+.staff-error {
+  color: #baaf55;
+}

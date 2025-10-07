@@ -5,78 +5,52 @@
 
 Purpose:
 - Handles the export/print functionality for client reports.
-- Ensures only the `.print-target` content is included in the print view.
-- Compatible with `00-export-report.css` print rules.
 
 Dependencies:
 - jQuery (loaded by WordPress)
 */
 
 
-
-
-/* =====================
-  00.1. DOM Ready
-===================== */
 document.addEventListener("DOMContentLoaded", function () {
-  const exportButtons = document.querySelectorAll(".accordion-export-btn");
-
-  if (!exportButtons.length) return;
-
-  
-/* =====================
-  00.2. Export Function
-===================== */
-  exportButtons.forEach(function (btn) {
+  document.querySelectorAll(".accordion-export-btn").forEach(function (btn) {
     btn.addEventListener("click", function (e) {
       e.preventDefault();
 
-      // Identify target selector (optional: data attribute fallback)
-      const targetSelector = btn.getAttribute("data-print-target") || ".print-target";
-      const printTarget = document.querySelector(targetSelector);
+      // Find the accordion panel (Elementor wrapper, not just role="region")
+      const region = btn.closest("details").querySelector('[role="region"]');
+      if (!region) return;
 
-      if (!printTarget) {
-        console.warn("Export Report: No print target found for", targetSelector);
-        return;
-      }
+      // Mark for printing
+      region.classList.add("print-target");
 
-      // Clone target content for isolated print
-      const cloned = printTarget.cloneNode(true);
-      const printWindow = window.open("", "_blank", "width=1000,height=800");
+      // Convert canvases to images (but keep originals hidden)
+      region.querySelectorAll("canvas").forEach(canvas => {
+        try {
+          const img = document.createElement("img");
+          img.src = canvas.toDataURL("image/png");
+          img.style.maxWidth = "100%";
+          img.style.height = "auto";
+          img.classList.add("canvas-print-clone");
+          canvas.style.display = "none";
+          canvas.after(img);
+        } catch (err) {
+          console.warn("Canvas conversion failed", err);
+        }
+      });
 
-      // Basic HTML structure
-      printWindow.document.write(`
-        <html>
-          <head>
-            <title>Export Report</title>
-            <style>
-              html, body {
-                -webkit-print-color-adjust: exact;
-                print-color-adjust: exact;
-                font-family: Effra, sans-serif;
-                margin: 0;
-                padding: 0;
-              }
-            </style>
-          </head>
-          <body>
-            ${cloned.outerHTML}
-          </body>
-        </html>
-      `);
+      // Trigger print
+      window.print();
 
-      printWindow.document.close();
-
-      // Wait for styles to render, then print
-      printWindow.onload = function () {
-        printWindow.focus();
-        printWindow.print();
-
-        // Close automatically after printing
-        printWindow.onafterprint = function () {
-          printWindow.close();
-        };
-      };
+      // Cleanup after print
+      window.addEventListener("afterprint", function cleanup() {
+        region.classList.remove("print-target");
+        region.querySelectorAll(".canvas-print-clone").forEach(img => img.remove());
+        region.querySelectorAll("canvas").forEach(canvas => {
+          canvas.style.display = "";
+        });
+        window.removeEventListener("afterprint", cleanup);
+      });
     });
   });
 });
+

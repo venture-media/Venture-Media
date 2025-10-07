@@ -11,24 +11,25 @@
  *  PLUGIN STRUCTURE OVERVIEW
  * ------------------------------------------------------------------
  *
- * venture-enhancements/
- * │
- * ├─ venture-enhancements.php          → Main plugin loader file
- * │
- * │
- * ├─ includes/
- * │   ├─ staff-shortcodes.php          → Staff Dashboard shortcodes
- * │   ├─ woocommerce-tweaks.php        → Minor WooCommerce customizations
- * │   ├─ frontend-enhancements.php     → Custom social icons + asset enqueues
- * │   ├─ admin-sort-tags.php           → Sort posts by tags alphabetically in admin
- * │   └─ redirect-manager.php          → Programmatic redirects management (wp-admin dashboard widget)
- * │
- * └─ assets/
- *     ├─ css/
- *     │   └─ export-report.css         → Styling for report exports (Client reports)
+ *   venture-enhancements/
  *     │
- *     └─ js/
- *         └─ export-report.js          → Handles dynamic report export logic
+ *     ├─ venture-enhancements.php              → Main plugin loader file
+ *     │
+ *     │
+ *     ├─ includes/
+ *     │     ├─ staff-shortcodes.php            → Staff Dashboard shortcodes
+ *     │     ├─ woocommerce-tweaks.php          → Minor WooCommerce customizations
+ *     │     ├─ frontend-enhancements.php       → Custom social icons + asset enqueues
+ *     │     ├─ admin-sort-tags.php             → Sort posts by tags alphabetically in admin
+ *     │     └─ redirect-manager.php            → Programmatic redirects management (wp-admin dashboard widget)
+ *     │
+ *     └─ assets/
+ *           ├─ css/
+ *           │   └─ export-report.css           → Styling for report exports (Client reports)
+ *           │
+ *           └─ js/
+ *               └─ export-report.js            → Handles dynamic report export logic
+ *
  *
  * ------------------------------------------------------------------
  *  NOTES

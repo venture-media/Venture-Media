@@ -1,0 +1,80 @@
+/*
+=====================
+  00 EXPORT REPORT STYLES
+=====================
+
+Purpose:
+- Define print styling for report exports.
+- Ensure only `.print-target` content is visible in print view.
+- Hide export buttons and non-essential elements.
+- Maintain color accuracy and clean layout when printing.
+*/
+
+
+
+
+/* =====================
+  00.1. Print Styling
+===================== */
+@media print {
+  /* Hide everything except print target */
+  body * {
+    visibility: hidden !important;
+  }
+
+  .print-target,
+  .print-target * {
+    visibility: visible !important;
+  }
+
+  .print-target {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    z-index: 9999 !important;
+    background: #fff !important;
+  }
+
+  /* Hide export button during print */
+  .accordion-export-btn {
+    display: none !important;
+  }
+
+  /* Preserve colors when printing */
+  html, body {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    background: #fff !important;
+  }
+}
+
+
+/* =====================
+  00.2. Export Button
+===================== */
+.accordion-export-btn {
+  padding: 3px 20px;
+  font-family: Effra, sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  background-color: var(--e-global-color-text);
+  color: #ffffff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.accordion-export-btn:hover {
+  background-color: var(--e-global-color-primary);
+}
+
+/* Hide export button on mobile */
+@media only screen and (max-width: 1024px) {
+  .accordion-export-btn {
+    display: none;
+  }
+}

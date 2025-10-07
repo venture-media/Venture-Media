@@ -1,6 +1,24 @@
 <?php
+/**
+ * -----------------------------------
+ * 3. Front-end Enhancements
+ * -----------------------------------
+ * Contains:
+ *  - 3.1 Custom social icons in header
+ *  - 3.2 Plugin CSS/JS enqueues (safe, modular)
+ */
 
-// Add custom social icons inside navigation
+
+
+
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) exit;
+
+/**
+ * -----------------------------------
+ * 3.1 Custom Social Icons in Navigation
+ * -----------------------------------
+ */
 add_action( 'generate_inside_navigation', function() {
     ?>
     <div class="custom-social-icons" id="masthead">
@@ -17,3 +35,54 @@ add_action( 'generate_inside_navigation', function() {
     </div>
     <?php
 }, 20);
+
+/**
+ * -----------------------------------
+ * 3.2 Plugin Asset Enqueues
+ * -----------------------------------
+ */
+function venture_enhancements_enqueue_assets() {
+    $plugin_dir = plugin_dir_path(__FILE__) . '../assets/';
+    $plugin_url = plugin_dir_url(__FILE__) . '../assets/';
+
+    // ==========================
+    // CSS (auto-enqueue)
+    // ==========================
+    $css_path = $plugin_dir . 'css/';
+    $css_files = glob($css_path . '*.css');
+    if ($css_files) {
+        foreach ($css_files as $file) {
+            $handle = 'venture-' . basename($file, '.css');
+            wp_enqueue_style(
+                $handle,
+                $plugin_url . 'css/' . basename($file),
+                array(),
+                filemtime($file)
+            );
+        }
+    }
+
+    // ==========================
+    // JS (whitelisted for safety)
+    // ==========================
+    $approved_js = [
+        'export-report.js', // approved file only
+    ];
+
+    foreach ($approved_js as $file) {
+        $file_path = $plugin_dir . 'js/' . $file;
+        $file_url  = $plugin_url . 'js/' . $file;
+
+        // Only load on Staff Dashboard (adjust ID or slug as needed)
+        if ((is_page('staff-dashboard') || is_page(1134)) && file_exists($file_path)) {
+            wp_enqueue_script(
+                'venture-' . basename($file, '.js'),
+                $file_url,
+                array('jquery'),
+                filemtime($file_path),
+                true
+            );
+        }
+    }
+}
+add_action('wp_enqueue_scripts', 'venture_enhancements_enqueue_assets');

@@ -48,39 +48,39 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
  * -----------------------------
- * 1. Staff Dashboard Shortcodes
+ * 01 Staff Dashboard Shortcodes
  * -----------------------------
  */
-require_once plugin_dir_path(__FILE__) . 'includes/staff-shortcodes.php';
+require_once plugin_dir_path(__FILE__) . 'includes/01-staff-shortcodes.php';
 
 
 /**
  * -----------------------------
- * 2. WooCommerce Tweaks
+ * 02 WooCommerce Tweaks
  * -----------------------------
  */
-require_once plugin_dir_path(__FILE__) . 'includes/woocommerce-tweaks.php';
+require_once plugin_dir_path(__FILE__) . 'includes/02-woocommerce-tweaks.php';
 
 
 /**
  * -----------------------------
- * 3. Front-end Enhancements
+ * 03 Front-end Enhancements
  * -----------------------------
  */
-require_once plugin_dir_path(__FILE__) . 'includes/frontend-enhancements.php';
+require_once plugin_dir_path(__FILE__) . 'includes/03-frontend-enhancements.php';
 
 
 /**
  * -----------------------------
- * 4. Admin Enhancements
+ * 04 Admin Enhancements
  * -----------------------------
  */
-require_once plugin_dir_path(__FILE__) . 'includes/admin-sort-tags.php';
+require_once plugin_dir_path(__FILE__) . 'includes/04-admin-sort-tags.php';
 
 
 /**
  * -----------------------------
- * 5. Redirect Manager
+ * 05 Redirect Manager
  * -----------------------------
  */
-require_once plugin_dir_path(__FILE__) . 'includes/redirect-manager.php';
+require_once plugin_dir_path(__FILE__) . 'includes/05-redirect-manager.php';

@@ -1,0 +1,16 @@
+<!-- Used in 'Footer Widget 2' -->
+
+<p style="text-align: center; font-family: 'Bodoni 72', Sans-serif;">
+  Copyright © <span id="copyright-year"></span>
+  <a href="https://www.venture.com.na/">Venture Media</a>
+</p>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const yearElement = document.getElementById('copyright-year');
+    if (yearElement) {
+      yearElement.textContent = new Date().getFullYear();
+    }
+  });
+</script>
+

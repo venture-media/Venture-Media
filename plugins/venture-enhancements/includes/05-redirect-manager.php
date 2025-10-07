@@ -1,14 +1,19 @@
 <?php
 /**
- * Venture Redirect Manager
- * Adds a dashboard widget to manage custom redirects.
+ * -----------------------------
+ * 05 Redirect Manager
+ * -----------------------------
  */
+
+
+
 
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
+
 // -------------------------------
-// 1. Handle redirects on the front-end
+// 05.1 Handle redirects on the front-end
 // -------------------------------
 add_action('template_redirect', function() {
     $redirects = get_option('venture_redirects_list', []);
@@ -24,8 +29,9 @@ add_action('template_redirect', function() {
     }
 });
 
+
 // -------------------------------
-// 2. Add dashboard widget
+// 05.2 Add dashboard widget
 // -------------------------------
 add_action('wp_dashboard_setup', function() {
     wp_add_dashboard_widget(

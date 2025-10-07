@@ -8,36 +8,38 @@ function gp_child_enqueue_assets() {
 
     
     // =====================
-    // CSS (Auto-enqueue)
+    // CSS (Whitelisted)
     // =====================
-    $css_dir_path = get_stylesheet_directory() . '/css/';
-    $css_dir_uri  = get_stylesheet_directory_uri() . '/css/';
-    
-    if ( is_dir( $css_dir_path ) ) {
-        $css_files = array_filter( scandir( $css_dir_path ), function( $file ) use ( $css_dir_path ) {
-            return is_file( $css_dir_path . $file ) && strtolower( pathinfo( $file, PATHINFO_EXTENSION ) ) === 'css';
-        });
-    
-        if ( ! empty( $css_files ) ) {
-            natsort( $css_files );
-    
-            foreach ( $css_files as $file_name ) {
-                $handle = 'gp-' . pathinfo( $file_name, PATHINFO_FILENAME );
-    
-                wp_enqueue_style(
-                    $handle,
-                    $css_dir_uri . $file_name,
-                    array('gp-child-style'),
-                    filemtime( $css_dir_path . $file_name )
-                );
-            }
-        } else {
-            error_log( 'Auto-enqueue CSS: No CSS files found in ' . $css_dir_path );
-        }
-    } else {
-        error_log( 'Auto-enqueue CSS: Folder does not exist ' . $css_dir_path );
-    }
+    $approved_css = [
+        '00-global-links.css',
+        '01-social-icons.css',
+        '02-site-header.css',
+        '03-menu-banner.css',
+        '04-hide-page-header.css',
+        '05-woocommerce-single.css',
+        '06-staff-members.css',
+        '07-last-updated.css',
+        '08-charts.css',
+        '09-menu-overlay.css',
+        '10-menu-shopping-cart.css',
+        '11-woocommerce.css',
+    ];
 
+    $css_path = get_stylesheet_directory() . '/css/';
+    $css_url  = get_stylesheet_directory_uri() . '/css/';
+
+    foreach ($approved_css as $file) {
+        $file_path = $css_path . $file;
+
+        if (file_exists($file_path)) {
+            wp_enqueue_style(
+                'gp-' . pathinfo($file, PATHINFO_FILENAME),
+                $css_url . $file,
+                array('gp-child-style'),
+                filemtime($file_path)
+            );
+        }
+    }
 
     // =====================
     // JS (Whitelisted)

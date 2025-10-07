@@ -2,13 +2,16 @@
 ===================
 SITE SNIPPETS
 ===================
-01 Meta descriptions
-02 Preload Menu Logo
-03 Custom Fonts
-04 Password Page
-05 Custom Product Grid
-06 Footer
-07 Back-end
-08 Google Analytics
+
+01 Meta descriptions            <head>          Front-end
+02 Preload Menu Logo            <head>          Front-end
+03 Custom Fonts                 <head>          Front-end, Block editor, Back-end
+04 Password Page                <head>          Front-end
+05 Custom Product Grid          <head>          Front-end
+06 Footer                       <head>          Front-end
+07 Back-end                     <head>          Back-end
+08 Google Analytics             <head>          Front-end
+09 Site Overlay                 <body>          Front-end
+
 ===================
 */ 

@@ -1,4 +1,12 @@
 <?php
+/**
+ * -----------------------------
+ * 02 WooCommerce Tweaks
+ * -----------------------------
+ */
+
+
+
 
 add_action( 'woocommerce_before_calculate_totals', 'apply_bulk_discount_price_attribute', 20, 1 );
 

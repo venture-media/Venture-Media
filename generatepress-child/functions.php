@@ -6,23 +6,38 @@ function gp_child_enqueue_assets() {
     wp_enqueue_style('gp-parent-style', get_template_directory_uri() . '/style.css');
     wp_enqueue_style('gp-child-style', get_stylesheet_uri());
 
+    
     // =====================
     // CSS (Auto-enqueue)
     // =====================
-    $css_path = get_stylesheet_directory() . '/css/';
-    $css_files = glob($css_path . '*.css');
-    if ($css_files) {
-        natsort($css_files);
-        foreach ($css_files as $file) {
-            $handle = 'gp-' . basename($file, '.css');
-            wp_enqueue_style(
-                $handle,
-                get_stylesheet_directory_uri() . '/css/' . basename($file),
-                array('gp-child-style'),
-                filemtime($file)
-            );
+    $css_dir_path = get_stylesheet_directory() . '/css/';
+    $css_dir_uri  = get_stylesheet_directory_uri() . '/css/';
+    
+    if (is_dir($css_dir_path)) { // Only proceed if folder exists
+        // Get all .css files (case-insensitive)
+        $css_files = glob($css_dir_path . '*.css');
+        
+        if (!empty($css_files)) {
+            natsort($css_files); // natural sort
+            
+            foreach ($css_files as $file_path) {
+                $file_name = basename($file_path);
+                $handle    = 'gp-' . pathinfo($file_name, PATHINFO_FILENAME);
+                
+                wp_enqueue_style(
+                    $handle,
+                    $css_dir_uri . $file_name,
+                    array('gp-child-style'),
+                    filemtime($file_path)
+                );
+            }
+        } else {
+            error_log('Auto-enqueue CSS: No files found in ' . $css_dir_path);
         }
+    } else {
+        error_log('Auto-enqueue CSS: Folder does not exist ' . $css_dir_path);
     }
+
 
     // =====================
     // JS (Whitelisted)

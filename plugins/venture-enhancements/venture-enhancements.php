@@ -13,8 +13,8 @@
  *
  * venture-enhancements/
  * │
- * ├─ venture-enhancements.php
- * │   → Main plugin loader file
+ * ├─ venture-enhancements.php          → Main plugin loader file
+ * │
  * │
  * ├─ includes/
  * │   ├─ staff-shortcodes.php          → Staff Dashboard shortcodes
@@ -40,8 +40,11 @@
  */
 
 
+
+
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
+
 
 /**
  * -----------------------------
@@ -50,12 +53,14 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  */
 require_once plugin_dir_path(__FILE__) . 'includes/staff-shortcodes.php';
 
+
 /**
  * -----------------------------
  * 2. WooCommerce Tweaks
  * -----------------------------
  */
 require_once plugin_dir_path(__FILE__) . 'includes/woocommerce-tweaks.php';
+
 
 /**
  * -----------------------------
@@ -64,12 +69,14 @@ require_once plugin_dir_path(__FILE__) . 'includes/woocommerce-tweaks.php';
  */
 require_once plugin_dir_path(__FILE__) . 'includes/frontend-enhancements.php';
 
+
 /**
  * -----------------------------
  * 4. Admin Enhancements
  * -----------------------------
  */
 require_once plugin_dir_path(__FILE__) . 'includes/admin-sort-tags.php';
+
 
 /**
  * -----------------------------

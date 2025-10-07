@@ -1,46 +1,58 @@
 <?php
 function gp_child_enqueue_assets() {
-    // Load parent and base child styles
+    // =====================
+    // Parent & Child Styles
+    // =====================
     wp_enqueue_style('gp-parent-style', get_template_directory_uri() . '/style.css');
     wp_enqueue_style('gp-child-style', get_stylesheet_uri());
 
     // =====================
-    //  CSS: Auto-enqueue all files from /css
+    // CSS (Auto-enqueue)
     // =====================
     $css_path = get_stylesheet_directory() . '/css/';
     $css_files = glob($css_path . '*.css');
-    natsort($css_files);
-
-    foreach ($css_files as $file) {
-        $handle = 'gp-' . basename($file, '.css');
-        wp_enqueue_style(
-            $handle,
-            get_stylesheet_directory_uri() . '/css/' . basename($file),
-            array('gp-child-style'),
-            filemtime($file)
-        );
+    if ($css_files) {
+        natsort($css_files);
+        foreach ($css_files as $file) {
+            $handle = 'gp-' . basename($file, '.css');
+            wp_enqueue_style(
+                $handle,
+                get_stylesheet_directory_uri() . '/css/' . basename($file),
+                array('gp-child-style'),
+                filemtime($file)
+            );
+        }
     }
 
     // =====================
-    //  JS: Auto-enqueue all files from /js
+    // JS (Whitelisted)
     // =====================
+    $approved_js = [
+        '00-header-scroll.js',    // only approved scripts
+        '01-menu-site-overlay.js',    // only approved scripts
+        'analytics.js',
+    ];
+
     $js_path = get_stylesheet_directory() . '/js/';
-    $js_files = glob($js_path . '*.js');
-    natsort($js_files);
+    $js_url  = get_stylesheet_directory_uri() . '/js/';
 
-    foreach ($js_files as $file) {
-        $handle = 'gp-' . basename($file, '.js');
-        wp_enqueue_script(
-            $handle,
-            get_stylesheet_directory_uri() . '/js/' . basename($file),
-            array('jquery'),
-            filemtime($file),
-            true // load in footer
-        );
+    foreach ($approved_js as $file) {
+        $file_path = $js_path . $file;
+        $file_url  = $js_url . $file;
+        
+        if (file_exists($file_path)) {
+            wp_enqueue_script(
+                'gp-' . basename($file, '.js'),
+                $file_url,
+                array('jquery'),
+                filemtime($file_path),
+                true // load in footer
+            );
+        }
     }
 
     // =====================
-    //  External: Chart.js (only load on single post pages)
+    // External scripts
     // =====================
     if ( is_single() && get_post_type() === 'post' ) {
         wp_enqueue_script(

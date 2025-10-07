@@ -1,12 +1,44 @@
 <?php
 /**
- * Plugin Name: Venture Enhancements 1.0.0-rc
+ * Plugin Name: Venture Enhancements v1.0.0-rc
  * Plugin URI:  https://github.com/venture-media/Venture-Media
- * Description: Site-specific enhancements, non-essential features for Venture Media website.
+ * Description: Site-specific enhancements and non-essential features for Venture Media.
  * Version:     1.0.0-rc
  * Author:      Leon de Klerk
  * Author URI:  https://github.com/Leon2332
+ *
+ * ------------------------------------------------------------------
+ *  PLUGIN STRUCTURE OVERVIEW
+ * ------------------------------------------------------------------
+ *
+ * venture-enhancements/
+ * │
+ * ├─ venture-enhancements.php
+ * │   → Main plugin loader file
+ * │
+ * ├─ includes/
+ * │   ├─ staff-shortcodes.php          → Staff Dashboard shortcodes
+ * │   ├─ woocommerce-tweaks.php        → Minor WooCommerce customizations
+ * │   ├─ frontend-enhancements.php     → Custom social icons + asset enqueues
+ * │   ├─ admin-sort-tags.php           → Sort posts by tags alphabetically in admin
+ * │   └─ redirect-manager.php          → Programmatic redirects management (wp-admin dashboard widget)
+ * │
+ * └─ assets/
+ *     ├─ css/
+ *     │   └─ export-report.css         → Styling for report exports (Client reports)
+ *     │
+ *     └─ js/
+ *         └─ export-report.js          → Handles dynamic report export logic
+ *
+ * ------------------------------------------------------------------
+ *  NOTES
+ * ------------------------------------------------------------------
+ *  • The /includes/ folder contains modular PHP logic.
+ *  • The /assets/ folder holds enqueueable CSS and JS files.
+ *  • Only whitelisted JS is enqueued for security.
+ *  • CSS is auto-enqueued for convenience.
  */
+
 
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;

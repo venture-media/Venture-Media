@@ -1,11 +1,4 @@
 <?php
-function gp_child_enqueue_assets() {
-    // =====================
-    // Parent & Child Styles
-    // =====================
-    wp_enqueue_style('gp-parent-style', get_template_directory_uri() . '/style.css');
-    wp_enqueue_style('gp-child-style', get_stylesheet_uri());
-
     function gp_child_enqueue_assets() {
     // =====================
     // Parent theme style

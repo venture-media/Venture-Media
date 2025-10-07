@@ -7,38 +7,48 @@
  Template: generatepress
  Version: 1.0.0-rc-2
 
-=====================
-  TABLE OF CONTENTS
-=====================
 
-  CSS FILES (auto-enqueued via functions.php)
-  ------------------------------------------
-  00. Global Links
-  01. Social Icons (Header)
-  02. Site Header
-  03. Menu Banner
-  04. Hide Page Header Featured Image
-  05. WooCommerce Single Product
-  06. Staff Members Shortcode
-  07. Post Last Updated Shortcode
-  08. Charts
-  09. Menu Overlay
-  10. Menu Shopping Cart
-  11. WooCommerce (Global)
+------------------------------------------------------------------
+ CHILD THEME STRUCTURE OVERVIEW
+------------------------------------------------------------------
 
+generatepress-child/
+    │
+    ├─ functions.php                             → Enqueues CSS/JS, custom hooks, filters
+    │
+    ├─ style.css                                 → This header
+    │
+    ├─ css/                                      → Auto-enqueued CSS files (via functions.php)
+    │     ├─ 00-global-links.css
+    │     ├─ 01-social-icons.css
+    │     ├─ 02-site-header.css
+    │     ├─ 03-menu-banner.css
+    │     ├─ 04-hide-page-header.css
+    │     ├─ 05-woocommerce-single.css
+    │     ├─ 06-staff-members.css
+    │     ├─ 07-last-updated.css
+    │     ├─ 08-charts.css
+    │     ├─ 09-menu-overlay.css
+    │     ├─ 10-menu-shopping-cart.css
+    │     └─ 11-woocommerce.css
+    │
+    ├─ js/                                       → Whitelisted JS files (via functions.php)
+    │     ├─ 00-header-scroll.js
+    │     └─ 01-menu-overlay.js
+    │
+    │
+    ├─ woocommerce/                              → WooCommerce template overrides
+    │     └─ single-product.php
+    │
+    ├─ elementor-widgets/                        → Custom Elementor widgets
+    │     └─ class-report-chart-widget.php
+    │
+    └─ screenshot.png                            → Theme screenshot for WP admin
 
-  JS FILES (auto-enqueued via functions.php)
-  -----------------------------------------
-  00. Header Scroll
-  01. Menu Overlay
-
-
-
-=====================
-  NOTES
-=====================
-
-  • All styles and scripts are modularly enqueued from the /css/ and /js/ directories.
-  • Filenames are numbered for consistent load order and version control.
-  • Cache-busting is automatically handled using file modification timestamps.
+------------------------------------------------------------------
+ NOTES
+------------------------------------------------------------------
+• CSS files are auto-enqueued using functions.php.
+• Only whitelisted JS is loaded.
+• Filenames are numbered to control load order and cache-busting.
 */

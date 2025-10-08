@@ -19,23 +19,23 @@ if (is_dir($includes_dir)) {
 // Enqueue CSS/JS
 // =====================
 function gp_child_enqueue_assets() {
-    // 1. Parent theme style
+    // 1️⃣ Parent theme style
     wp_enqueue_style(
         'gp-parent-style',
         get_template_directory_uri() . '/style.css',
-        array(),
+        [],
         wp_get_theme('generatepress')->get('Version')
     );
 
-    // 2. Child theme style.css (loaded after parent)
+    // 2️⃣ Child theme style (this will load after parent)
     wp_enqueue_style(
         'gp-child-style',
         get_stylesheet_directory_uri() . '/style.css',
-        array('gp-parent-style'),
-        wp_get_theme()->get('Version')
+        ['gp-parent-style'], // make child depend on parent
+        filemtime(get_stylesheet_directory() . '/style.css')
     );
 
-    // 3. Auto-enqueue additional CSS from /css/
+    // Auto-enqueue CSS from /css/ folder
     $css_dir_path = get_stylesheet_directory() . '/css/';
     $css_dir_uri  = get_stylesheet_directory_uri() . '/css/';
 
@@ -51,16 +51,14 @@ function gp_child_enqueue_assets() {
                 wp_enqueue_style(
                     'gp-' . pathinfo($file_name, PATHINFO_FILENAME),
                     $css_dir_uri . $file_name,
-                    array('gp-child-style'), // ensures it loads after child style.css
+                    ['gp-child-style'], // make all additional CSS depend on child
                     filemtime($file_path)
                 );
             }
-        } else {
-            error_log('Auto-enqueue CSS: No CSS files found in ' . $css_dir_path);
         }
     }
 
-    // 4. JS (whitelisted)
+    // JS (whitelisted)
     $approved_js = [
         '00-header-scroll.js',
         '01-menu-site-overlay.js',
@@ -85,7 +83,7 @@ function gp_child_enqueue_assets() {
         }
     }
 
-    // 5. External scripts
+    // External scripts
     if (is_singular('post')) {
         wp_enqueue_script(
             'chartjs',
@@ -96,7 +94,8 @@ function gp_child_enqueue_assets() {
         );
     }
 }
-add_action('wp_enqueue_scripts', 'gp_child_enqueue_assets');
+// Use higher priority so this runs after parent
+add_action('wp_enqueue_scripts', 'gp_child_enqueue_assets', 20);
 
 
 function my_register_report_chart_widget( $widgets_manager ) {

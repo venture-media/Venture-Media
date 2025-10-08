@@ -1,6 +1,6 @@
 <?php
 // =====================
-// PHP includes (formerly plugin)
+// PHP includes
 // =====================
 $includes_dir = get_stylesheet_directory() . '/includes/';
 
@@ -19,10 +19,23 @@ if (is_dir($includes_dir)) {
 // Enqueue CSS/JS
 // =====================
 function gp_child_enqueue_assets() {
-    // Parent theme style
-    wp_enqueue_style('gp-parent-style', get_template_directory_uri() . '/style.css');
+    // 1. Parent theme style
+    wp_enqueue_style(
+        'gp-parent-style',
+        get_template_directory_uri() . '/style.css',
+        array(),
+        wp_get_theme('generatepress')->get('Version')
+    );
 
-    // Auto-enqueue CSS
+    // 2. Child theme style.css (loaded after parent)
+    wp_enqueue_style(
+        'gp-child-style',
+        get_stylesheet_directory_uri() . '/style.css',
+        array('gp-parent-style'),
+        wp_get_theme()->get('Version')
+    );
+
+    // 3. Auto-enqueue additional CSS from /css/
     $css_dir_path = get_stylesheet_directory() . '/css/';
     $css_dir_uri  = get_stylesheet_directory_uri() . '/css/';
 
@@ -38,7 +51,7 @@ function gp_child_enqueue_assets() {
                 wp_enqueue_style(
                     'gp-' . pathinfo($file_name, PATHINFO_FILENAME),
                     $css_dir_uri . $file_name,
-                    [],
+                    array('gp-child-style'), // ensures it loads after child style.css
                     filemtime($file_path)
                 );
             }
@@ -47,7 +60,7 @@ function gp_child_enqueue_assets() {
         }
     }
 
-    // JS (whitelisted)
+    // 4. JS (whitelisted)
     $approved_js = [
         '00-header-scroll.js',
         '01-menu-site-overlay.js',
@@ -72,7 +85,7 @@ function gp_child_enqueue_assets() {
         }
     }
 
-    // External scripts
+    // 5. External scripts
     if (is_singular('post')) {
         wp_enqueue_script(
             'chartjs',

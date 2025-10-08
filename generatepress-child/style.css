@@ -32,19 +32,19 @@ generatepress-child/
     │     ├─ 09-menu-overlay.css
     │     ├─ 10-menu-shopping-cart.css
     │     ├─ 11-woocommerce.css
-    │     └─ 12-export-report.css               → From plugin previously
+    │     └─ 12-export-report.css                  → From plugin previously
     │
     ├─ js/                                      → Whitelisted JS files
     │     ├─ 00-header-scroll.js
     │     ├─ 01-menu-overlay.js
-    │     └─ 02-export-report.js                → From plugin previously
+    │     └─ 02-export-report.js                   → From plugin previously
     │
     ├─ includes/                                → PHP modules from plugin
-    │     ├─ staff-shortcodes.php               → Staff Dashboard shortcodes
-    │     ├─ woocommerce-tweaks.php             → WooCommerce customizations
-    │     ├─ frontend-enhancements.php          → Custom social icons + additional asset hooks
-    │     ├─ admin-sort-tags.php                → Admin post/tag sorting
-    │     └─ redirect-manager.php               → Programmatic redirects (wp-admin widget)
+    │     ├─ 00-staff-shortcodes.php               → Staff Dashboard shortcodes
+    │     ├─ 01-woocommerce-tweaks.php             → WooCommerce customizations
+    │     ├─ 02-frontend-enhancements.php          → Custom social icons + additional asset hooks
+    │     ├─ 03-admin-sort-tags.php                → Admin post/tag sorting
+    │     └─ 04-redirect-manager.php               → Programmatic redirects (wp-admin widget)
     │
     ├─ woocommerce/                             → WooCommerce template overrides
     │     └─ single-product.php

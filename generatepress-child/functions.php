@@ -1,47 +1,56 @@
 <?php
-    function gp_child_enqueue_assets() {
-    // =====================
+// =====================
+// PHP includes (formerly plugin)
+// =====================
+$includes_dir = get_stylesheet_directory() . '/includes/';
+
+if (is_dir($includes_dir)) {
+    foreach (scandir($includes_dir) as $file) {
+        $file_path = $includes_dir . $file;
+        if (is_file($file_path) && strtolower(pathinfo($file_path, PATHINFO_EXTENSION)) === 'php') {
+            require_once $file_path;
+        }
+    }
+} else {
+    error_log('Includes folder does not exist: ' . $includes_dir);
+}
+
+// =====================
+// Enqueue CSS/JS
+// =====================
+function gp_child_enqueue_assets() {
     // Parent theme style
-    // =====================
     wp_enqueue_style('gp-parent-style', get_template_directory_uri() . '/style.css');
 
-    // =====================
-    // CSS (Auto-enqueue)
-    // =====================
+    // Auto-enqueue CSS
     $css_dir_path = get_stylesheet_directory() . '/css/';
     $css_dir_uri  = get_stylesheet_directory_uri() . '/css/';
 
     if (is_dir($css_dir_path)) {
-        // Get all .css files in the folder
         $css_files = array_filter(scandir($css_dir_path), function($file) use ($css_dir_path) {
             return is_file($css_dir_path . $file) && strtolower(pathinfo($file, PATHINFO_EXTENSION)) === 'css';
         });
 
         if (!empty($css_files)) {
-            natsort($css_files); // keep numeric order
+            natsort($css_files);
             foreach ($css_files as $file_name) {
                 $file_path = $css_dir_path . $file_name;
-
                 wp_enqueue_style(
                     'gp-' . pathinfo($file_name, PATHINFO_FILENAME),
                     $css_dir_uri . $file_name,
-                    [], // no dependency
+                    [],
                     filemtime($file_path)
                 );
             }
         } else {
             error_log('Auto-enqueue CSS: No CSS files found in ' . $css_dir_path);
         }
-    } else {
-        error_log('Auto-enqueue CSS: Folder does not exist ' . $css_dir_path);
     }
 
-    // =====================
-    // JS (Whitelisted)
-    // =====================
+    // JS (whitelisted)
     $approved_js = [
-        '00-header-scroll.js',        // only approved scripts
-        '01-menu-site-overlay.js',    // only approved scripts
+        '00-header-scroll.js',
+        '01-menu-site-overlay.js',
         'analytics.js',
     ];
 
@@ -51,26 +60,24 @@
     foreach ($approved_js as $file) {
         $file_path = $js_path . $file;
         $file_url  = $js_url . $file;
-        
+
         if (file_exists($file_path)) {
             wp_enqueue_script(
                 'gp-' . basename($file, '.js'),
                 $file_url,
                 array('jquery'),
                 filemtime($file_path),
-                true // load in footer
+                true
             );
         }
     }
 
-    // =====================
     // External scripts
-    // =====================
-    if ( is_single() && get_post_type() === 'post' ) {
+    if (is_singular('post')) {
         wp_enqueue_script(
             'chartjs',
             'https://cdn.jsdelivr.net/npm/chart.js',
-            array(),
+            [],
             null,
             true
         );

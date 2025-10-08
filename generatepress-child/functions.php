@@ -51,7 +51,7 @@ function gp_child_enqueue_assets() {
     $approved_js = [
         '00-header-scroll.js',
         '01-menu-site-overlay.js',
-        'analytics.js',
+        '02-export-report.js',
     ];
 
     $js_path = get_stylesheet_directory() . '/js/';

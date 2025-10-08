@@ -1,24 +1,25 @@
 /*
- Theme Name: GeneratePress Child v1.0.0-rc-2
+ Theme Name: GeneratePress Child v1.0.0-rc-3
  Theme URI: https://github.com/venture-media/Venture-Media
  Description: Child theme for GeneratePress
  Author: Leon de Klerk
  Author URI: https://github.com/Leon2332/
  Template: generatepress
- Version: 1.0.0-rc-2
+ Version: 1.0.0-rc-3
 
 
 ------------------------------------------------------------------
  CHILD THEME STRUCTURE OVERVIEW
 ------------------------------------------------------------------
 
+
 generatepress-child/
     │
-    ├─ functions.php                             → Enqueues CSS/JS, custom hooks, filters
+    ├─ functions.php                             → Main loader: enqueues CSS/JS, includes modular PHP files
     │
-    ├─ style.css                                 → This header
+    ├─ style.css                                 → Theme header & notes (This file)
     │
-    ├─ css/                                      → Auto-enqueued CSS files (via functions.php)
+    ├─ css/                                      → Numbered CSS files for load order
     │     ├─ 00-global-links.css
     │     ├─ 01-social-icons.css
     │     ├─ 02-site-header.css
@@ -30,25 +31,34 @@ generatepress-child/
     │     ├─ 08-charts.css
     │     ├─ 09-menu-overlay.css
     │     ├─ 10-menu-shopping-cart.css
-    │     └─ 11-woocommerce.css
+    │     ├─ 11-woocommerce.css
+    │     └─ 12-export-report.css               → From plugin previously
     │
-    ├─ js/                                       → Whitelisted JS files (via functions.php)
+    ├─ js/                                      → Whitelisted JS files
     │     ├─ 00-header-scroll.js
-    │     └─ 01-menu-overlay.js
+    │     ├─ 01-menu-overlay.js
+    │     └─ 02-export-report.js                → From plugin previously
     │
+    ├─ includes/                                → PHP modules from plugin
+    │     ├─ staff-shortcodes.php               → Staff Dashboard shortcodes
+    │     ├─ woocommerce-tweaks.php             → WooCommerce customizations
+    │     ├─ frontend-enhancements.php          → Custom social icons + additional asset hooks
+    │     ├─ admin-sort-tags.php                → Admin post/tag sorting
+    │     └─ redirect-manager.php               → Programmatic redirects (wp-admin widget)
     │
-    ├─ woocommerce/                              → WooCommerce template overrides
+    ├─ woocommerce/                             → WooCommerce template overrides
     │     └─ single-product.php
     │
-    ├─ elementor-widgets/                        → Custom Elementor widgets
+    ├─ elementor-widgets/                       → Custom Elementor widgets
     │     └─ class-report-chart-widget.php
     │
-    └─ screenshot.png                            → Theme screenshot for WP admin
+    └─ screenshot.jpg                           → Theme screenshot for WP admin
+
 
 ------------------------------------------------------------------
  NOTES
 ------------------------------------------------------------------
-• CSS files are auto-enqueued using functions.php.
-• Only whitelisted JS is loaded.
-• Filenames are numbered to control load order and cache-busting.
+• All CSS files are auto-enqueued in numeric order via functions.php.
+• JS files are whitelisted for security.
+• Plugin functionality has been merged into `includes/` for modularity.
 */

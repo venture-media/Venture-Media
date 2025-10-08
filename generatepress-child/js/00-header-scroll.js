@@ -5,11 +5,10 @@ document.addEventListener("DOMContentLoaded", function () {
   const toggle = document.querySelector(".menu-toggle");
   let startScrollY = null;
 
-  // Fallback in case the PHP snippet didn't load
-  const logos = window.VentureLogo || {
-    black: logo.src, // keep current src as fallback
-    white: logo.src
-  };
+  // Compute absolute URL dynamically
+  const baseUrl = window.location.origin + '/wp-staging'; // replace with your subdirectory if needed
+  const logoBlack = baseUrl + '/wp-content/uploads/2025/09/venture-logo-black.svg';
+  const logoWhite = baseUrl + '/wp-content/uploads/2025/09/venture-logo-white.svg';
 
   window.addEventListener("scroll", function () {
     const currentY = window.scrollY;
@@ -17,10 +16,10 @@ document.addEventListener("DOMContentLoaded", function () {
     // background + logo swap
     if (currentY > 0) {
       header.classList.add("scrolled");
-      logo.src = logos.black;
+      logo.src = logoBlack;
     } else {
       header.classList.remove("scrolled");
-      logo.src = logos.white;
+      logo.src = logoWhite;
     }
 
     // close menu only if moved far enough

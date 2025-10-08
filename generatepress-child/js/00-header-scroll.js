@@ -5,16 +5,20 @@ document.addEventListener("DOMContentLoaded", function () {
   const toggle = document.querySelector(".menu-toggle");
   let startScrollY = null;
 
+  // Use PHP to generate the full URLs dynamically
+  const logoBlack = "<?php echo esc_url( home_url('/wp-content/uploads/2025/09/venture-logo-black.svg') ); ?>";
+  const logoWhite = "<?php echo esc_url( home_url('/wp-content/uploads/2025/09/venture-logo-white.svg') ); ?>";
+
   window.addEventListener("scroll", function () {
     const currentY = window.scrollY;
 
     // background + logo swap
     if (currentY > 0) {
       header.classList.add("scrolled");
-      logo.src = "http://localhost/wp-staging/wp-content/uploads/2025/09/venture-logo-black.svg";
+      logo.src = logoBlack;
     } else {
       header.classList.remove("scrolled");
-      logo.src = "http://localhost/wp-staging/wp-content/uploads/2025/09/venture-logo-white.svg";
+      logo.src = logoWhite;
     }
 
     // close menu only if moved far enough

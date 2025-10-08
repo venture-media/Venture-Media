@@ -4,7 +4,7 @@
 
 
   .site-header {
-    position: sticky;
+    position: sticky !important;
     top: 0;
     z-index: 1499; /* WooCommerce Lightbox z-index: 1500 | Elementor Lightbox z-index: 1000 */
   }
@@ -28,8 +28,8 @@
   }
 
   .menu-toggle, .mobile-bar-items, .sidebar-nav-mobile {
-    display: block;
-    font-size: 30px;
+    display: block !important;
+    font-size: 30px !important;
   }
 
   .menu-item a {
@@ -123,7 +123,7 @@
   }
 
   #masthead .icon-menu-bars svg {
-    fill: #fff;
+    fill: #fff !important;
     transition: fill 0.5s ease;
   }
 
@@ -140,7 +140,7 @@
   }
 
   #masthead.scrolled .icon-menu-bars svg {
-    fill: #000;
+    fill: #000 !important;
   }
 
   #masthead.scrolled .custom-social-icons svg {

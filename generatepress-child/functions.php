@@ -123,7 +123,9 @@ add_shortcode( 'elementor_template', 'my_elementor_template_shortcode' );
 
 function my_custom_image_above_password_form( $content ) {
     if ( post_password_required() ) {
-        $image_url = 'https://www.venture.com.na/wp-content/uploads/2025/09/Advertising.jpg';
+
+        // dynamic URL to the uploads folder
+        $image_url = content_url('uploads/2025/09/Advertising.jpg');
 
         $img_html = '<div class="protected-decorative-image"><img src="' . esc_url( $image_url ) . '" alt="" /></div>';
 
@@ -133,7 +135,7 @@ function my_custom_image_above_password_form( $content ) {
 
     return $content;
 }
-add_filter( 'the_content', 'my_custom_image_above_password_form', 0 );
+add_filter('the_content', 'my_custom_image_above_password_form');
 
 
 

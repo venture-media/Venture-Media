@@ -43,7 +43,7 @@ generatepress-child/
     │     ├─ 00-staff-shortcodes.php               → Staff Dashboard shortcodes
     │     ├─ 01-woocommerce-tweaks.php             → WooCommerce customizations
     │     ├─ 02-frontend-enhancements.php          → Custom social icons + additional asset hooks
-    │     ├─ 03-admin-sort-tags.php                → Admin post/tag sorting
+    │     ├─ 03-admin-enhancements.php             → Admin post/tag sorting
     │     └─ 04-redirect-manager.php               → Programmatic redirects (wp-admin widget)
     │
     ├─ woocommerce/                             → WooCommerce template overrides

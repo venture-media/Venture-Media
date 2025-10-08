@@ -52,3 +52,7 @@ generatepress-child/
 • Only whitelisted JS is loaded.
 • Filenames are numbered to control load order and cache-busting.
 */
+
+.non_sense_class_test {
+  font-size: 14px;
+}

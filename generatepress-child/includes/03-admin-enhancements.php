@@ -59,6 +59,6 @@ function venture_admin_sort_posts_by_tags() {
 
 }
 
-add_action( 'plugins_loaded', 'venture_admin_sort_posts_by_tags' );
+add_action( 'after_setup_theme', 'venture_admin_sort_posts_by_tags' );
 
 endif;

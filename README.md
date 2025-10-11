@@ -3,7 +3,7 @@
 
 - Website: https://www.venture.com.na/
 - Platform: WordPress
-- Theme: GeneratePress
+- Parent theme: GeneratePress
 - Plugins:
     - Elementor Pro
     - ShortPixel Image Optimizer

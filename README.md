@@ -5,7 +5,6 @@
 - Platform: WordPress
 - Theme: GeneratePress
 - Plugins:
-    - Venture Enhancements (Site specific)
     - Elemantor
     - Elementor Pro
     - ShortPixel Image Optimizer

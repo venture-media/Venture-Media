@@ -5,13 +5,12 @@
 - Platform: WordPress
 - Theme: GeneratePress
 - Plugins:
-    - Elementor
     - Elementor Pro
     - ShortPixel Image Optimizer
     - Simple Custom CSS and JS
     - WooCommerce
     - W3 Total Cache (when using Apache servers)
 
-- The files in this reposotory include the child-theme, plugin and additional site content code (snippets) for this website.
+- The files in this reposotory include the child-theme and additional site content code (snippets) for this website.
 - Author: [Leon de Klerk](https://github.com/Leon2332)
 - Visit the [Wiki page](https://github.com/venture-media/Venture-Media/wiki) for maintanance and troubleshooting.

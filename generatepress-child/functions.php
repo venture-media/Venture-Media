@@ -83,16 +83,14 @@ function gp_child_enqueue_assets() {
         }
     }
 
-    // External scripts
-    if (is_singular('post')) {
-        wp_enqueue_script(
-            'chartjs',
-            'https://cdn.jsdelivr.net/npm/chart.js',
-            [],
-            null,
-            true
-        );
-    }
+// External scripts
+    wp_enqueue_script(
+        'chartjs',
+        'https://cdn.jsdelivr.net/npm/chart.js',
+        [],
+        null,
+        true
+    );
 }
 // Use higher priority so this runs after parent
 add_action('wp_enqueue_scripts', 'gp_child_enqueue_assets', 20);

@@ -29,3 +29,19 @@ add_action( 'generate_inside_navigation', function() {
     <?php
 }, 20);
 
+
+function my_custom_image_above_password_form( $content ) {
+    if ( post_password_required() ) {
+
+        // dynamic URL to the uploads folder
+        $image_url = content_url('uploads/2025/09/Advertising.jpg');
+
+        $img_html = '<div class="protected-decorative-image"><img src="' . esc_url( $image_url ) . '" alt="" /></div>';
+
+        $form = get_the_password_form();
+        return $img_html . $form;
+    }
+
+    return $content;
+}
+add_filter('the_content', 'my_custom_image_above_password_form');

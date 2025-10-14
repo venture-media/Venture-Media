@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
   let startScrollY = null;
 
   // Compute absolute URL dynamically
-  const baseUrl = window.location.origin + '/wp-staging'; // replace with your subdirectory if needed
+  const baseUrl = window.location.origin; // replace with your subdirectory if needed
   const logoBlack = baseUrl + '/wp-content/uploads/2025/09/venture-logo-black.svg';
   const logoWhite = baseUrl + '/wp-content/uploads/2025/09/venture-logo-white.svg';
 

@@ -10,8 +10,6 @@
 
 get_header('shop'); ?>
 
-get_header('shop'); ?>
-
 <?php $uploads = wp_get_upload_dir(); ?>
 <div class="custom-top-banner">
     <img src="<?php echo $uploads['baseurl'] . '/2025/09/Sand-dunes-Sahara-desert.jpg.webp'; ?>" alt="Decorative banner">

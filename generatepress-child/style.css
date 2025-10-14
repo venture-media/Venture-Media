@@ -1,11 +1,11 @@
 /*
- Theme Name: GeneratePress Child v1.0.0-rc-3
+ Theme Name: GeneratePress Child v1.0.0-rc-4
  Theme URI: https://github.com/venture-media/Venture-Media
  Description: Child theme for GeneratePress
  Author: Leon de Klerk
  Author URI: https://github.com/Leon2332/
  Template: generatepress
- Version: 1.0.0-rc-3
+ Version: 1.0.0-rc-4
 
 
 ------------------------------------------------------------------
@@ -32,33 +32,34 @@ generatepress-child/
     │     ├─ 09-menu-overlay.css
     │     ├─ 10-menu-shopping-cart.css
     │     ├─ 11-woocommerce.css
-    │     └─ 12-export-report.css                  → From plugin previously
+    │     └─ 12-export-report.css
     │
-    ├─ js/                                      → Whitelisted JS files
+    ├─ js/                                         → Whitelisted JS files
     │     ├─ 00-header-scroll.js
     │     ├─ 01-menu-overlay.js
-    │     └─ 02-export-report.js                   → From plugin previously
+    │     └─ 02-export-report.js
     │
-    ├─ includes/                                → PHP modules from plugin
-    │     ├─ 00-staff-shortcodes.php               → Staff Dashboard shortcodes
-    │     ├─ 01-woocommerce-tweaks.php             → WooCommerce customizations
-    │     ├─ 02-frontend-enhancements.php          → Custom social icons + additional asset hooks
-    │     ├─ 03-admin-enhancements.php             → Admin post/tag sorting
-    │     └─ 04-redirect-manager.php               → Programmatic redirects (wp-admin widget)
+    ├─ includes/                                   → PHP modules
+    │     ├─ 00-roles.php
+    │     ├─ 01-charts.php
+    │     ├─ 02-frontend-enhancements.php
+    │     ├─ 03-shortcodes.php
+    │     ├─ 04-admin-enhancements.php
+    │     ├─ 05-redirect-manager.php
+    │     └─ 06-woocommerce-tweaks.php
     │
-    ├─ woocommerce/                             → WooCommerce template overrides
+    ├─ woocommerce/                                → WooCommerce template overrides
     │     └─ single-product.php
     │
-    ├─ elementor-widgets/                       → Custom Elementor widgets
+    ├─ elementor-widgets/                          → Custom Elementor widgets
     │     └─ class-report-chart-widget.php
     │
-    └─ screenshot.jpg                           → Theme screenshot for WP admin
+    └─ screenshot.jpg                              → Theme screenshot for WP admin
 
 
 ------------------------------------------------------------------
  NOTES
 ------------------------------------------------------------------
 • All CSS files are auto-enqueued in numeric order via functions.php.
-• JS files are whitelisted for security.
-• Plugin functionality has been merged into `includes/` for modularity.
+• JS files are whitelisted for security via functions.php.
 */

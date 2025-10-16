@@ -5,10 +5,10 @@
 
 .site-content {
 	display: block;
-	text-align: center;
 }
 
 .row {
+	display: grid;
 	justify-items: center;
 }
 

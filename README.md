@@ -6,13 +6,14 @@
 - Parent theme: GeneratePress
 - Plugins:
     - Elementor Pro
-    - ShortPixel Image Optimizer
     - Simple Custom CSS and JS
+    - ShortPixel Image Optimizer
     - WooCommerce
+    - WP Mail SMTP (via Gmail API)
     - W3 Total Cache (when using Apache servers)
 
 - The files in this reposotory include the child-theme and additional site content code (snippets) for this website.
 - Author: [Leon de Klerk](https://github.com/Leon2332)
 - Visit the [Wiki page](https://github.com/venture-media/Venture-Media/wiki) for maintanance and troubleshooting.
 - Tested with:
-    - php 8.2 & 8.4
+    - php 8.2

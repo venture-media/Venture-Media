@@ -1,4 +1,10 @@
 <?php
+/**
+ * -----------------------------
+ * 05 Noindex tags
+ * -----------------------------
+ */
+
 
 // Add "No index" checkbox to Quick Edit
 add_action('quick_edit_custom_box', function($column_name, $post_type) {

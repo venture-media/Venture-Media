@@ -23,7 +23,7 @@ generatepress-child/
     │     ├─ 00-global-links.css
     │     ├─ 01-social-icons.css
     │     ├─ 02-site-header.css
-    │     ├─ 03-menu-banner.css
+    │     ├─ 03-password-form.css
     │     ├─ 04-hide-page-header.css
     │     ├─ 05-woocommerce-single.css
     │     ├─ 06-staff-members.css
@@ -32,8 +32,7 @@ generatepress-child/
     │     ├─ 09-menu-overlay.css
     │     ├─ 10-menu-shopping-cart.css
     │     ├─ 11-woocommerce.css
-    │     ├─ 12-export-report.css
-    │     └─ 13-password-form.css
+    │     └─ 12-export-report.css
     │
     ├─ js/                                         → Whitelisted JS files
     │     ├─ 00-header-scroll.js

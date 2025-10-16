@@ -1,3 +1,11 @@
+/*
+=====================
+  03 NOINDEX TAGS
+=====================
+*/
+
+
+
 jQuery(function($){
     const $wp_inline_edit = inlineEditPost.edit;
 

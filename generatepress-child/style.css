@@ -32,7 +32,8 @@ generatepress-child/
     │     ├─ 09-menu-overlay.css
     │     ├─ 10-menu-shopping-cart.css
     │     ├─ 11-woocommerce.css
-    │     └─ 12-export-report.css
+    │     ├─ 12-export-report.css
+    │     └─ 13-password-form.css
     │
     ├─ js/                                         → Whitelisted JS files
     │     ├─ 00-header-scroll.js

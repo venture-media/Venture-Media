@@ -20,6 +20,7 @@
     border-bottom: solid;
     border-bottom-width: 1px;
     border-bottom-color: #dadcde;
+	padding-top: 4px;
   }
 
   #primary-menu {
@@ -42,7 +43,6 @@
     border-top: solid;
     border-top-width: 3px;
     border-top-color: #f4a23a;
-    padding-top: 10px;
     padding-left: 30px;
     padding-right: 30px;
     padding-bottom: 25px;
@@ -81,7 +81,7 @@
 			padding-bottom: 10px;
 		}
 		.main-navigation.toggled #primary-menu {
-			margin-top: 25px;
+			margin-top: 15px;
 		}
 }
 

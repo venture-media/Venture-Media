@@ -28,7 +28,7 @@
   }
 
   .menu-toggle, .mobile-bar-items, .sidebar-nav-mobile {
-    display: block !important;
+    display: block;
     font-size: 30px !important;
   }
 

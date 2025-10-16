@@ -37,7 +37,8 @@ generatepress-child/
     ├─ js/                                         → Whitelisted JS files
     │     ├─ 00-header-scroll.js
     │     ├─ 01-menu-overlay.js
-    │     └─ 02-export-report.js
+    │     ├─ 02-export-report.js
+    │     └─ 03-noindex.js
     │
     ├─ includes/                                   → PHP modules
     │     ├─ 00-roles.php
@@ -45,8 +46,9 @@ generatepress-child/
     │     ├─ 02-frontend-enhancements.php
     │     ├─ 03-shortcodes.php
     │     ├─ 04-admin-enhancements.php
-    │     ├─ 05-redirect-manager.php
-    │     └─ 06-woocommerce-tweaks.php
+    │     ├─ 05-noindex.php
+    │     ├─ 06-redirect-manager.php
+    │     └─ 07-woocommerce-tweaks.php
     │
     ├─ woocommerce/                                → WooCommerce template overrides
     │     └─ single-product.php

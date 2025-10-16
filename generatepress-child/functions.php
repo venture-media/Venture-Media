@@ -63,6 +63,7 @@ function gp_child_enqueue_assets() {
         '00-header-scroll.js',
         '01-menu-site-overlay.js',
         '02-export-report.js',
+        '03-noindex.js',
     ];
 
     $js_path = get_stylesheet_directory() . '/js/';
@@ -92,5 +93,5 @@ function gp_child_enqueue_assets() {
         true
     );
 }
-// Use higher priority so this runs after parent
+// Higher priority so this runs after parent
 add_action('wp_enqueue_scripts', 'gp_child_enqueue_assets', 20);

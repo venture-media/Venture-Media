@@ -148,7 +148,7 @@ input#staff_img3:hover {
   all: unset;
   display: inline-block;
   align-items: center;
-  color: #f4a239;
+  color: var(--e-global-color-primary) !important;
   border: solid 1px #f4a239;
   border-radius: 3px;
   padding: 2px;
@@ -190,6 +190,10 @@ input#staff_img3:hover {
   font-family: Effra !important;
   font-weight: 300 !important;
   font-size: 14px !important;
+}
+
+.staff-directory-photo{
+	width: 100px !important;
 }
 
 /* --- Error message from plugin --- */

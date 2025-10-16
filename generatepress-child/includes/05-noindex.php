@@ -6,6 +6,9 @@
  */
 
 
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 // Add "No index" checkbox to Quick Edit
 add_action('quick_edit_custom_box', function($column_name, $post_type) {
     if ($column_name !== 'title') return; // attach to Title column for all post types

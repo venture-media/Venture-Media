@@ -38,10 +38,13 @@ function my_custom_image_above_password_form( $content ) {
 
         $img_html = '<div class="protected-decorative-image"><img src="' . esc_url( $image_url ) . '" alt="" /></div>';
 
-        $form = get_the_password_form();
+        // Wrap only the password form in a container for centering
+        $form = '<div class="centered-password-form">' . get_the_password_form() . '</div>';
+
         return $img_html . $form;
     }
 
     return $content;
 }
 add_filter('the_content', 'my_custom_image_above_password_form');
+

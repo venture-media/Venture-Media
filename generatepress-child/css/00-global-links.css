@@ -6,3 +6,7 @@
 a:hover {
 	color: var(--e-global-color-primary);
 }
+
+del {
+	text-decoration-thickness: 1px;
+}

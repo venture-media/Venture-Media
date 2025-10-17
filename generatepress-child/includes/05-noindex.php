@@ -1,45 +1,59 @@
 <?php
 /**
  * -----------------------------
- * 05 Noindex tags
+ * 05 Noindex tags (Post & Page List Column)
  * -----------------------------
  */
 
-
-// Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-// Add "No index" checkbox to Quick Edit
-add_action('quick_edit_custom_box', function($column_name, $post_type) {
-    if ($column_name !== 'title') return; // attach to Title column for all post types
-    ?>
-    <fieldset class="inline-edit-col-right">
-        <div class="inline-edit-col">
-            <label>
-                <input type="checkbox" name="noindex" value="1">
-                <?php _e('No index', 'your-textdomain'); ?>
-            </label>
-        </div>
-    </fieldset>
-    <?php
-}, 10, 2);
 
-// Save the checkbox value
-add_action('save_post', function($post_id) {
-    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
-    update_post_meta($post_id, '_noindex', isset($_POST['noindex']) ? 1 : 0);
-});
+// Add "No index" column
+function venture_noindex_add_column($columns) {
+    $columns['noindex'] = __('No index', 'venture-media');
+    return $columns;
+}
+add_filter('manage_post_posts_columns', 'venture_noindex_add_column');
+add_filter('manage_page_posts_columns', 'venture_noindex_add_column');
 
-// Add a data attribute to each post row for JS prefill
-add_filter('post_class', function($classes, $class, $post_id) {
-    $noindex = get_post_meta($post_id, '_noindex', true) ? '1' : '0';
-    echo ' data-noindex="' . esc_attr($noindex) . '"';
-    return $classes;
-}, 10, 3);
 
-// Output <meta name="robots" content="noindex"> on the front end
-add_action('wp_head', function() {
+// Render checkbox
+function venture_noindex_render_column($column, $post_id) {
+    if ($column === 'noindex') {
+        $checked = get_post_meta($post_id, '_noindex', true) ? 'checked' : '';
+        $nonce   = wp_create_nonce('toggle_noindex_' . $post_id);
+        echo '<input type="checkbox" class="noindex-toggle" data-post-id="' . $post_id . '" data-nonce="' . $nonce . '" ' . $checked . '>';
+    }
+}
+add_action('manage_post_posts_custom_column', 'venture_noindex_render_column', 10, 2);
+add_action('manage_page_posts_custom_column', 'venture_noindex_render_column', 10, 2);
+
+
+// Save checkbox via AJAX
+function venture_noindex_ajax_save() {
+
+    $post_id = intval($_POST['post_id'] ?? 0);
+    $value   = !empty($_POST['value']) ? 1 : 0;
+    $nonce   = $_POST['nonce'] ?? '';
+
+    if (!$post_id || ! wp_verify_nonce($nonce, 'toggle_noindex_' . $post_id)) {
+        wp_send_json_error('Invalid nonce');
+    }
+
+    if (! current_user_can('edit_post', $post_id)) {
+        wp_send_json_error('Insufficient permissions');
+    }
+
+    update_post_meta($post_id, '_noindex', $value);
+    wp_send_json_success();
+}
+add_action('wp_ajax_toggle_noindex', 'venture_noindex_ajax_save');
+
+
+// Output <meta name="robots" content="noindex"> on front-end
+function venture_noindex_meta() {
     if (is_singular() && get_post_meta(get_the_ID(), '_noindex', true)) {
         echo '<meta name="robots" content="noindex">' . "\n";
     }
-});
+}
+add_action('wp_head', 'venture_noindex_meta');

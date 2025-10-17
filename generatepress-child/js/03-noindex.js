@@ -4,23 +4,25 @@
 =====================
 */
 
-
-
 jQuery(function($){
-    const $wp_inline_edit = inlineEditPost.edit;
+    $('.noindex-toggle').on('change', function(){
+        const $checkbox = $(this);
+        const postId = $checkbox.data('post-id');
+        const value = $checkbox.is(':checked') ? 1 : 0;
+        const nonce = $checkbox.data('nonce');
 
-    inlineEditPost.edit = function(id) {
-        $wp_inline_edit.apply(this, arguments);
-
-        let post_id = 0;
-        if (typeof(id) === 'object')
-            post_id = parseInt(this.getId(id));
-
-        if (post_id > 0) {
-            const $edit_row = $('#edit-' + post_id);
-            const $post_row = $('#post-' + post_id);
-            const noindex = $post_row.attr('data-noindex');
-            $edit_row.find('input[name="noindex"]').prop('checked', noindex === '1');
-        }
-    };
+        $.post(gpNoindex.ajaxurl, {
+            action: 'toggle_noindex',
+            post_id: postId,
+            value: value,
+            nonce: nonce
+        }, function(response){
+            if(!response.success){
+                alert('Failed to save No index: ' + response.data);
+                $checkbox.prop('checked', !value); // revert visual state
+            } else if(response.data && response.data.nonce) {
+                $checkbox.data('nonce', response.data.nonce); // update nonce
+            }
+        });
+    });
 });

@@ -66,6 +66,7 @@ function gp_child_enqueue_assets() {
         '01-menu-site-overlay.js',
         '02-export-report.js',
         '03-noindex.js',
+        '04-world-map-widget.js',
     ];
 
     $js_path = get_stylesheet_directory() . '/js/';
@@ -105,6 +106,7 @@ add_action('wp_enqueue_scripts', 'gp_child_enqueue_assets', 20);
 function gp_child_admin_js() {
     $approved_admin_js = [
         '03-noindex.js',
+        '04-world-map-widget.js',
     ];
 
     $js_path = get_stylesheet_directory() . '/js/';

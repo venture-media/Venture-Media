@@ -18,37 +18,35 @@
         // Reset all fills to base color
         svg.find("path").css("fill", baseColor);
 
-        // Apply highlight and tooltips
-        $.each(countryData, function (id, value) {
+        // Apply highlight and prepare title-based tooltips
+        $.each(countryData, function (id) {
             const countryPath = svg.find(id);
             if (countryPath.length) {
                 countryPath.css("fill", highlightColor);
-
-                const countryName = id.replace("#", ""); // fallback if no title
-                const tooltipText = `${countryName} - ${value}`;
-                countryPath.attr("title", tooltipText);
             }
         });
-
-        // Optional: simple hover tooltip
+        
+        // Hover tooltip (uses <title> content)
         svg.find("path").on("mouseenter", function () {
-            const title = $(this).attr("title");
-            if (title) {
-                const $tooltip = $("<div class='gp-map-tooltip'></div>")
-                    .text(title)
-                    .appendTo("body");
-                $(this).on("mousemove.gpMapTooltip", function (e) {
-                    $tooltip.css({
-                        left: e.pageX + 10,
-                        top: e.pageY + 10
-                    });
+            const $titleEl = $(this).find("title");
+            const countryName = $titleEl.length ? $titleEl.text().trim() : $(this).attr("id") || "";
+            if (!countryName) return;
+        
+            const $tooltip = $("<div class='gp-map-tooltip'></div>")
+                .text(countryName)
+                .appendTo("body");
+        
+            $(this).on("mousemove.gpMapTooltip", function (e) {
+                $tooltip.css({
+                    left: e.pageX + 10,
+                    top: e.pageY + 10
                 });
-            }
+            });
         }).on("mouseleave", function () {
             $(".gp-map-tooltip").remove();
             $(this).off("mousemove.gpMapTooltip");
         });
-    }
+
 
     // Elementor front-end hook
     $(window).on("elementor/frontend/init", function () {

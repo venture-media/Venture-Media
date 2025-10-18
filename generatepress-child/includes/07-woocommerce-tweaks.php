@@ -208,3 +208,91 @@ function venture_remove_woo_upsells_related() {
     remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_upsell_display', 15 );
     remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 20 );
 }
+
+
+// Add the admin field
+add_filter( 'woocommerce_get_sections_shipping', 'venture_add_handling_fee_section' );
+function venture_add_handling_fee_section( $sections ) {
+    $sections['venture_handling_fee'] = __( 'Handling Fee', 'woocommerce' );
+    return $sections;
+}
+
+add_filter( 'woocommerce_get_settings_shipping', 'venture_add_handling_fee_setting', 10, 2 );
+function venture_add_handling_fee_setting( $settings, $current_section ) {
+    if ( 'venture_handling_fee' === $current_section ) {
+        $settings = [
+            [
+                'title' => __( 'Handling Fee Settings', 'woocommerce' ),
+                'type'  => 'title',
+                'desc'  => __( 'Set a flat handling fee per quantity for all shipped items. Local Pickup is excluded.', 'woocommerce' ),
+                'id'    => 'venture_handling_fee_options',
+            ],
+            [
+                'title'    => __( 'Handling Fee per Item', 'woocommerce' ),
+                'desc'     => __( 'Amount (per quantity of shipped items)', 'woocommerce' ),
+                'id'       => 'venture_handling_fee_per_item',
+                'type'     => 'number',
+                'css'      => 'width:100px;',
+                'default'  => '10',
+                'desc_tip' => true,
+            ],
+            [
+                'type' => 'sectionend',
+                'id'   => 'venture_handling_fee_options',
+            ],
+        ];
+    }
+    return $settings;
+}
+
+
+add_action( 'woocommerce_cart_calculate_fees', 'venture_add_handling_fee_per_item', 20, 1 );
+function venture_add_handling_fee_per_item( $cart ) {
+    if ( is_admin() && ! defined( 'DOING_AJAX' ) ) {
+        return;
+    }
+
+    // Only apply if shipping is needed
+    if ( ! $cart->needs_shipping() ) {
+        return;
+    }
+
+    // Get chosen shipping methods
+    $chosen_methods = WC()->session->get( 'chosen_shipping_methods' );
+    if ( empty( $chosen_methods ) ) {
+        return;
+    }
+
+    // Skip fee for Local Pickup
+    foreach ( $chosen_methods as $method_id ) {
+        if ( strpos( $method_id, 'local_pickup' ) !== false ) {
+            return;
+        }
+    }
+
+    // Get fee from settings (default 10 if empty)
+    $fee_per_item = floatval( get_option( 'venture_handling_fee_per_item', 10 ) );
+
+    if ( $fee_per_item <= 0 ) {
+        return;
+    }
+
+    $qty_total = $cart->get_cart_contents_count();
+    $handling_total = $fee_per_item * $qty_total;
+
+    $cart->add_fee( __( 'Handling Fee', 'woocommerce' ), $handling_total, true );
+}
+
+
+add_action( 'wp_footer', 'venture_refresh_fees_on_shipping_change' );
+function venture_refresh_fees_on_shipping_change() {
+    if ( is_cart() || is_checkout() ) : ?>
+        <script type="text/javascript">
+            jQuery(function($){
+                $('form.woocommerce-cart-form, form.checkout').on('change', 'input[name^="shipping_method"]', function(){
+                    $(document.body).trigger('update_checkout');
+                });
+            });
+        </script>
+    <?php endif;
+}

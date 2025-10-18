@@ -12,7 +12,7 @@
         if (!svg.length) return;
 
         const highlightColor = $wrapper.data("highlight-color") || "#f4a239";
-        const baseColor = $wrapper.data("base-color") || "#cccccc";
+        const baseColor = $wrapper.data("base-color") || "#D1D74185";
         const countryData = $wrapper.data("country-values") || {};
 
         // Reset all fills to base color

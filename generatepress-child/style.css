@@ -1,11 +1,11 @@
 /*
- Theme Name: GeneratePress Child v1.0.0
+ Theme Name: GeneratePress Child v1.1.0
  Theme URI: https://github.com/venture-media/Venture-Media
  Description: Child theme for GeneratePress
  Author: Leon de Klerk
  Author URI: https://github.com/Leon2332/
  Template: generatepress
- Version: 1.0.0
+ Version: 1.1.0
 
 
 ------------------------------------------------------------------
@@ -38,7 +38,8 @@ generatepress-child/
     │     ├─ 00-header-scroll.js
     │     ├─ 01-menu-overlay.js
     │     ├─ 02-export-report.js
-    │     └─ 03-noindex.js
+    │     ├─ 03-noindex.js
+    │     └─ 04-world-map-widget.js
     │
     ├─ includes/                                   → PHP modules
     │     ├─ 00-roles.php
@@ -54,7 +55,12 @@ generatepress-child/
     │     └─ single-product.php
     │
     ├─ elementor-widgets/                          → Custom Elementor widgets
-    │     └─ class-report-chart-widget.php
+    │     │
+    │     ├─ assets/
+    │     │     └─ World_Map_grouped.svg
+    │     │
+    │     ├─ class-report-chart-widget.php
+    │     └─ class-world-map-widget.php
     │
     └─ screenshot.jpg                              → Theme screenshot for WP admin
 

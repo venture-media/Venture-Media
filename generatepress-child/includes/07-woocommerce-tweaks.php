@@ -296,3 +296,9 @@ function venture_refresh_fees_on_shipping_change() {
         </script>
     <?php endif;
 }
+
+
+// Remove duplicate "Payments" shortcut in WooCommerce admin menu
+add_action( 'admin_menu', function() {
+    remove_submenu_page( 'woocommerce', 'wc-settings&tab=checkout' );
+}, 999 );

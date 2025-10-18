@@ -110,7 +110,7 @@ class GP_World_Map_Widget extends \Elementor\Widget_Base {
         $apply_opacity = function( $color ) {
             $color = trim( $color );
             if ( preg_match( '/^#[0-9A-Fa-f]{6}$/', $color ) ) {
-                return $color . '85';
+                return $color . 'BF';    // BF = 75% Opacity
             }
             return $color;
         };

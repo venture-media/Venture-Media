@@ -5,17 +5,19 @@
  * -----------------------------
  */
 
-
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 
 // Shortcode: [staff_dashboard]
 function staff_dashboard_shortcode() {
     $user_id = get_current_user_id();
 
-    // Only staff OR admins can see this page
-    if ( ! ( current_user_can('staff') || current_user_can('administrator') ) ) {
+    // Only staff, shop managers, OR admins can see this page
+    if ( ! ( current_user_can('staff') || current_user_can('shop_manager') || current_user_can('administrator') ) ) {
         return '<p>You do not have permission to access this page.</p>';
     }
+
 
     // Handle form submission
     if ( isset($_POST['staff_nonce']) && wp_verify_nonce($_POST['staff_nonce'], 'staff_update') ) {
@@ -273,8 +275,8 @@ function staff_directory_shortcode() {
     */
 
     $args = array(
-        'role__in' => array('staff', 'administrator'),
-        'number'   => 9999, // adjust as needed
+        'role__in' => array('staff', 'shop_manager', 'administrator'),
+        'number'   => 9999,
     );
 
     $users = get_users($args);

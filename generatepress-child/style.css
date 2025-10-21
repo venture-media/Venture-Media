@@ -49,7 +49,8 @@ generatepress-child/
     │     ├─ 04-admin-enhancements.php
     │     ├─ 05-noindex.php
     │     ├─ 06-redirect-manager.php
-    │     └─ 07-woocommerce-tweaks.php
+    │     ├─ 07-woocommerce-tweaks.php
+    │     └─ 08-expire-pages.php
     │
     ├─ woocommerce/                                → WooCommerce template overrides
     │     └─ single-product.php
@@ -62,7 +63,7 @@ generatepress-child/
     │     ├─ class-report-chart-widget.php
     │     └─ class-world-map-widget.php
     │
-    ├─ 404.php                                     → Error:404 page (Page not found)
+    ├─ 404.php                                     → Error:404 page
     │
     └─ screenshot.jpg                              → Theme screenshot for WP admin
 

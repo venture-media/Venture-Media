@@ -1,0 +1,20 @@
+/* =====================
+  14. 404 Page
+===================== */
+
+.error-404.not-found {
+  width: 100%;
+  align-content: center;
+  text-align: center;
+  color: var(--e-global-color-text);
+  padding-top: 50px;
+  padding-bottom: 50px;
+  background-color: white;
+}
+
+.error-404.not-found input{
+  border: solid;
+  border-width: 1px;
+  border-color: var(--e-global-color-text);
+  color: var(--e-global-color-text);
+}

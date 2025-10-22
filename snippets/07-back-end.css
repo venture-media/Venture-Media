@@ -8,3 +8,7 @@
 #menu-comments {
 	display:none;
 }
+
+#toplevel_page_admin-page-wc-settings-tab-checkout-from-PAYMENTS_MENU_ITEM {
+	display: none;
+}

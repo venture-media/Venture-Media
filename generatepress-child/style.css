@@ -20,7 +20,7 @@ generatepress-child/
     ├─ style.css                                 → Theme header & notes (This file)
     │
     ├─ css/                                      → Numbered CSS files for load order
-    │     ├─ 00-global-links.css
+    │     ├─ 00-global.css
     │     ├─ 01-social-icons.css
     │     ├─ 02-site-header.css
     │     ├─ 03-password-form.css

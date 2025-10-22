@@ -1,7 +1,11 @@
 /* =====================
-  00. Global Links
+  00. Global
 ===================== */
 
+
+#main {
+	margin-right: 0px;
+}
 
 a:hover {
 	color: var(--e-global-color-primary);

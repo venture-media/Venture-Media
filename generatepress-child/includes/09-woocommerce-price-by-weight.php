@@ -9,35 +9,29 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 
-// Add [weight] support to dynamic pricing formulas
-add_filter('woocommerce_dynamic_pricing_product_price', function($price, $product, $qty) {
-    
-    // Get product weight
-    $weight = $product->get_weight();
-    if ( ! $weight ) $weight = 0;
+add_filter('woocommerce_dynamic_pricing_process_product_discounts', function($discount, $product, $cart_item, $processing_rules) {
+    if ( ! is_array($discount) || empty($discount['adjustment']) ) {
+        return $discount;
+    }
 
-    // Replace [weight] in the formula if present
-    if ( isset($_POST['pricing_equation']) ) {
-        $equation = $_POST['pricing_equation'];
+    // Get weight
+    $weight = (float) $product->get_weight();
+    $qty = isset($cart_item['quantity']) ? (int) $cart_item['quantity'] : 1;
+
+    // Replace placeholders in adjustment string (if applicable)
+    $equation = $discount['adjustment'];
+
+    // Only act if [weight] is found
+    if (strpos($equation, '[weight]') !== false) {
         $equation = str_replace('[weight]', $weight, $equation);
-        
-        // Replace [qty] as well.
         $equation = str_replace('[qty]', $qty, $equation);
 
-        // Evaluate the formula safely
-        try {
-            // Only allow numbers and operators
-            if (preg_match('/^[0-9+\-.*\/ ()]+$/', $equation)) {
-                $calculated_price = eval('return ' . $equation . ';');
-                if ( is_numeric($calculated_price) ) {
-                    $price = $calculated_price;
-                }
-            }
-        } catch (Exception $e) {
-            // fallback to normal price
+        // Allow only safe math
+        if (preg_match('/^[0-9+\-.*\/ ()]+$/', $equation)) {
+            $discount['adjustment'] = eval('return ' . $equation . ';');
         }
     }
 
-    return $price;
+    return $discount;
 
-}, 10, 3);
+}, 10, 4);

@@ -14,7 +14,7 @@ get_header(); ?>
     <img src="<?php echo $uploads['baseurl'] . '/2025/09/Advertising-scaled.jpg'; ?>" alt="Decorative banner">
 </div>
 
-<main id="primary" class="venture-search-page <?php generate_do_element_classes( 'main' ); ?>">
+<main id="primary" class="venture-search-page" <?php generate_do_element_classes( 'main' ); ?>">
 	<div class="inside-article">
 		<header class="page-header">
 			<h1 class="page-title">

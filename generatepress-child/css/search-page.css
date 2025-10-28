@@ -1,0 +1,22 @@
+.venture-search-page .search-results {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+	gap: 2rem;
+}
+
+.venture-search-page {
+	justify-items: center;
+	background-color: white;
+	color: var(--color-text);
+}
+
+.venture-search-page a {
+	color: var(--color-text);
+}
+
+.venture-search-page .search-results article {
+	background: #fff;
+	padding: 1.5rem;
+	border-radius: 8px;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}

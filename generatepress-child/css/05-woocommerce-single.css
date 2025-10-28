@@ -36,6 +36,7 @@ div.inside-article {
 	padding-right: 0px;
 	height: 50vh;
 	position: relative;
+	filter: brightness(0.5);
 }
 
 @media only screen and (min-width: 1025px) {

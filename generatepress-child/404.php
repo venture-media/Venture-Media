@@ -13,8 +13,10 @@ get_header(); ?>
 <main id="main" class="site-main">
     <section class="error-404 not-found">
         <h1>Well, that didn't work...</h1>
-        <p>It looks like nothing was found here. Try searching or return to the <a href="<?php echo esc_url(home_url('/')); ?>">homepage</a>.</p>
-        <?php get_search_form(); ?>
+        <p>It looks like nothing was found here. Try one of these products or return to the <a href="<?php echo esc_url(home_url('/')); ?>">homepage</a>.</p>
+		<div>
+    		<?php echo do_shortcode('[elementor-template id="529"]'); ?>
+		</div>
     </section>
 </main>
 

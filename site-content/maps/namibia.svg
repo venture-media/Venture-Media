@@ -23,7 +23,7 @@
   
   .map_region_text {
       font-family: 'Effra';
-      font-size: 28px;
+      font-size: 32px;
       fill: none;
   }
 
@@ -194,7 +194,7 @@
 }
 
 [id^=map_region_]:hover + [id^=map_region_text_] {
-    fill: var(--color-text)
+    fill: var(--color-secondary)
 }
 
 </style>

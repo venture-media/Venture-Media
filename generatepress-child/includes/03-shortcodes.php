@@ -233,15 +233,17 @@ function staff_images_shortcode( $atts ) {
         return ''; // no user specified
     }
 
-    // Get img2 and img3
+    // Get img2, img3, and bio
     $img2_id = get_user_meta( $user_id, 'staff_img2', true );
     $img3_id = get_user_meta( $user_id, 'staff_img3', true );
+    $bio     = get_user_meta( $user_id, 'staff_bio', true );
 
     $img2 = $img2_id ? wp_get_attachment_url( $img2_id ) : '';
     $img3 = $img3_id ? wp_get_attachment_url( $img3_id ) : '';
 
-    if ( ! $img2 && ! $img3 ) {
-        return ''; // no images set
+    // Nothing to show
+    if ( ! $img2 && ! $img3 && empty($bio) ) {
+        return ''; 
     }
 
     ob_start(); ?>
@@ -257,11 +259,18 @@ function staff_images_shortcode( $atts ) {
                 <img src="<?php echo esc_url( $img3 ); ?>" alt="Staff Image 3">
             </div>
         <?php endif; ?>
+
+        <?php if ( ! empty( $bio ) ): ?>
+            <div class="staff-bio-container">
+                <p><?php echo esc_html( $bio ); ?></p>
+            </div>
+        <?php endif; ?>
     </div>
     <?php
     return ob_get_clean();
 }
 add_shortcode( 'staff_images', 'staff_images_shortcode' );
+
 
 
 // Shortcode: [staff_directory]

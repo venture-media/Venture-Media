@@ -82,11 +82,16 @@ function cpt_client_reports() {
             'name_admin_bar' => 'Report'
         ],
         'public' => true,
+        'show_ui' => true,
+        'show_in_menu' => true,
+        'show_in_rest' => true, // enables Gutenberg + REST, Elementor likes this
+        'has_archive' => true,
         'menu_position' => 5,
         'menu_icon' => 'dashicons-portfolio',
-        'has_archive' => true,
-        'supports' => [ 'title', 'editor', 'thumbnail' ]
+        'supports' => [ 'title', 'editor', 'thumbnail', 'excerpt', 'revisions' ],
+        'rewrite' => [ 'slug' => 'reports' ]
     ]);
 }
 add_action( 'init', 'cpt_client_reports' );
+
 

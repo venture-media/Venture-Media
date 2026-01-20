@@ -84,14 +84,94 @@ function cpt_client_reports() {
         'public' => true,
         'show_ui' => true,
         'show_in_menu' => true,
-        'show_in_rest' => true, // enables Gutenberg + REST, Elementor likes this
+        'show_in_rest' => true,
         'has_archive' => true,
         'menu_position' => 5,
         'menu_icon' => 'dashicons-portfolio',
         'supports' => [ 'title', 'editor', 'thumbnail', 'excerpt', 'revisions' ],
-        'rewrite' => [ 'slug' => 'reports' ]
+        'rewrite' => [
+            'slug' => 'reports/%report_category%',
+            'with_front' => false
+]
     ]);
 }
 add_action( 'init', 'cpt_client_reports' );
 
+
+
+function cpt_client_reports() {
+    register_post_type( 'client_report', [
+        'labels' => [
+            'name' => 'Client Reports',
+            'singular_name' => 'Client Report',
+            'add_new' => 'Add Report',
+            'add_new_item' => 'Add New Report',
+            'edit_item' => 'Edit Report',
+            'new_item' => 'New Report',
+            'view_item' => 'View Report',
+            'search_items' => 'Search Reports',
+            'not_found' => 'No reports found',
+            'not_found_in_trash' => 'No reports found in Trash',
+            'all_items' => 'All Reports',
+            'menu_name' => 'Client Reports',
+            'name_admin_bar' => 'Report'
+        ],
+        'public' => true,
+        'show_ui' => true,
+        'show_in_menu' => true,
+        'show_in_rest' => true,
+        'has_archive' => true,
+        'menu_position' => 5,
+        'menu_icon' => 'dashicons-portfolio',
+        'supports' => [ 'title', 'editor', 'thumbnail', 'excerpt', 'revisions' ],
+        'rewrite' => [
+            'slug' => 'reports/%report_category%',
+            'with_front' => false
+        ]
+    ]);
+}
+add_action( 'init', 'cpt_client_reports' );
+
+
+function cpt_client_reports_taxonomy() {
+    $labels = [
+        'name' => 'Report Categories',
+        'singular_name' => 'Report Category',
+        'search_items' => 'Search Categories',
+        'all_items' => 'All Categories',
+        'parent_item' => 'Parent Category',
+        'parent_item_colon' => 'Parent Category:',
+        'edit_item' => 'Edit Category',
+        'update_item' => 'Update Category',
+        'add_new_item' => 'Add New Category',
+        'new_item_name' => 'New Category Name',
+        'menu_name' => 'Report Categories',
+    ];
+
+    register_taxonomy( 'report_category', [ 'client_report' ], [
+        'hierarchical' => true,
+        'labels' => $labels,
+        'show_ui' => true,
+        'show_in_rest' => true,
+        'rewrite' => [
+            'slug' => 'reports',
+            'with_front' => false,
+            'hierarchical' => true
+        ],
+    ]);
+}
+add_action( 'init', 'cpt_client_reports_taxonomy', 0 );
+
+
+function client_reports_permalink( $post_link, $post ) {
+    if ( $post->post_type === 'client_report' ) {
+        if ( $terms = get_the_terms( $post->ID, 'report_category' ) ) {
+            $post_link = str_replace( '%report_category%', array_pop($terms)->slug, $post_link );
+        } else {
+            $post_link = str_replace( '%report_category%', 'uncategorized', $post_link );
+        }
+    }
+    return $post_link;
+}
+add_filter( 'post_type_link', 'client_reports_permalink', 10, 2 );
 

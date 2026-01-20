@@ -1,39 +1,36 @@
 <?php
 /**
  * -----------------------------
- * 05 Noindex tags (Post & Page List Column)
+ * 05 Noindex tags (Post, Page & Client Report)
  * -----------------------------
  */
-
 
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-
-// Add "No index" column
-function venture_noindex_add_column($columns) {
+// --- 1. Add "No index" column ---
+function venture_noindex_add_column( $columns ) {
     $columns['noindex'] = __('No index', 'venture-media');
     return $columns;
 }
 add_filter('manage_post_posts_columns', 'venture_noindex_add_column');
 add_filter('manage_page_posts_columns', 'venture_noindex_add_column');
+add_filter('manage_client_report_posts_columns', 'venture_noindex_add_column'); // <-- added CPT
 
-
-// Render checkbox
-function venture_noindex_render_column($column, $post_id) {
-    if ($column === 'noindex') {
-        $checked = get_post_meta($post_id, '_noindex', true) ? 'checked' : '';
-        $nonce   = wp_create_nonce('toggle_noindex_' . $post_id);
+// --- 2. Render checkbox ---
+function venture_noindex_render_column( $column, $post_id ) {
+    if ( $column === 'noindex' ) {
+        $checked = get_post_meta( $post_id, '_noindex', true ) ? 'checked' : '';
+        $nonce   = wp_create_nonce( 'toggle_noindex_' . $post_id );
         echo '<input type="checkbox" class="noindex-toggle" data-post-id="' . $post_id . '" data-nonce="' . $nonce . '" ' . $checked . '>';
     }
 }
 add_action('manage_post_posts_custom_column', 'venture_noindex_render_column', 10, 2);
 add_action('manage_page_posts_custom_column', 'venture_noindex_render_column', 10, 2);
+add_action('manage_client_report_posts_custom_column', 'venture_noindex_render_column', 10, 2); // <-- added CPT
 
-
-// Save checkbox via AJAX
+// --- 3. Save checkbox via AJAX ---
 function venture_noindex_ajax_save() {
-
     $post_id = intval($_POST['post_id'] ?? 0);
     $value   = !empty($_POST['value']) ? 1 : 0;
     $nonce   = $_POST['nonce'] ?? '';
@@ -51,10 +48,9 @@ function venture_noindex_ajax_save() {
 }
 add_action('wp_ajax_toggle_noindex', 'venture_noindex_ajax_save');
 
-
-// Output <meta name="robots" content="noindex"> on front-end
+// --- 4. Output <meta name="robots" content="noindex"> on front-end ---
 function venture_noindex_meta() {
-    if (is_singular() && get_post_meta(get_the_ID(), '_noindex', true)) {
+    if ( is_singular( ['post','page','client_report'] ) && get_post_meta( get_the_ID(), '_noindex', true ) ) {
         echo '<meta name="robots" content="noindex">' . "\n";
     }
 }

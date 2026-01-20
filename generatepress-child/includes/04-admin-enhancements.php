@@ -64,24 +64,29 @@ add_action( 'after_setup_theme', 'venture_admin_sort_posts_by_tags' );
 endif;
 
 
-function rename_post_labels() {
-    global $wp_post_types;
-
-    // Target the default "post" post type
-    $labels = &$wp_post_types['post']->labels;
-
-    $labels->name = 'Reports';
-    $labels->singular_name = 'Report';
-    $labels->add_new = 'Add Report';
-    $labels->add_new_item = 'Add New Report';
-    $labels->edit_item = 'Edit Report';
-    $labels->new_item = 'Report';
-    $labels->view_item = 'View Report';
-    $labels->search_items = 'Search Reports';
-    $labels->not_found = 'No reports found';
-    $labels->not_found_in_trash = 'No reports found in Trash';
-    $labels->all_items = 'All Reports';
-    $labels->menu_name = 'Client reports';
-    $labels->name_admin_bar = 'Report';
+function cpt_client_reports() {
+    register_post_type( 'client_report', [
+        'labels' => [
+            'name' => 'Client Reports',
+            'singular_name' => 'Client Report',
+            'add_new' => 'Add Report',
+            'add_new_item' => 'Add New Report',
+            'edit_item' => 'Edit Report',
+            'new_item' => 'New Report',
+            'view_item' => 'View Report',
+            'search_items' => 'Search Reports',
+            'not_found' => 'No reports found',
+            'not_found_in_trash' => 'No reports found in Trash',
+            'all_items' => 'All Reports',
+            'menu_name' => 'Client Reports',
+            'name_admin_bar' => 'Report'
+        ],
+        'public' => true,
+        'menu_position' => 5,
+        'menu_icon' => 'dashicons-portfolio',
+        'has_archive' => true,
+        'supports' => [ 'title', 'editor', 'thumbnail' ]
+    ]);
 }
-add_action( 'init', 'rename_post_labels' );
+add_action( 'init', 'cpt_client_reports' );
+

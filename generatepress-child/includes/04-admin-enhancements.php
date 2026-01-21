@@ -54,6 +54,7 @@ add_action( 'after_setup_theme', 'venture_admin_sort_client_reports_by_tags' );
 endif;
 
 
+// Reports
 function cpt_client_reports() {
     register_post_type( 'client_report', [
         'labels' => [
@@ -129,5 +130,84 @@ function client_reports_permalink( $post_link, $post ) {
     return $post_link;
 }
 add_filter( 'post_type_link', 'client_reports_permalink', 10, 2 );
+
+
+// Magazines
+function cpt_magazines() {
+    register_post_type( 'magazines', [
+        'labels' => [
+            'name' => 'Magazines',
+            'singular_name' => 'Magazine',
+            'add_new' => 'Add Magazine',
+            'add_new_item' => 'Add New Magazine',
+            'edit_item' => 'Edit Magazine',
+            'new_item' => 'New Magazine',
+            'view_item' => 'View Magazine',
+            'search_items' => 'Search Magazines',
+            'not_found' => 'No magazines found',
+            'not_found_in_trash' => 'No magazines found in Trash',
+            'all_items' => 'All Magazines',
+            'menu_name' => 'Magazines',
+            'name_admin_bar' => 'Magazines'
+        ],
+        'public' => true,
+        'show_ui' => true,
+        'show_in_menu' => true,
+        'show_in_rest' => true,
+        'has_archive' => true,
+        'menu_position' => 5,
+        'menu_icon' => 'dashicons-portfolio',
+        'supports' => [ 'title', 'editor', 'thumbnail', 'excerpt', 'revisions' ],
+        'rewrite' => [
+            'slug' => 'magazines/%magazine_category%',
+            'with_front' => false
+        ]
+    ]);
+}
+add_action( 'init', 'cpt_magazines', 0 );
+
+
+function cpt_magazines_taxonomy() {
+    $labels = [
+        'name' => 'Magazine Categories',
+        'singular_name' => 'Magazine Category',
+        'search_items' => 'Search Categories',
+        'all_items' => 'All Categories',
+        'parent_item' => 'Parent Category',
+        'parent_item_colon' => 'Parent Category:',
+        'edit_item' => 'Edit Category',
+        'update_item' => 'Update Category',
+        'add_new_item' => 'Add New Category',
+        'new_item_name' => 'New Category Name',
+        'menu_name' => 'Magazine Categories',
+    ];
+
+    register_taxonomy( 'magazine_category', [ 'magazines' ], [
+        'hierarchical' => true,
+        'labels' => $labels,
+        'show_ui' => true,
+        'show_in_rest' => true,
+        'rewrite' => [
+            'slug' => 'magazines',
+            'with_front' => false,
+            'hierarchical' => true
+        ],
+    ]);
+}
+add_action( 'init', 'cpt_magazines_taxonomy', 10 );
+
+
+function magazines_permalink( $post_link, $post ) {
+    if ( $post->post_type === 'magazines' ) {
+        if ( $terms = get_the_terms( $post->ID, 'magazine_category' ) ) {
+            $post_link = str_replace( '%magazine_category%', array_pop($terms)->slug, $post_link );
+        } else {
+            $post_link = str_replace( '%magazine_category%', 'uncategorized', $post_link );
+        }
+    }
+    return $post_link;
+}
+add_filter( 'post_type_link', 'magazines_permalink', 10, 2 );
+
 
 

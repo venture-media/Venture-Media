@@ -1,7 +1,7 @@
 <?php
 /**
  * -----------------------------
- * 05 Noindex tags (Post, Page & Client Report)
+ * 05 Noindex tags (Page & Client Report)
  * -----------------------------
  */
 
@@ -13,9 +13,8 @@ function venture_noindex_add_column( $columns ) {
     $columns['noindex'] = __('No index', 'venture-media');
     return $columns;
 }
-add_filter('manage_post_posts_columns', 'venture_noindex_add_column');
 add_filter('manage_page_posts_columns', 'venture_noindex_add_column');
-add_filter('manage_client_report_posts_columns', 'venture_noindex_add_column'); // <-- added CPT
+add_filter('manage_client_report_posts_columns', 'venture_noindex_add_column');
 
 // --- 2. Render checkbox ---
 function venture_noindex_render_column( $column, $post_id ) {
@@ -25,7 +24,6 @@ function venture_noindex_render_column( $column, $post_id ) {
         echo '<input type="checkbox" class="noindex-toggle" data-post-id="' . $post_id . '" data-nonce="' . $nonce . '" ' . $checked . '>';
     }
 }
-add_action('manage_post_posts_custom_column', 'venture_noindex_render_column', 10, 2);
 add_action('manage_page_posts_custom_column', 'venture_noindex_render_column', 10, 2);
 add_action('manage_client_report_posts_custom_column', 'venture_noindex_render_column', 10, 2); // <-- added CPT
 
@@ -50,7 +48,7 @@ add_action('wp_ajax_toggle_noindex', 'venture_noindex_ajax_save');
 
 // --- 4. Output <meta name="robots" content="noindex"> on front-end ---
 function venture_noindex_meta() {
-    if ( is_singular( ['post','page','client_report'] ) && get_post_meta( get_the_ID(), '_noindex', true ) ) {
+    if ( is_singular( ['page','client_report'] ) && get_post_meta( get_the_ID(), '_noindex', true ) ) {
         echo '<meta name="robots" content="noindex">' . "\n";
     }
 }

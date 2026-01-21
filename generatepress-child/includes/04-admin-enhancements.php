@@ -78,7 +78,7 @@ function cpt_client_reports() {
         'show_in_rest' => true,
         'has_archive' => true,
         'menu_position' => 5,
-        'menu_icon' => 'dashicons-portfolio',
+        'menu_icon' => 'dashicons-chart-bar',
         'supports' => [ 'title', 'editor', 'thumbnail', 'excerpt', 'revisions' ],
         'rewrite' => [
             'slug' => 'reports/%report_category%',
@@ -156,7 +156,7 @@ function cpt_magazines() {
         'show_in_rest' => true,
         'has_archive' => true,
         'menu_position' => 5,
-        'menu_icon' => 'dashicons-portfolio',
+        'menu_icon' => 'dashicons-tablet',
         'supports' => [ 'title', 'editor', 'thumbnail', 'excerpt', 'revisions' ],
         'rewrite' => [
             'slug' => 'magazines/%magazine_category%',

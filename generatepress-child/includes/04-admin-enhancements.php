@@ -132,6 +132,90 @@ function client_reports_permalink( $post_link, $post ) {
 add_filter( 'post_type_link', 'client_reports_permalink', 10, 2 );
 
 
+// Add Report Categories column to Client Reports list table
+add_filter( 'manage_client_report_posts_columns', function( $columns ) {
+    $columns['report_category'] = __( 'Report Categories', 'venture-media' );
+    return $columns;
+});
+
+// Render Report Categories column content
+add_action( 'manage_posts_custom_column', function( $column, $post_id ) {
+
+    if ( get_post_type( $post_id ) !== 'client_report' ) {
+        return;
+    }
+
+    if ( $column === 'report_category' ) {
+
+        $terms = get_the_terms( $post_id, 'report_category' );
+
+        if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) {
+
+            $links = [];
+
+            foreach ( $terms as $term ) {
+                $links[] = sprintf(
+                    '<a href="%s">%s</a>',
+                    esc_url( add_query_arg(
+                        [ 'report_category' => $term->slug ],
+                        admin_url( 'edit.php?post_type=client_report' )
+                    ) ),
+                    esc_html( $term->name )
+                );
+            }
+
+            echo implode( ', ', $links );
+
+        } else {
+            echo '—';
+        }
+    }
+
+}, 10, 2 );
+
+// Make Report Categories column sortable
+add_filter( 'manage_edit-client_report_sortable_columns', function( $columns ) {
+    $columns['report_category'] = 'report_category';
+    return $columns;
+});
+
+
+// Sorting logic for Report Categories
+add_action( 'pre_get_posts', function( $query ) {
+
+    if ( ! is_admin() || ! $query->is_main_query() || $query->get('post_type') !== 'client_report' ) return;
+
+    if ( $query->get('orderby') === 'report_category' ) {
+
+        add_filter( 'posts_join', function( $join, $q ) {
+            global $wpdb;
+            if ( $q->get('post_type') === 'client_report' ) {
+                $join .= " LEFT JOIN {$wpdb->term_relationships} AS tr ON {$wpdb->posts}.ID = tr.object_id
+                           LEFT JOIN {$wpdb->term_taxonomy} AS tt ON tr.term_taxonomy_id = tt.term_taxonomy_id AND tt.taxonomy = 'report_category'
+                           LEFT JOIN {$wpdb->terms} AS t ON tt.term_id = t.term_id ";
+            }
+            return $join;
+        }, 10, 2 );
+
+        add_filter( 'posts_groupby', function( $groupby, $q ) {
+            global $wpdb;
+            if ( $q->get('post_type') === 'client_report' ) {
+                return "{$wpdb->posts}.ID";
+            }
+            return $groupby;
+        }, 10, 2 );
+
+        add_filter( 'posts_orderby', function( $orderby_sql, $q ) use ( $wpdb ) {
+            if ( $q->get('post_type') === 'client_report' ) {
+                return "GROUP_CONCAT(t.name ORDER BY t.name ASC)";
+            }
+            return $orderby_sql;
+        }, 10, 2 );
+    }
+
+});
+
+
 // Magazines
 function cpt_magazines() {
     register_post_type( 'magazines', [

@@ -225,12 +225,12 @@ add_shortcode( 'staff_image3', 'staff_image3_shortcode' );
 // Shortcode: [staff_images user="123"]
 function staff_images_shortcode( $atts ) {
     $atts = shortcode_atts( array(
-        'user' => 0, // default: none
+        'user' => 0,
     ), $atts, 'staff_images' );
 
     $user_id = intval( $atts['user'] );
     if ( ! $user_id ) {
-        return ''; // no user specified
+        return '';
     }
 
     // Get img2, img3, and bio
@@ -238,33 +238,31 @@ function staff_images_shortcode( $atts ) {
     $img3_id = get_user_meta( $user_id, 'staff_img3', true );
     $bio     = get_user_meta( $user_id, 'staff_bio', true );
 
-    $img2 = $img2_id ? wp_get_attachment_url( $img2_id ) : '';
-    $img3 = $img3_id ? wp_get_attachment_url( $img3_id ) : '';
+    // Default images
+    $default_img2 = content_url( '/uploads/2026/02/venture_default-staff_desktop.png' );
+    $default_img3 = content_url( '/uploads/2026/02/venture_default-staff_mobile.png' );
 
-    // Nothing to show
-    if ( ! $img2 && ! $img3 && empty($bio) ) {
-        return ''; 
-    }
+    // Use uploaded image if exists, otherwise default
+    $img2 = $img2_id ? wp_get_attachment_url( $img2_id ) : $default_img2;
+    $img3 = $img3_id ? wp_get_attachment_url( $img3_id ) : $default_img3;
 
     ob_start(); ?>
     <div class="staff-images-container">
-        <?php if ( $img2 ): ?>
-            <div class="staff-image2-container">
-                <img src="<?php echo esc_url( $img2 ); ?>" alt="Staff Image 2">
-            </div>
-        <?php endif; ?>
 
-        <?php if ( $img3 ): ?>
-            <div class="staff-image3-container">
-                <img src="<?php echo esc_url( $img3 ); ?>" alt="Staff Image 3">
-            </div>
-        <?php endif; ?>
+        <div class="staff-image2-container">
+            <img src="<?php echo esc_url( $img2 ); ?>" alt="Staff Image 2">
+        </div>
+
+        <div class="staff-image3-container">
+            <img src="<?php echo esc_url( $img3 ); ?>" alt="Staff Image 3">
+        </div>
 
         <?php if ( ! empty( $bio ) ): ?>
             <div class="staff-bio-container">
                 <p><?php echo esc_html( $bio ); ?></p>
             </div>
         <?php endif; ?>
+
     </div>
     <?php
     return ob_get_clean();
@@ -275,8 +273,7 @@ add_shortcode( 'staff_images', 'staff_images_shortcode' );
 
 // Shortcode: [staff_directory]
 function staff_directory_shortcode() {
-    // Only show for logged-in staff or admins if desired
-    // remove this block if you want it public
+    
     /*
     if ( ! ( current_user_can('staff') || current_user_can('administrator') ) ) {
         return '<p>You do not have permission to view this list.</p>';

@@ -233,16 +233,18 @@ function staff_images_shortcode( $atts ) {
         return '';
     }
 
+    // Get user name
     $user = get_userdata( $user_id );
     if ( ! $user ) {
         return '';
     }
     $display_name = $user->display_name;
 
-    // Get img2, img3, and bio
+    // Get img2, img3, title and bio
     $img2_id = get_user_meta( $user_id, 'staff_img2', true );
     $img3_id = get_user_meta( $user_id, 'staff_img3', true );
-    $bio     = get_user_meta( $user_id, 'staff_bio', true );
+    $title = get_user_meta($user_id, 'staff_title', true);
+    $bio = get_user_meta( $user_id, 'staff_bio', true );
 
     // Default images
     $default_img2 = content_url( '/uploads/2026/02/venture_default-staff_desktop.png' );
@@ -262,6 +264,12 @@ function staff_images_shortcode( $atts ) {
         <div class="staff-image3-container">
             <img src="<?php echo esc_url( $img3 ); ?>" alt="<?php echo esc_attr( $display_name ); ?>">
         </div>
+
+        <?php if ( ! empty( $title ) ): ?>
+            <div class="staff-title-container">
+                <p><?php echo esc_html( $title ); ?></p>
+            </div>
+        <?php endif; ?>
 
         <div class="staff-bio-container">
             <p><?php echo esc_html( !empty($bio) ? $bio : $display_name ); ?></p>

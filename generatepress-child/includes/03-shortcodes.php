@@ -233,6 +233,12 @@ function staff_images_shortcode( $atts ) {
         return '';
     }
 
+    $user = get_userdata( $user_id );
+    if ( ! $user ) {
+        return '';
+    }
+    $display_name = $user->display_name;
+
     // Get img2, img3, and bio
     $img2_id = get_user_meta( $user_id, 'staff_img2', true );
     $img3_id = get_user_meta( $user_id, 'staff_img3', true );
@@ -250,18 +256,16 @@ function staff_images_shortcode( $atts ) {
     <div class="staff-images-container">
 
         <div class="staff-image2-container">
-            <img src="<?php echo esc_url( $img2 ); ?>" alt="Staff Image 2">
+            <img src="<?php echo esc_url( $img2 ); ?>" alt="<?php echo esc_attr( $display_name ); ?>">
         </div>
 
         <div class="staff-image3-container">
-            <img src="<?php echo esc_url( $img3 ); ?>" alt="Staff Image 3">
+            <img src="<?php echo esc_url( $img3 ); ?>" alt="<?php echo esc_attr( $display_name ); ?>">
         </div>
 
-        <?php if ( ! empty( $bio ) ): ?>
-            <div class="staff-bio-container">
-                <p><?php echo esc_html( $bio ); ?></p>
-            </div>
-        <?php endif; ?>
+        <div class="staff-bio-container">
+            <p><?php echo esc_html( !empty($bio) ? $bio : $display_name ); ?></p>
+        </div>
 
     </div>
     <?php

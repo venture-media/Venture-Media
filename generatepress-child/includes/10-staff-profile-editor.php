@@ -5,6 +5,9 @@
  * ====================
  */
 
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 // 1. Add submenu page under Users (Admins only)
 add_action('admin_menu', 'staff_admin_menu_page');
 function staff_admin_menu_page() {
@@ -52,7 +55,7 @@ function staff_profiles_admin_page() {
             $image_fields = [
                 'staff_img1' => 'Profile picture',
                 'staff_img2' => 'Feature image (About us)',
-                'staff_img3' => 'Your handwriting (About us)',
+                'staff_img3' => 'Feature image (About us)',
             ];
 
             foreach ($image_fields as $field => $label) {
@@ -148,8 +151,9 @@ function staff_profiles_admin_page() {
                     $image_fields = [
                         'staff_img1' => 'Profile picture',
                         'staff_img2' => 'Feature image (About us) – desktop 16:9',
-                        'staff_img3' => 'Handwriting image (About us) – mobile 1:1',
+                        'staff_img3' => 'Feature image (About us) – mobile 1:1',
                     ];
+
                     foreach ($image_fields as $field => $label) :
                         $img_id  = get_user_meta($user_id, $field, true);
                         $img_url = $img_id ? wp_get_attachment_url($img_id) : '';
@@ -158,18 +162,23 @@ function staff_profiles_admin_page() {
                             <th><label><?php echo esc_html($label); ?></label></th>
                             <td>
                                 <?php if ($img_url) : ?>
-                                    <div style="margin: 10px 0;">
-                                        <img src="<?php echo esc_url($img_url); ?>" style="max-width:250px; border:1px solid #ddd;" alt="">
+                                    <div style="margin-bottom: 15px;">
+                                        <img src="<?php echo esc_url($img_url); ?>" 
+                                             style="max-width:280px; border:1px solid #ddd; border-radius:4px;" 
+                                             alt="<?php echo esc_attr($label); ?>">
                                         <br><br>
-                                        <label style="color:#d63638;">
-                                            <input type="checkbox" name="delete_<?php echo esc_attr($field); ?>" value="1">
-                                            Delete this image
-                                        </label>
+                                        <button type="submit" 
+                                                name="delete_<?php echo esc_attr($field); ?>" 
+                                                value="1"
+                                                class="button button-small button-link-delete"
+                                                onclick="return confirm('Are you sure you want to delete this image?');">
+                                            🗑 Delete Image
+                                        </button>
                                     </div>
                                 <?php endif; ?>
 
                                 <input type="file" name="<?php echo esc_attr($field); ?>" accept="image/*">
-                                <p class="description">Upload a new image (JPEG, PNG, etc.)</p>
+                                <p class="description">Upload a new image (or leave empty to keep current)</p>
                             </td>
                         </tr>
                     <?php endforeach; ?>

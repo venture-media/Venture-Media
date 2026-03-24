@@ -51,7 +51,8 @@ generatepress-child/
     │     ├─ 06-redirect-manager.php
     │     ├─ 07-woocommerce-tweaks.php
     │     ├─ 08-expire-pages.php
-    │     └─ 09-woocommerce-price-by-weight.php
+    │     ├─ 09-woocommerce-price-by-weight.php
+    │     └─ 10-staff-profile-editor.php
     │
     ├─ woocommerce/                                → WooCommerce template overrides
     │     └─ single-product.php

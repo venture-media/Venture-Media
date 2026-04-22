@@ -1,14 +1,14 @@
 <?php
 /**
- * WooCommerce Shipping by Weight - Robust fix for preg_match null deprecation
- * Works with recent WooCommerce versions + PHP 8.3+
+ * -----------------------------
+ * 09 WooCommerce shipping price by weight
+ * -----------------------------
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-    exit;
-}
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) exit;
 
-add_action( 'init', 'venture_register_weight_shortcode', 5 );
+add_action( 'init', 'venture_register_weight_shortcode' );
 function venture_register_weight_shortcode() {
     if ( ! shortcode_exists( 'weight' ) ) {
         add_shortcode( 'weight', 'venture_shipping_weight_shortcode' );
@@ -16,60 +16,58 @@ function venture_register_weight_shortcode() {
 }
 
 /**
- * [weight] shortcode – always returns a clean numeric string
+ * Shortcode [weight] for use in shipping method cost fields
+ * (e.g. "10 * [weight]" in Flat Rate / Table Rate shipping)
  */
-function venture_shipping_weight_shortcode() {
+function venture_shipping_weight_shortcode( $atts = array(), $content = null ) {
     $weight = 0.0;
 
-    // 1. Package context (advanced shipping / multiple packages)
+    // Priority 1: Package context (multi-package shipping)
     if ( ! empty( $GLOBALS['wc_shipping_package'] ) && is_array( $GLOBALS['wc_shipping_package'] ) ) {
         $package = $GLOBALS['wc_shipping_package'];
-        if ( ! empty( $package['contents'] ) && is_array( $package['contents'] ) ) {
+        if ( isset( $package['contents'] ) && is_array( $package['contents'] ) ) {
             foreach ( $package['contents'] as $item ) {
-                if ( ! empty( $item['data'] ) && is_object( $item['data'] ) && method_exists( $item['data'], 'get_weight' ) ) {
-                    $qty         = ! empty( $item['quantity'] ) ? max( 1, (int) $item['quantity'] ) : 1;
-                    $item_weight = $item['data']->get_weight();
-                    if ( is_numeric( $item_weight ) ) {
-                        $weight += (float) $item_weight * $qty;
-                    }
+                if ( isset( $item['data'] ) && is_object( $item['data'] ) && method_exists( $item['data'], 'get_weight' ) ) {
+                    $qty = isset( $item['quantity'] ) ? max( 1, (int) $item['quantity'] ) : 1;
+                    $item_weight = (float) $item['data']->get_weight();
+                    $weight += $item_weight * $qty;
                 }
             }
         }
-    }
-
-    // 2. Cart context (normal checkout / single package)
-    if ( $weight <= 0 && function_exists( 'WC' ) && WC()->cart && is_object( WC()->cart ) ) {
+    } 
+    // Priority 2: Cart context (normal checkout)
+    elseif ( function_exists( 'WC' ) && isset( WC()->cart ) && is_object( WC()->cart ) && method_exists( WC()->cart, 'get_cart_contents_weight' ) ) {
         $cart_weight = WC()->cart->get_cart_contents_weight();
         if ( is_numeric( $cart_weight ) ) {
             $weight = (float) $cart_weight;
         }
     }
 
-    return (string) max( 0, $weight );
+    // Always return a string – required for WC_Eval_Math
+    return (string) $weight;
 }
 
 /**
- * Guarantee 'weight' is always a valid float for WC_Eval_Math
+ * Pass 'weight' variable to WC_Eval_Math when evaluating shipping costs
+ * Extra safety guards prevent null values that trigger the preg_match deprecation.
  */
-add_filter( 'woocommerce_evaluate_shipping_cost_args', 'venture_add_weight_to_eval_args', 5, 3 );
+add_filter( 'woocommerce_evaluate_shipping_cost_args', 'venture_add_weight_to_eval_args', 10, 3 );
 function venture_add_weight_to_eval_args( $args, $sum, $instance ) {
     if ( ! is_array( $args ) ) {
         $args = [];
     }
-    $args['weight'] = isset( $args['weight'] ) && is_numeric( $args['weight'] )
-        ? (float) $args['weight']
-        : 0.0;
+
+    // Prevent null/undefined values reaching WC_Eval_Math
+    if ( ! isset( $args['weight'] ) || ! is_numeric( $args['weight'] ) ) {
+        $args['weight'] = 0.0;
+
+        if ( function_exists( 'WC' ) && isset( WC()->cart ) && is_object( WC()->cart ) && method_exists( WC()->cart, 'get_cart_contents_weight' ) ) {
+            $cart_weight = WC()->cart->get_cart_contents_weight();
+            if ( is_numeric( $cart_weight ) ) {
+                $args['weight'] = (float) $cart_weight;
+            }
+        }
+    }
 
     return $args;
-}
-
-/**
- * Extra safety net – prevent any null/empty cost from reaching the parser
- */
-add_filter( 'woocommerce_shipping_method_add_rate', 'venture_sanitize_rate_cost', 999, 2 );
-function venture_sanitize_rate_cost( $rate, $package ) {
-    if ( isset( $rate['cost'] ) && ( $rate['cost'] === null || $rate['cost'] === '' ) ) {
-        $rate['cost'] = 0;
-    }
-    return $rate;
 }

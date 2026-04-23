@@ -295,3 +295,79 @@ add_filter( 'post_type_link', 'magazines_permalink', 10, 2 );
 
 
 
+// Campaigns
+function cpt_campaigns() {
+    register_post_type( 'campaigns', [
+        'labels' => [
+            'name' => 'Campaigns',
+            'singular_name' => 'Campaign',
+            'add_new' => 'Add Campaign',
+            'add_new_item' => 'Add New Campaign',
+            'edit_item' => 'Edit Campaign',
+            'new_item' => 'New Campaign',
+            'view_item' => 'View Campaign',
+            'search_items' => 'Search Campaigns',
+            'not_found' => 'No campaigns found',
+            'not_found_in_trash' => 'No campaigns found in Trash',
+            'all_items' => 'All Campaigns',
+            'menu_name' => 'Campaigns',
+            'name_admin_bar' => 'Campaigns'
+        ],
+        'public' => true,
+        'show_ui' => true,
+        'show_in_menu' => true,
+        'show_in_rest' => true,
+        'has_archive' => true,
+        'menu_position' => 5,
+        'menu_icon' => 'dashicons-excerpt-view',
+        'supports' => [ 'title', 'editor', 'thumbnail', 'excerpt', 'revisions' ],
+        'rewrite' => [
+            'slug' => 'campaigns/%campaign_category%',
+            'with_front' => false
+        ]
+    ]);
+}
+add_action( 'init', 'cpt_campaigns', 0 );
+
+
+function cpt_campaigns_taxonomy() {
+    $labels = [
+        'name' => 'Campaign Categories',
+        'singular_name' => 'Campaign Category',
+        'search_items' => 'Search Categories',
+        'all_items' => 'All Categories',
+        'parent_item' => 'Parent Category',
+        'parent_item_colon' => 'Parent Category:',
+        'edit_item' => 'Edit Category',
+        'update_item' => 'Update Category',
+        'add_new_item' => 'Add New Category',
+        'new_item_name' => 'New Category Name',
+        'menu_name' => 'Campaign Categories',
+    ];
+
+    register_taxonomy( 'campaign_category', [ 'campaigns' ], [
+        'hierarchical' => true,
+        'labels' => $labels,
+        'show_ui' => true,
+        'show_in_rest' => true,
+        'rewrite' => [
+            'slug' => 'campaigns',
+            'with_front' => false,
+            'hierarchical' => true
+        ],
+    ]);
+}
+add_action( 'init', 'cpt_campaigns_taxonomy', 10 );
+
+
+function campaigns_permalink( $post_link, $post ) {
+    if ( $post->post_type === 'campaigns' ) {
+        if ( $terms = get_the_terms( $post->ID, 'campaigne_category' ) ) {
+            $post_link = str_replace( '%campaign_category%', array_pop($terms)->slug, $post_link );
+        } else {
+            $post_link = str_replace( '%campaign_category%', 'uncategorized', $post_link );
+        }
+    }
+    return $post_link;
+}
+add_filter( 'post_type_link', 'campaigns_permalink', 10, 2 );

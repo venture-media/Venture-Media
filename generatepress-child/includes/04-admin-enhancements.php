@@ -362,7 +362,7 @@ add_action( 'init', 'cpt_campaigns_taxonomy', 10 );
 
 function campaigns_permalink( $post_link, $post ) {
     if ( $post->post_type === 'campaigns' ) {
-        if ( $terms = get_the_terms( $post->ID, 'campaigne_category' ) ) {
+        if ( $terms = get_the_terms( $post->ID, 'campaign_category' ) ) {
             $post_link = str_replace( '%campaign_category%', array_pop($terms)->slug, $post_link );
         } else {
             $post_link = str_replace( '%campaign_category%', 'uncategorized', $post_link );

@@ -371,3 +371,82 @@ function campaigns_permalink( $post_link, $post ) {
     return $post_link;
 }
 add_filter( 'post_type_link', 'campaigns_permalink', 10, 2 );
+
+
+
+// Events
+function cpt_events() {
+    register_post_type( 'events', [
+        'labels' => [
+            'name' => 'Events',
+            'singular_name' => 'Event',
+            'add_new' => 'Add Event',
+            'add_new_item' => 'Add New Event',
+            'edit_item' => 'Edit Event',
+            'new_item' => 'New Event',
+            'view_item' => 'View Event',
+            'search_items' => 'Search Events',
+            'not_found' => 'No events found',
+            'not_found_in_trash' => 'No events found in Trash',
+            'all_items' => 'All Events',
+            'menu_name' => 'Events',
+            'name_admin_bar' => 'Events'
+        ],
+        'public' => true,
+        'show_ui' => true,
+        'show_in_menu' => true,
+        'show_in_rest' => true,
+        'has_archive' => true,
+        'menu_position' => 5,
+        'menu_icon' => 'dashicons-calendar-alt',
+        'supports' => [ 'title', 'editor', 'thumbnail', 'excerpt', 'revisions' ],
+        'rewrite' => [
+            'slug' => 'events/%event_category%',
+            'with_front' => false
+        ]
+    ]);
+}
+add_action( 'init', 'cpt_events', 0 );
+
+
+function cpt_events_taxonomy() {
+    $labels = [
+        'name' => 'Event Categories',
+        'singular_name' => 'Event Category',
+        'search_items' => 'Search Categories',
+        'all_items' => 'All Categories',
+        'parent_item' => 'Parent Category',
+        'parent_item_colon' => 'Parent Category:',
+        'edit_item' => 'Edit Category',
+        'update_item' => 'Update Category',
+        'add_new_item' => 'Add New Category',
+        'new_item_name' => 'New Category Name',
+        'menu_name' => 'Event Categories',
+    ];
+
+    register_taxonomy( 'event_category', [ 'events' ], [
+        'hierarchical' => true,
+        'labels' => $labels,
+        'show_ui' => true,
+        'show_in_rest' => true,
+        'rewrite' => [
+            'slug' => 'events',
+            'with_front' => false,
+            'hierarchical' => true
+        ],
+    ]);
+}
+add_action( 'init', 'cpt_events_taxonomy', 10 );
+
+
+function events_permalink( $post_link, $post ) {
+    if ( $post->post_type === 'events' ) {
+        if ( $terms = get_the_terms( $post->ID, 'event_category' ) ) {
+            $post_link = str_replace( '%event_category%', array_pop($terms)->slug, $post_link );
+        } else {
+            $post_link = str_replace( '%event_category%', 'uncategorized', $post_link );
+        }
+    }
+    return $post_link;
+}
+add_filter( 'post_type_link', 'events_permalink', 10, 2 );
